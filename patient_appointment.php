@@ -1,6 +1,6 @@
 <?php
 include("assets/modules/global_module.php"); 
-check_token();
+check_token("patient");
 $p_id = $_SESSION["login_token"];
 $data = mysqli_fetch_assoc(fetch_data("select * from patient where patient_id = '$p_id'","result"));
 ?>

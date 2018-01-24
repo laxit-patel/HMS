@@ -48,7 +48,7 @@ $data = mysqli_fetch_assoc($result);
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="purple" data-image="assets/img/waterfall.gif" style="background-position:center;background-size:cover;background-position:fixed">
+    <div class="sidebar" data-color="purple" data-image="assets/img/waterfall.gif" >
 
     <!--
 
@@ -57,37 +57,35 @@ $data = mysqli_fetch_assoc($result);
 
     -->
 
-    	<div class="sidebar-wrapper">
+    	<div class="sidebar-wrapper" id="">
             <div class="logo">
                 <a href="#" class="simple-text">
                     <?php echo $data["admin_name"];?>
                 </a>
             </div>
 
-            <ul class="nav">
+            <ul class="nav" >
                 <li class="active">
-                    <a href="dashboard.html">
+                    <a href="dashboard_admn.php">
                         <i class="pe-7s-graph"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
+
                 <li>
-                    <a href="patient.php" >
+                    <a href="add_patient.php" >
                         <i class="pe-7s-user"></i>
                         <p>Patient</p>
                     </a>
+
                 </li>
-                <li>
+                <li >
                     <a href="add_appointment.php">
                         <i class="pe-7s-note2"></i>
                         <p>Appointment</p>
                     </a>
                 </li>
-                
-                
-               
-                
-				
+
             </ul>
     	</div>
     </div>
@@ -158,8 +156,8 @@ $data = mysqli_fetch_assoc($result);
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 	<script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
 
-	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-	<script src="assets/js/demo.js"></script>
+    <1-- Drop down javascript -->
+    <script src="assets/js/dropdown.js"></script>
 
 	<script type="text/javascript">
     	$(document).ready(function(){
