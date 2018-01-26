@@ -5,7 +5,7 @@ check_token("admin");
 
 if(isset($_GET["id"]))
 {
-    $d_id = $_GET["id"];
+    $r_id = $_GET["id"];
 }
 if(isset($_SESSION["admin_token"]))
 {
@@ -13,23 +13,23 @@ if(isset($_SESSION["admin_token"]))
 }
 $result = fetch_data("select * from admin where admin_id= '$admin_id'","result");
 $a_data = mysqli_fetch_assoc($result);
-$data = mysqli_fetch_assoc(fetch_data("select * from doctor where doctor_id = '$d_id'","result"));
-$age = date_diff(date_create($data["doctor_dob"]), date_create('today'))->y;
+$data = mysqli_fetch_assoc(fetch_data("select * from receptionist where receptionist_id = '$r_id'","result"));
+$age = date_diff(date_create($data["receptionist_dob"]), date_create('today'))->y;
 
 
 if($_POST)
 {
-    $d_email = $_POST["d_email"];
-    $d_name = $_POST["d_name"];
-    $d_gender = $_POST["d_gender"];
+    $r_email = $_POST["r_email"];
+    $r_name = $_POST["r_name"];
+    $r_gender = $_POST["r_gender"];
 
-    $d_phone = $_POST["d_phone"];
-    $d_address = $_POST["d_address"];
-    $d_city = $_POST["d_city"];
+    $r_phone = $_POST["r_phone"];
+    $r_address = $_POST["r_address"];
+    $r_city = $_POST["r_city"];
 
 
-    echo update_data("update doctor set doctor_email = '$d_email',doctor_name = '$d_name',doctor_gender = '$d_gender',doctor_phone =  '$d_phone',doctor_address = '$d_address',doctor_city = '$d_city' where doctor_id = '$d_id'");
-   header("LOCATION:view_doctor_profile.php?id=$d_id");
+    echo update_data("update receptionist set receptionist_email = '$r_email',receptionist_name = '$r_name',receptionist_gender = '$r_gender',receptionist_phone =  '$r_phone',receptionist_address = '$r_address',receptionist_city = '$r_city' where receptionist_id = '$r_id'");
+    header("LOCATION:view_receptionist_profile.php?id=$r_id");
 }
 
 
@@ -106,31 +106,32 @@ if($_POST)
                         <p>Appointment</p>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="add_doctor.php">
                         <i class="pe-7s-id"></i>
                         <p>Doctor</p>
                     </a>
-                    <ul>
-                        <li>
-                            <a href="add_doctor.php" >
-                                <i class="pe-7s-add-user"></i>
-                                <p>Add Doctor</p>
-                            </a>
-                        </li>
-                        <li class="active">
-                            <a href="view_doctor.php" >
-                                <i class="pe-7s-search"></i>
-                                <p>View Doctor</p>
-                            </a>
-                        </li>
-                    </ul>
+
                 </li>
-                <li >
+                <li  class="active">
                     <a href="add_receptionist.php">
                         <i class="pe-7s-monitor"></i>
                         <p>Receptionist</p>
                     </a>
+                    <ul>
+                        <li >
+                            <a href="add_receptionist.php" >
+                                <i class="pe-7s-add-user"></i>
+                                <p>Add Receptionist</p>
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="view_receptionist.php" >
+                                <i class="pe-7s-search"></i>
+                                <p>View Receptionist</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
             </ul>
@@ -148,7 +149,7 @@ if($_POST)
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard<i class="pe-7s-angle-right"></i>Doctor Profile</a>
+                    <a class="navbar-brand" href="#">Dashboard<i class="pe-7s-angle-right"></i>Profile</a>
                 </div>
                 <div class="collapse navbar-collapse">
 
@@ -180,8 +181,8 @@ if($_POST)
                                     <a href="#">
                                         <img class="avatar border-gray" src="assets/img/avatars/014-man-12.png" alt="..."/  >
 
-                                        <h4 class="title"><?php echo $data["doctor_name"]; if($data["doctor_gender"]=="Male"){ echo "&nbsp<img src='assets/img/male.png'>"; }else{ echo "&nbsp<img src='assets/img/female.png'>"; }?><br />
-                                            <small><?php echo $data["doctor_designation"]; ?></small>
+                                        <h4 class="title"><?php echo $data["receptionist_name"]; if($data["receptionist_gender"]=="Male"){ echo "&nbsp<img src='assets/img/male.png'>"; }else{ echo "&nbsp<img src='assets/img/female.png'>"; }?><br />
+                                            <small><?php echo $data["receptionist_email"]; ?></small>
                                         </h4>
                                     </a>
                                 </div>
@@ -193,19 +194,19 @@ if($_POST)
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Id</label>
-                                                    <input type="text" name="d_id" class="form-control" disabled value="<?php echo $data["doctor_id"]; ?>">
+                                                    <input type="text" name="r_id" class="form-control" disabled value="<?php echo $data["receptionist_id"]; ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-5">
                                                 <div class="form-group">
                                                     <label>Email</label>
-                                                    <input type="email" name="d_email" class="form-control"  value="<?php echo $data["doctor_email"]; ?>">
+                                                    <input type="email" name="r_email" class="form-control"  value="<?php echo $data["receptionist_email"]; ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label >Name</label>
-                                                    <input type="text" name="d_name" class="form-control"  value="<?php echo $data["doctor_name"]; ?>">
+                                                    <input type="text" name="r_name" class="form-control"  value="<?php echo $data["receptionist_name"]; ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -214,19 +215,19 @@ if($_POST)
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Gender</label>
-                                                    <input type="text" name="d_gender" class="form-control"  value="<?php echo $data["doctor_gender"]; ?>">
+                                                    <input type="text" name="r_gender" class="form-control"  value="<?php echo $data["receptionist_gender"]; ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Age</label>
-                                                    <input type="text" name="p_age" class="form-control" value="<?php echo $age ?>">
+                                                    <input type="text" name="r_age" class="form-control" value="<?php echo $age ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Phone</label>
-                                                    <input type="text" name="d_phone" class="form-control"  value="<?php echo $data["doctor_phone"]; ?>">
+                                                    <input type="text" name="r_phone" class="form-control"  value="<?php echo $data["receptionist_phone"]; ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -235,14 +236,14 @@ if($_POST)
                                             <div class="col-md-8">
                                                 <div class="form-group">
                                                     <label>Address</label>
-                                                    <input type="text" name="d_address" class="form-control"  value="<?php echo $data["doctor_address"]; ?>">
+                                                    <input type="text" name="r_address" class="form-control"  value="<?php echo $data["receptionist_address"]; ?>">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>City</label>
-                                                    <input type="text" name="d_city" class="form-control"  value="<?php echo $data["doctor_city"]; ?>">
+                                                    <input type="text" name="r_city" class="form-control"  value="<?php echo $data["receptionist_city"]; ?>">
                                                 </div>
                                             </div>
 
@@ -328,11 +329,11 @@ if($_POST)
                 <h4 class="modal-title">Confirm</h4>
             </div>
             <div class="modal-body">
-                <p>You Want to Delete   <span class="label label-danger"><?php echo $data["doctor_name"]; ?></span> ?</p>
+                <p>You Want to Delete   <span class="label label-danger"><?php echo $data["receptionist_name"]; ?></span> ?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success btn-fill pull-left" data-dismiss="modal">No</button>
-                <a href="delete_doctor.php?delete_by=<?php echo $admin_id;?>&delete_for=<?php echo $data["doctor_id"]?>"><button type="button" class="btn btn-danger btn-fill pull-right" >Yes</button></a>
+                <a href="delete_receptionist.php?delete_by=<?php echo $admin_id;?>&delete_for=<?php echo $data["receptionist_id"]?>"><button type="button" class="btn btn-danger btn-fill pull-right" >Yes</button></a>
             </div>
         </div>
     </div>

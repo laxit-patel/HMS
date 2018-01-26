@@ -16,71 +16,65 @@ $data = mysqli_fetch_assoc($result);
 
 if($_POST)
 {
-    $doctor_id = key_engine("doctor");
-    $d_name = $_POST["d_name"];
-    $dr_dob = $_POST["dr_dob"];
-    $d_gender = $_POST["d_gender"];
-    $d_phone = $_POST["d_phone"];
-    $d_city = $_POST["d_city"];
-    $d_address = $_POST["d_address"];
-    $d_designation = $_POST["d_designation"];
-    $d_email = $_POST["d_email"];
-    $d_password = $_POST["d_password"];
+    $r_id = key_engine("receptionist");
+    $r_name = $_POST["r_name"];
+    $r_dob = $_POST["r_dob"];
+    $r_gender = $_POST["r_gender"];
+    $r_phone = $_POST["r_phone"];
+    $r_city = $_POST["r_city"];
+    $r_address = $_POST["r_address"];
+    $r_email = $_POST["r_email"];
+    $r_password = $_POST["r_password"];
 
 
 
-    if($doctor_id == "")
+    if($r_id == "")
     {
         $alert_danger = "Enter Id";
     }
-    elseif($d_name == "")
+    elseif($r_name == "")
     {
         $alert_danger = "Enter Name";
     }
-    elseif($dr_dob == "")
+    elseif($r_dob == "")
     {
         $alert_danger = "Enter DOB";
     }
-    elseif($d_gender == "--Select--")
+    elseif($r_gender == "--Select--")
     {
         $alert_danger = "Select Gender";
     }
-    elseif($d_phone == "")
+    elseif($r_phone == "")
     {
         $alert_danger = "Enter Phone Number";
     }
-    elseif($d_city == "--Select City--")
+    elseif($r_city == "--Select City--")
     {
         $alert_danger = "Select City";
     }
-    elseif($d_address == "")
+    elseif($r_address == "")
     {
         $alert_danger = "Enter Address";
     }
-    elseif($d_email == "")
+    elseif($r_email == "")
     {
         $alert_danger = "Enter Email";
     }
-    elseif($d_password == "")
+    elseif($r_password == "")
     {
         $alert_danger = "Enter Password";
     }
-    elseif($d_designation == "--Select Designation--")
-    {
-        $alert_danger = "Enter Designation";
-    }
     else
     {
-        $d_old = explode("/",$dr_dob);
-        $d_dob = $d_old[2]."/".$d_old[0]."/".$d_old[1];
-        if(add_doctor("insert into doctor(doctor_id,doctor_name,doctor_gender,doctor_email,doctor_phone,doctor_dob,doctor_city,doctor_address,doctor_password,doctor_designation)
-                                         values('$doctor_id','$d_name','$d_gender','$d_email','$d_phone','$d_dob','$d_city','$d_address','$d_password','$d_designation')"))
+        $d_old = explode("/",$r_dob);
+        $r_dob = $d_old[2]."/".$d_old[0]."/".$d_old[1];
+        if(add_receptionist("insert into receptionist(receptionist_id,receptionist_name,receptionist_gender,receptionist_email,receptionist_phone,receptionist_dob,receptionist_city,receptionist_address,receptionist_password)
+                                         values('$r_id','$r_name','$r_gender','$r_email','$r_phone','$r_dob','$r_city','$r_address','$r_password')"))
         {
-            header("LOCATION:add_doctor.php");
+            header("LOCATION:add_receptionist.php");
         }
 
     }
-
 }
 
 ?>
@@ -92,7 +86,7 @@ if($_POST)
     <link rel="icon" type="image/png" href="assets/img/HMS.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Dashboard - Add Doctor</title>
+    <title>Dashboard - Receptionist</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -114,7 +108,6 @@ if($_POST)
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
     <link href="assets/css/material-bootstrap-wizard.css" rel="stylesheet" />
-
 </head>
 <body>
 
@@ -157,33 +150,34 @@ if($_POST)
                     </a>
 
                 </li>
-
-                <li class="active">
+                <li >
                     <a href="add_doctor.php">
                         <i class="pe-7s-id"></i>
                         <p>Doctor</p>
                     </a>
+
+                </li>
+                <li class="active">
+                    <a href="add_receptionist.php">
+                        <i class="pe-7s-id"></i>
+                        <p>Receptionist</p>
+                    </a>
                     <ul>
                         <li class="active">
-                            <a href="add_Doctor.php" >
+                            <a href="add_receptionist.php" >
                                 <i class="pe-7s-add-user"></i>
-                                <p>Add Doctor</p>
+                                <p>Add Receptionist</p>
                             </a>
                         </li>
                         <li >
-                            <a href="view_doctor.php" >
+                            <a href="view_receptionist.php" >
                                 <i class="pe-7s-search"></i>
-                                <p>View Doctor</p>
+                                <p>View Receptionist</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li >
-                    <a href="add_receptionist.php">
-                        <i class="pe-7s-monitor"></i>
-                        <p>Receptionist</p>
-                    </a>
-                </li>
+
             </ul>
         </div>
     </div>
@@ -199,7 +193,7 @@ if($_POST)
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard<i class="pe-7s-angle-right"></i>Add Doctor</a>
+                    <a class="navbar-brand" href="#">Dashboard<i class="pe-7s-angle-right"></i>View Appointment</a>
                 </div>
                 <div class="collapse navbar-collapse">
 
@@ -217,6 +211,7 @@ if($_POST)
                 </div>
             </div>
         </nav>
+
 
 
         <!--   Big container   -->
@@ -273,7 +268,7 @@ if($_POST)
                                     }
                                     ?><br><br>
                                     <h3 class="wizard-title">
-                                        Add Doctor
+                                        Add Receptionist
                                     </h3>
 
                                 </div>
@@ -295,8 +290,8 @@ if($_POST)
                                                   <i class="material-icons">vpn_key</i>
                                                 </span>
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Docotr's Id</label>
-                                                    <input type="text" name="docotr_id" value="<?php echo key_engine("doctor"); ?>" class="form-control" disabled>
+                                                    <label class="control-label">Receptionist's Id</label>
+                                                    <input type="text" name="r_id" value="<?php echo key_engine("receptionist"); ?>" class="form-control" disabled>
 
 
                                                 </div>
@@ -307,8 +302,8 @@ if($_POST)
                                                   <i class="material-icons">account_circle</i>
                                                 </span>
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Doctor's Name</label>
-                                                    <input type="text" name="d_name" value="<?php if(isset($d_name)){ echo $d_name; }?>" class="form-control">
+                                                    <label class="control-label">Receptionist's Name</label>
+                                                    <input type="text" name="r_name" value="<?php if(isset($r_name)){ echo $r_name; }?>" class="form-control">
                                                 </div>
                                             </div>
 
@@ -318,7 +313,7 @@ if($_POST)
                                                 </span>
                                                 <div class="form-group label-floating">
 
-                                                    <input type="text" name="dr_dob" value="<?php if(isset($dr_dob)){ echo $dr_dob; }?>" class="datepicker form-control" placeholder="Enter Birthdate" />
+                                                    <input type="text" name="r_dob" value="<?php if(isset($r_dob)){ echo $r_dob; }?>" class="datepicker form-control" placeholder="Enter Birthdate" />
                                                 </div>
                                             </div>
 
@@ -328,10 +323,10 @@ if($_POST)
                                                 </span>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Gender</label>
-                                                    <select name="d_gender" class="form-control">
+                                                    <select name="r_gender" class="form-control">
                                                         <option>--Select--</option>
-                                                        <option <?php if(isset($d_gender)){ if($d_gender == "Male"){echo "selected=true";}}?> >Male</option>
-                                                        <option <?php if(isset($d_gender)){ if($d_gender == "Female"){echo "selected=true";}}?> >Female</option>
+                                                        <option <?php if(isset($r_gender)){ if($r_gender == "Male"){echo "selected=true";}}?> >Male</option>
+                                                        <option <?php if(isset($r_gender)){ if($r_gender == "Female"){echo "selected=true";}}?> >Female</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -341,8 +336,8 @@ if($_POST)
                                                   <i class="material-icons">call</i>
                                                 </span>
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Doctor's Phone</label>
-                                                    <input type="text" name="d_phone" value="<?php if(isset($d_phone)){ echo $d_phone; }?>" class="form-control">
+                                                    <label class="control-label">Receptionist's Phone</label>
+                                                    <input type="text" name="r_phone" value="<?php if(isset($r_phone)){ echo $r_phone; }?>" class="form-control">
                                                 </div>
                                             </div>
 
@@ -352,7 +347,7 @@ if($_POST)
                                                 </span>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">city</label>
-                                                    <select name="d_city" class="form-control">
+                                                    <select name="r_city" class="form-control">
                                                         <option>--Select City--</option>
                                                         <option>Bhuj</option>
                                                     </select>
@@ -365,7 +360,7 @@ if($_POST)
                                                 </span>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Adress</label>
-                                                    <input type="text" name="d_address" value="<?php if(isset($d_address)){ echo $d_address; }?>" class="form-control">
+                                                    <input type="text" name="r_address" value="<?php if(isset($r_address)){ echo $r_address; }?>" class="form-control">
                                                 </div>
                                             </div>
 
@@ -374,19 +369,7 @@ if($_POST)
                                     <div class="tab-pane" id="account">
                                         <div class="container-fluid">
 
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
-                                                  <i class="material-icons">school</i>
-                                                </span>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Designation</label>
-                                                    <select name="d_designation" class="form-control">
-                                                        <option>--Select Designation--</option>
-                                                        <option>Orthopedic</option>
-                                                        <option>gynechologyst</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+
 
                                             <div class="input-group ">
                                                 <span class="input-group-addon">
@@ -394,7 +377,7 @@ if($_POST)
                                                 </span>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Doctor's Email</label>
-                                                    <input type="email" name="d_email" value="<?php if(isset($d_email)){ echo $d_email; }?>" class="form-control">
+                                                    <input type="email" name="r_email" value="<?php if(isset($r_email)){ echo $r_email; }?>" class="form-control">
                                                 </div>
                                             </div>
 
@@ -404,7 +387,7 @@ if($_POST)
                                                 </span>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Password</label>
-                                                    <input type="text" name="d_password" value="<?php if(isset($d_password)){ echo $d_password; }?>" class="form-control" />
+                                                    <input type="text" name="r_password" value="<?php if(isset($r_password)){ echo $r_password; }?>" class="form-control" />
                                                 </div>
                                             </div>
 
@@ -454,7 +437,6 @@ if($_POST)
 <script src="assets/js/jquery.bootstrap.js" type="text/javascript"></script>
 <script src="assets/js/jquery.validate.min.js"></script>
 <script src="assets/js/material-bootstrap-wizard.js"></script>
-
 <!--  Charts Plugin -->
 <script src="assets/js/chartist.min.js"></script>
 
@@ -462,7 +444,6 @@ if($_POST)
 <script src="assets/js/bootstrap-notify.js"></script>
 
 <!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>

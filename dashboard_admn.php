@@ -94,6 +94,13 @@ $data = mysqli_fetch_assoc($result);
 
                 </li>
 
+                <li >
+                    <a href="add_receptionist.php">
+                        <i class="pe-7s-monitor"></i>
+                        <p>Receptionist</p>
+                    </a>
+                </li>
+
             </ul>
     	</div>
     </div>

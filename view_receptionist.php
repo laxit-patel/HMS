@@ -23,7 +23,7 @@ $data = mysqli_fetch_assoc($result);
     <link rel="icon" type="image/png" href="assets/img/HMS.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Dashboard - Admin</title>
+    <title>Dashboard - View Receptionist</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -42,6 +42,7 @@ $data = mysqli_fetch_assoc($result);
     <link href="assets/css/fresh-bootstrap-table.css" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
@@ -88,32 +89,33 @@ $data = mysqli_fetch_assoc($result);
                     </a>
                 </li>
 
-                <li class="active">
+                <li >
                     <a href="add_doctor.php">
                         <i class="pe-7s-id"></i>
                         <p>Doctor</p>
                     </a>
-                    <ul>
-                        <li >
-                            <a href="add_Doctor.php" >
-                                <i class="pe-7s-add-user"></i>
-                                <p>Add Doctor</p>
-                            </a>
-                        </li>
-                        <li class="active" >
-                            <a href="view_doctor.php" >
-                                <i class="pe-7s-search"></i>
-                                <p>View Doctor</p>
-                            </a>
-                        </li>
-                    </ul>
+
                 </li>
-                <li >
+                <li class="active">
                     <a href="add_receptionist.php">
                         <i class="pe-7s-monitor"></i>
                         <p>Receptionist</p>
                     </a>
                 </li>
+                <ul>
+                    <li >
+                        <a href="add_receptionist.php" >
+                            <i class="pe-7s-add-user"></i>
+                            <p>Add Receptionist</p>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="view_receptionist.php" >
+                            <i class="pe-7s-search"></i>
+                            <p>View Receptionist</p>
+                        </a>
+                    </li>
+                </ul>
             </ul>
         </div>
     </div>
@@ -129,7 +131,7 @@ $data = mysqli_fetch_assoc($result);
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard<i class="pe-7s-angle-right"></i>View Doctor</a>
+                    <a class="navbar-brand" href="#">Dashboard<i class="pe-7s-angle-right"></i>View Receptionist</a>
                 </div>
                 <div class="collapse navbar-collapse">
 
@@ -165,13 +167,13 @@ $data = mysqli_fetch_assoc($result);
                             <th data-field="id">ID</th>
                             <th data-field="name" data-sortable="true">Name</th>
 
-                            <th data-field="country" data-sortable="true">Designation</th>
-                            <th data-field="city">E-mail</th>
+                            <th data-field="country" data-sortable="true">Phone</th>
+                            <th data-field="city">age</th>
                             <th  data-field="actions"  >Actions</th>
                             </thead>
                             <tbody>
 
-                            <?php view_table("doctor"); ?>
+                            <?php view_table("receptionist"); ?>
 
                             </tbody>
                         </table>

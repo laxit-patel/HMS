@@ -63,6 +63,36 @@ function key_engine($for)
 		}
 
 	}
+	elseif($for == "receptionist")
+    {
+        $key = $for."_id";
+        $sql_test = "select $key from $for order by $key desc limit 1";
+        $result_test = mysqli_query($conn,$sql_test);
+
+        if($result_test)
+        {
+            $row=mysqli_fetch_row($result_test); //$row gets the key_val array
+
+            $data = explode("_",$row[0]); // key_val explodes and saved in $data
+
+            $year = $data[0];
+            $initial = $data[1];
+            $number = $data[2];
+
+            $year_new = date("y");
+
+            $number_new = $number+1;
+
+            $key = $year_new."_".$initial."_".$number_new;
+
+            return $key;
+        }
+        else
+        {
+            return ";_;";
+        }
+
+    }
 
 
 }
@@ -231,6 +261,26 @@ function view_table($for)
 
         }
     }
+	elseif ($for == "receptionist")
+    {
+        $query = "select * from receptionist";
+        $result = mysqli_query($conn,$query);
+
+        while($row = mysqli_fetch_array($result))
+        {
+            $id = $row[0];
+            echo "<tr>
+                <td>$id</td>
+                <td>$row[1]</td>
+              
+                <td>$row[7]</td>
+                <td>$row[8]</td>
+                <td > <a href='view_receptionist_profile.php?id=$id'> <i class='material-icons'>edit</i></a></td>
+               
+                </tr>";
+
+        }
+    }
 
 }
 
@@ -293,6 +343,35 @@ function delete_doctor($by,$for)
     }
 }
 
+function add_receptionist($query)
+{
+    include("assets/modules/db_config.php");
+
+    $result = mysqli_query($conn,$query);
+    if($result)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function delete_receptionist($by,$for)
+{
+    include("assets/modules/db_config.php"); // include database for $conn variable
+    $del_by = $by;
+    $result = mysqli_query($conn,"delete from receptionist where receptionist_id = '$for'");
+    if($result)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
 ?>
 
 
