@@ -124,7 +124,13 @@ if($_POST)
                         <p>Appointment</p>
                     </a>
                 </li>
+                <li >
+                    <a href="add_doctor.php">
+                        <i class="pe-7s-note2"></i>
+                        <p>Doctor</p>
+                    </a>
 
+                </li>
 
 
             </ul>
@@ -142,7 +148,7 @@ if($_POST)
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard<i class="pe-7s-angle-right"></i>View Patient</a>
+                    <a class="navbar-brand" href="#">Dashboard<i class="pe-7s-angle-right"></i>Patient Profile</a>
                 </div>
                 <div class="collapse navbar-collapse">
 

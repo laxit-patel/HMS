@@ -86,6 +86,14 @@ $data = mysqli_fetch_assoc($result);
                     </a>
                 </li>
 
+                <li >
+                    <a href="add_doctor.php">
+                        <i class="pe-7s-id"></i>
+                        <p>Doctor</p>
+                    </a>
+
+                </li>
+
             </ul>
     	</div>
     </div>

@@ -11,103 +11,77 @@ elseif(isset($_SESSION["admin_token"]))
 {
     $id = $_SESSION["admin_token"];
 }
-
-if(isset($_GET["msg"]))
-{
-    $alert_success = $_GET["msg"];
-}
-
 $result = fetch_data("select * from admin where admin_id= '$id'","result");
 $data = mysqli_fetch_assoc($result);
 
 if($_POST)
 {
-    $p_id = key_engine("patient");
-    $p_name = $_POST["p_name"];
-    $p_dob = $_POST["p_dob"];
-    $p_gender = $_POST["p_gender"];
-    $p_phone = $_POST["p_phone"];
-    $p_city = $_POST["p_city"];
-    $p_address = $_POST["p_address"];
-    $p_email = $_POST["p_email"];
-    $p_password = $_POST["p_password"];
-    $relative_name = $_POST["relative_name"];
-    $relative_contact = $_POST["relative_contact"];
+    $doctor_id = key_engine("doctor");
+    $d_name = $_POST["d_name"];
+    $dr_dob = $_POST["dr_dob"];
+    $d_gender = $_POST["d_gender"];
+    $d_phone = $_POST["d_phone"];
+    $d_city = $_POST["d_city"];
+    $d_address = $_POST["d_address"];
+    $d_designation = $_POST["d_designation"];
+    $d_email = $_POST["d_email"];
+    $d_password = $_POST["d_password"];
 
-    if($p_id == "")
+
+
+    if($doctor_id == "")
     {
         $alert_danger = "Enter Id";
     }
-    elseif($p_name == "")
+    elseif($d_name == "")
     {
         $alert_danger = "Enter Name";
     }
-    elseif($p_dob == "")
+    elseif($dr_dob == "")
     {
         $alert_danger = "Enter DOB";
     }
-    elseif($p_gender == "--Select--")
+    elseif($d_gender == "--Select--")
     {
         $alert_danger = "Select Gender";
     }
-    elseif($p_phone == "")
+    elseif($d_phone == "")
     {
         $alert_danger = "Enter Phone Number";
     }
-    elseif($p_city == "--Select City--")
+    elseif($d_city == "--Select City--")
     {
         $alert_danger = "Select City";
     }
-    elseif($p_address == "")
+    elseif($d_address == "")
     {
-        $alert_danger = "Enter Adress";
+        $alert_danger = "Enter Address";
     }
-    elseif($p_email == "")
+    elseif($d_email == "")
     {
         $alert_danger = "Enter Email";
     }
-    elseif($p_password == "")
+    elseif($d_password == "")
     {
         $alert_danger = "Enter Password";
     }
-
-
+    elseif($d_designation == "--Select Designation--")
+    {
+        $alert_danger = "Enter Designation";
+    }
     else
     {
-        $d_old = explode("/",$p_dob);
-        $p_dob = $d_old[2]."/".$d_old[0]."/".$d_old[1];
-        $loc = $p_city."~".$p_address;
-            $raw = explode("_",$id);
-            if($raw[1] == "admn")
-            {
-                $by = "Admin";
-            }
-            elseif($raw[1] == "dctr")
-            {
-                $by = "Doctor";
-            }
-            elseif($raw[1] == "rcpt")
-            {
-                $by = "Receptionnist";
-            }
-
-            if(add_patient("insert into patient(patient_id,patient_name,patient_gender,patient_email,patient_phone,patient_dob,patient_address,patient_password,relative_name,relative_contact,added_by) values('$p_id','$p_name','$p_gender','$p_email','$p_phone','$p_dob','$loc','$p_password','$relative_name','$relative_contact','$by')"))
-            {
-                $msg = "Patient ".$p_name." Added";
-                $p_name = "";
-                $p_dob = "";
-                $p_gender ="";
-                $p_phone = "";
-                $p_city = "";
-                $p_address ="";
-                $p_email = "";
-                $p_password = "";
-                $relative_name = "";
-                $relative_contact ="";
-
-                header("LOCATION:add_patient.php");
-            }
-
+        $d_old = explode("/",$dr_dob);
+        $d_dob = $d_old[2]."/".$d_old[0]."/".$d_old[1];
+        if(add_doctor("insert into doctor(doctor_id,doctor_name,doctor_gender,doctor_email,doctor_phone,doctor_dob,doctor_city,doctor_address,doctor_password,doctor_designation)
+                                         values('$doctor_id','$d_name','$d_gender','$d_email','$d_phone','$d_dob','$d_city','$d_address','$d_password','$d_designation')"))
+        {
+           echo "done";
+        }
+        else
+        {
+            echo "T_T";
+        }
     }
 
 }
@@ -121,7 +95,7 @@ if($_POST)
     <link rel="icon" type="image/png" href="assets/img/HMS.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Dashboard - Admin</title>
+    <title>Dashboard - Add Doctor</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -144,7 +118,6 @@ if($_POST)
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
     <link href="assets/css/material-bootstrap-wizard.css" rel="stylesheet" />
 
-
 </head>
 <body>
 
@@ -158,54 +131,56 @@ if($_POST)
 
         -->
 
-        <div class="sidebar-wrapper">
+        <div class="sidebar-wrapper" id="">
             <div class="logo">
                 <a href="#" class="simple-text">
-                    <?php echo $data["admin_name"]?>
+                    <?php echo $data["admin_name"];?>
                 </a>
             </div>
 
-            <ul class="nav">
+            <ul class="nav" >
                 <li >
                     <a href="dashboard_admn.php">
                         <i class="pe-7s-graph"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="active">
+
+                <li>
                     <a href="add_patient.php" >
                         <i class="pe-7s-user"></i>
                         <p>Patient</p>
                     </a>
-                <ul>
-                <li class="active">
-                    <a href="add_patient.php" >
-                        <i class="pe-7s-add-user"></i>
-                        <p>Add Patient</p>
-                    </a>
+
                 </li>
                 <li >
-                    <a href="view_patient.php" >
-                        <i class="pe-7s-search"></i>
-                        <p>View Patient</p>
-                    </a>
-                </li>
-                </ul>
-                </li>
-                <li>
                     <a href="add_appointment.php">
                         <i class="pe-7s-note2"></i>
                         <p>Appointment</p>
                     </a>
+
                 </li>
-                <li >
+
+                <li class="active">
                     <a href="add_doctor.php">
                         <i class="pe-7s-id"></i>
                         <p>Doctor</p>
                     </a>
-
+                    <ul>
+                        <li class="active">
+                            <a href="add_Doctor.php" >
+                                <i class="pe-7s-add-user"></i>
+                                <p>Add Doctor</p>
+                            </a>
+                        </li>
+                        <li >
+                            <a href="view_doctor.php" >
+                                <i class="pe-7s-search"></i>
+                                <p>View Doctor</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-
 
             </ul>
         </div>
@@ -222,8 +197,7 @@ if($_POST)
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard<i class="pe-7s-angle-right"></i>Add Patient</a>
-
+                    <a class="navbar-brand" href="#">Dashboard<i class="pe-7s-angle-right"></i>Add Doctor</a>
                 </div>
                 <div class="collapse navbar-collapse">
 
@@ -241,7 +215,6 @@ if($_POST)
                 </div>
             </div>
         </nav>
-
 
 
         <!--   Big container   -->
@@ -298,7 +271,7 @@ if($_POST)
                                     }
                                     ?><br><br>
                                     <h3 class="wizard-title">
-                                        Add patient
+                                        Add Doctor
                                     </h3>
 
                                 </div>
@@ -320,8 +293,8 @@ if($_POST)
                                                   <i class="material-icons">vpn_key</i>
                                                 </span>
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Patient's Id</label>
-                                                    <input type="text" name=p_id value="<?php echo key_engine("patient"); ?>" class="form-control" disabled>
+                                                    <label class="control-label">Docotr's Id</label>
+                                                    <input type="text" name="docotr_id" value="<?php echo key_engine("doctor"); ?>" class="form-control" disabled>
 
 
                                                 </div>
@@ -332,8 +305,8 @@ if($_POST)
                                                   <i class="material-icons">account_circle</i>
                                                 </span>
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Patient's Name</label>
-                                                    <input type="text" name="p_name" value="<?php if(isset($p_name)){ echo $p_name; }?>" class="form-control">
+                                                    <label class="control-label">Doctor's Name</label>
+                                                    <input type="text" name="d_name" value="<?php if(isset($d_name)){ echo $d_name; }?>" class="form-control">
                                                 </div>
                                             </div>
 
@@ -343,7 +316,7 @@ if($_POST)
                                                 </span>
                                                 <div class="form-group label-floating">
 
-                                                    <input type="text" name="p_dob" value="<?php if(isset($p_dob)){ echo $p_dob; }?>" class="datepicker form-control" placeholder="Enter Birthdate" />
+                                                    <input type="text" name="dr_dob" value="<?php if(isset($dr_dob)){ echo $dr_dob; }?>" class="datepicker form-control" placeholder="Enter Birthdate" />
                                                 </div>
                                             </div>
 
@@ -353,10 +326,10 @@ if($_POST)
                                                 </span>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Gender</label>
-                                                    <select name="p_gender" class="form-control">
+                                                    <select name="d_gender" class="form-control">
                                                         <option>--Select--</option>
-                                                        <option <?php if(isset($p_gender)){ if($p_gender == "Male"){echo "selected=true";}}?> >Male</option>
-                                                        <option <?php if(isset($p_gender)){ if($p_gender == "Female"){echo "selected=true";}}?> >Female</option>
+                                                        <option <?php if(isset($d_gender)){ if($d_gender == "Male"){echo "selected=true";}}?> >Male</option>
+                                                        <option <?php if(isset($d_gender)){ if($d_gender == "Female"){echo "selected=true";}}?> >Female</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -366,8 +339,8 @@ if($_POST)
                                                   <i class="material-icons">call</i>
                                                 </span>
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Patient's Phone</label>
-                                                    <input type="text" name="p_phone" value="<?php if(isset($p_phone)){ echo $p_phone; }?>" class="form-control">
+                                                    <label class="control-label">Doctor's Phone</label>
+                                                    <input type="text" name="d_phone" value="<?php if(isset($d_phone)){ echo $d_phone; }?>" class="form-control">
                                                 </div>
                                             </div>
 
@@ -377,7 +350,7 @@ if($_POST)
                                                 </span>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">city</label>
-                                                    <select name="p_city" class="form-control">
+                                                    <select name="d_city" class="form-control">
                                                         <option>--Select City--</option>
                                                         <option>Bhuj</option>
                                                     </select>
@@ -390,7 +363,7 @@ if($_POST)
                                                 </span>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Adress</label>
-                                                    <input type="text" name="p_address" value="<?php if(isset($p_address)){ echo $p_address; }?>" class="form-control">
+                                                    <input type="text" name="d_address" value="<?php if(isset($d_address)){ echo $d_address; }?>" class="form-control">
                                                 </div>
                                             </div>
 
@@ -399,13 +372,27 @@ if($_POST)
                                     <div class="tab-pane" id="account">
                                         <div class="container-fluid">
 
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                  <i class="material-icons">school</i>
+                                                </span>
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Designation</label>
+                                                    <select name="d_designation" class="form-control">
+                                                        <option>--Select Designation--</option>
+                                                        <option>Orthopedic</option>
+                                                        <option>gynechologyst</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
                                             <div class="input-group ">
                                                 <span class="input-group-addon">
                                                   <i class="material-icons">email</i>
                                                 </span>
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Patient's Email</label>
-                                                    <input type="email" name="p_email" value="<?php if(isset($p_email)){ echo $p_email; }?>" class="form-control">
+                                                    <label class="control-label">Doctor's Email</label>
+                                                    <input type="email" name="d_email" value="<?php if(isset($d_email)){ echo $d_email; }?>" class="form-control">
                                                 </div>
                                             </div>
 
@@ -415,29 +402,10 @@ if($_POST)
                                                 </span>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Password</label>
-                                                    <input type="text" name="p_password" value="<?php if(isset($p_password)){ echo $p_password; }?>" class="form-control" />
+                                                    <input type="text" name="d_password" value="<?php if(isset($d_password)){ echo $d_password; }?>" class="form-control" />
                                                 </div>
                                             </div>
 
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
-                                                  <i class="material-icons">supervisor_account</i>
-                                                </span>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Relative</label>
-                                                    <input type="text" name="relative_name" value="<?php if(isset($relative_name)){ echo $relative_name; }?>" class="form-control" />
-                                                </div>
-                                            </div>
-
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
-                                                  <i class="material-icons">contact_phone</i>
-                                                </span>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Relative's phone</label>
-                                                    <input type="text" name="relative_contact" value="<?php if(isset($relative_contact)){ echo $relative_contact; }?>" class="form-control" />
-                                                </div>
-                                            </div>
 
                                         </div>
                                     </div>
@@ -461,6 +429,7 @@ if($_POST)
             </div><!-- end row -->
         </div> <!--  big container -->
 
+
         <footer class="footer">
             <div class="container-fluid">
 
@@ -480,21 +449,24 @@ if($_POST)
 <!--   Core JS Files   -->
 <script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-
 <script src="assets/js/jquery.bootstrap.js" type="text/javascript"></script>
 <script src="assets/js/jquery.validate.min.js"></script>
-
 <script src="assets/js/material-bootstrap-wizard.js"></script>
+
+<!--  Charts Plugin -->
+<script src="assets/js/chartist.min.js"></script>
 
 <!--  Notifications Plugin    -->
 <script src="assets/js/bootstrap-notify.js"></script>
 
+<!--  Google Maps Plugin    -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
 
-<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-<script src="assets/js/demo.js"></script>
+<1-- Drop down javascript -->
+<script src="assets/js/dropdown.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function(){

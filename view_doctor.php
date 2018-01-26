@@ -74,25 +74,12 @@ $data = mysqli_fetch_assoc($result);
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="active">
+                <li >
                     <a href="add_patient.php" >
                         <i class="pe-7s-user"></i>
                         <p>Patient</p>
                     </a>
-                    <ul>
-                        <li>
-                            <a href="add_patient.php" >
-                                <i class="pe-7s-add-user"></i>
-                                <p>Add Patient</p>
-                            </a>
-                        </li>
-                        <li class="active">
-                            <a href="add_patient.php" >
-                                <i class="pe-7s-search"></i>
-                                <p>View Patient</p>
-                            </a>
-                        </li>
-                    </ul>
+
                 </li>
                 <li>
                     <a href="add_appointment.php">
@@ -101,12 +88,25 @@ $data = mysqli_fetch_assoc($result);
                     </a>
                 </li>
 
-                <li >
+                <li class="active">
                     <a href="add_doctor.php">
                         <i class="pe-7s-id"></i>
                         <p>Doctor</p>
                     </a>
-
+                    <ul>
+                        <li >
+                            <a href="add_Doctor.php" >
+                                <i class="pe-7s-add-user"></i>
+                                <p>Add Doctor</p>
+                            </a>
+                        </li>
+                        <li class="active" >
+                            <a href="view_doctor.php" >
+                                <i class="pe-7s-search"></i>
+                                <p>View Doctor</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>
@@ -123,7 +123,7 @@ $data = mysqli_fetch_assoc($result);
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard<i class="pe-7s-angle-right"></i>View Patient</a>
+                    <a class="navbar-brand" href="#">Dashboard<i class="pe-7s-angle-right"></i>View Doctor</a>
                 </div>
                 <div class="collapse navbar-collapse">
 
@@ -142,7 +142,7 @@ $data = mysqli_fetch_assoc($result);
             </div>
         </nav>
 
-<br>
+        <br>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -159,13 +159,13 @@ $data = mysqli_fetch_assoc($result);
                             <th data-field="id">ID</th>
                             <th data-field="name" data-sortable="true">Name</th>
 
-                            <th data-field="country" data-sortable="true">Phone</th>
-                            <th data-field="city">age</th>
+                            <th data-field="country" data-sortable="true">Designation</th>
+                            <th data-field="city">E-mail</th>
                             <th  data-field="actions"  >Actions</th>
                             </thead>
                             <tbody>
 
-                            <?php view_table("patient"); ?>
+                            <?php view_table("doctor"); ?>
 
                             </tbody>
                         </table>

@@ -36,7 +36,7 @@ function key_engine($for)
 	elseif($for == "doctor")
 	{
 		$key = $for."_id";
-		$sql_test = "select $key from $for order by count desc limit 1"; 
+		$sql_test = "select $key from $for order by $key desc limit 1";
 		$result_test = mysqli_query($conn,$sql_test);
 
 		if($result_test)
@@ -55,10 +55,6 @@ function key_engine($for)
 
 			$key = $year_new."_".$initial."_".$number_new;
 
-			echo "<br>".$key;
-
-			die;
-			
 			return $key;
 		}	
 		else
@@ -215,6 +211,26 @@ function view_table($for)
 
         }
     }
+    elseif ($for == "doctor")
+    {
+        $query = "select * from doctor";
+        $result = mysqli_query($conn,$query);
+
+        while($row = mysqli_fetch_array($result))
+        {
+            $id = $row[0];
+            echo "<tr>
+                <td>$id</td>
+                <td>$row[1]</td>
+              
+                <td>$row[7]</td>
+                <td>$row[8]</td>
+                <td > <a href='view_doctor_profile.php?id=$id'> <i class='material-icons'>edit</i></a></td>
+               
+                </tr>";
+
+        }
+    }
 
 }
 
@@ -237,6 +253,36 @@ function delete_patient($by,$for)
     include("assets/modules/db_config.php"); // include database for $conn variable
     $del_by = $by;
     $result = mysqli_query($conn,"delete from patient where patient_id = '$for'");
+    if($result)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function add_doctor($query)
+{
+    include("assets/modules/db_config.php");
+
+    $result = mysqli_query($conn,$query);
+    if($result)
+    {
+        return true;
+    }
+    else
+    {
+        return mysqli_error($conn);
+    }
+}
+
+function delete_doctor($by,$for)
+{
+    include("assets/modules/db_config.php"); // include database for $conn variable
+    $del_by = $by;
+    $result = mysqli_query($conn,"delete from doctor where doctor_id = '$for'");
     if($result)
     {
         return true;
