@@ -265,9 +265,12 @@ if($_POST)
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-danger btn-fill pull-left">Delete</button>
+
+                                    <a class="btn btn-danger btn-fill pull-left" data-toggle="modal" data-target="#myModal">
+                                        Delete
+                                    </a>
                                     <button type="submit" class="btn btn-info btn-fill pull-right">Update</button>
-                                    <div class="clearfix"></div>
+                                    <br><br>
                                 </form>
                             </div>
                         </div>
@@ -277,6 +280,8 @@ if($_POST)
                 </div>
             </div>
         </div>
+
+
 
         <footer class="footer">
             <div class="container-fluid">
@@ -288,6 +293,7 @@ if($_POST)
             </div>
         </footer>
 
+
     </div>
 </div>
 
@@ -298,20 +304,13 @@ if($_POST)
 <script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 
-<!--  Charts Plugin -->
-<script src="assets/js/chartist.min.js"></script>
-
-<!--  Notifications Plugin    -->
-<script src="assets/js/bootstrap-notify.js"></script>
-
-
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
 
 <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-
-
 <script type="text/javascript" src="assets/js/bootstrap-table.js"></script>
+
+
 
 <!-- Fressh table-->
 <script src="assets/js/fresh_table.js"></script>
@@ -332,5 +331,25 @@ if($_POST)
 
     });
 </script>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Confirm</h4>
+            </div>
+            <div class="modal-body">
+                <p>You Want to Delete   <span class="label label-danger"><?php echo $data["patient_name"]; ?></span> ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-fill pull-left" data-dismiss="modal">No</button>
+                <a href="delete_patient.php?delete_by=<?php echo $admin_id;?>&delete_for=<?php echo $data["patient_id"]?>"><button type="button" class="btn btn-danger btn-fill pull-right" >Yes</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--  Delete Modal -->
 
 </html>

@@ -232,6 +232,21 @@ function update_data($query)
     }
 }
 
+function delete_patient($by,$for)
+{
+    include("assets/modules/db_config.php"); // include database for $conn variable
+    $del_by = $by;
+    $result = mysqli_query($conn,"delete from patient where patient_id = '$for'");
+    if($result)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 ?>
 
 
