@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2018 at 05:39 AM
+-- Generation Time: Jan 26, 2018 at 06:31 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -49,17 +49,25 @@ INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_password`, `admin_role`) V
 --
 
 CREATE TABLE `doctor` (
-  `count` int(10) NOT NULL,
-  `doctor_id` varchar(15) NOT NULL
+  `doctor_id` varchar(15) NOT NULL,
+  `doctor_name` varchar(30) NOT NULL,
+  `doctor_dob` date NOT NULL,
+  `doctor_gender` varchar(10) NOT NULL,
+  `doctor_phone` varchar(15) NOT NULL,
+  `doctor_city` varchar(20) NOT NULL,
+  `doctor_address` varchar(100) NOT NULL,
+  `doctor_designation` varchar(30) NOT NULL,
+  `doctor_email` varchar(50) NOT NULL,
+  `doctor_password` varchar(50) NOT NULL,
+  `doj` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `doctor`
 --
 
-INSERT INTO `doctor` (`count`, `doctor_id`) VALUES
-(1, '18_dctr_0'),
-(2, '18_dctr_5');
+INSERT INTO `doctor` (`doctor_id`, `doctor_name`, `doctor_dob`, `doctor_gender`, `doctor_phone`, `doctor_city`, `doctor_address`, `doctor_designation`, `doctor_email`, `doctor_password`, `doj`) VALUES
+('18_dctr_6', 'pannaben', '1997-01-01', 'Female', '1212121212', 'Bhuj', 'bhuj', 'gynechologist@gmail', 'panna_rudani@gmail.com', 'panna_mf', '2018-01-26 13:19:14.940429');
 
 -- --------------------------------------------------------
 
@@ -78,6 +86,9 @@ CREATE TABLE `patient` (
   `patient_type` tinyint(1) NOT NULL,
   `patient_address` varchar(100) NOT NULL,
   `patient_password` varchar(50) NOT NULL,
+  `relative_name` varchar(30) NOT NULL,
+  `relative_contact` varchar(15) NOT NULL,
+  `added_by` varchar(15) NOT NULL,
   `doj` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -85,11 +96,38 @@ CREATE TABLE `patient` (
 -- Dumping data for table `patient`
 --
 
-INSERT INTO `patient` (`count`, `patient_id`, `patient_name`, `patient_gender`, `patient_email`, `patient_phone`, `patient_dob`, `patient_type`, `patient_address`, `patient_password`, `doj`) VALUES
-(20, '18_ptnt_1', 'laxit', 'Male', 'patellaxit8@gmail.com', '9726412461', '0000-00-00', 0, 'Bhuj~Madhapar', '8460892026', '2018-01-19 16:15:51.904296'),
-(33, '18_ptnt_14', 'obito', 'Male', 'obito@gmail.com', '8141458601', '2018-01-12', 0, 'Bhuj~konoha hidden leaf', '123456', '2018-01-19 16:19:17.951171'),
-(34, '18_ptnt_15', 'anushka', 'Female', 'anushka@gmail.com', '8789654565', '1997-12-22', 0, 'Bhuj~howrah bridge,kolkata', 'anushka@123', '2018-01-20 14:24:51.630859'),
-(35, '18_ptnt_16', 'aditi mittal', 'Female', 'aditi@gmail.com', '8989898989', '2018-01-19', 0, 'Bhuj~lotus colony', 'aditi@123', '2018-01-22 16:35:07.423828');
+INSERT INTO `patient` (`count`, `patient_id`, `patient_name`, `patient_gender`, `patient_email`, `patient_phone`, `patient_dob`, `patient_type`, `patient_address`, `patient_password`, `relative_name`, `relative_contact`, `added_by`, `doj`) VALUES
+(34, '18_ptnt_15', 'captain america', 'Male', 'patellaxit8@gmail.com', '9726412461', '1997-12-22', 0, 'Bhuj~Madhapar', 'anushka@123', 'bucky', '8989898989', '', '2018-01-20 14:24:51.630859'),
+(40, '18_ptnt_18', 'captain america               ', 'Male', 'patellaxit8@gmail.com', '9726412461', '1997-12-23', 0, 'Bhuj~Madhapar is <3', '8460892026', 'bucky', '8989898989', 'Admin', '2018-01-25 09:42:52.693359'),
+(41, '18_ptnt_19', 'captain america', 'Male', 'patellaxit8@gmail.com', '9726412461', '1995-12-23', 0, 'Bhuj~Madhapar', 'loki@123', 'bucky', '8989898989', 'Admin', '2018-01-25 10:41:21.675781'),
+(42, '18_ptnt_20', 'laxit patel', 'Male', 'patellaxit8@gmail.com', '9726412461', '1997-12-23', 0, 'Bhuj~vardhman nagar', '123456', 'manish', '8989898989', 'Admin', '2018-01-26 11:30:53.527343'),
+(43, '18_ptnt_21', 'elon musk', 'Male', 'elon_roks@gmail.com', '9726412461', '2018-01-18', 0, 'Bhuj~silocon valley', 'elon@123', 'nasa kun', '123465', 'self', '2018-01-26 15:49:02.075195');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `receptionist`
+--
+
+CREATE TABLE `receptionist` (
+  `receptionist_id` varchar(10) NOT NULL,
+  `receptionist_name` varchar(30) NOT NULL,
+  `receptionist_dob` date NOT NULL,
+  `receptionist_gender` varchar(10) NOT NULL,
+  `receptionist_phone` varchar(15) NOT NULL,
+  `receptionist_city` varchar(30) NOT NULL,
+  `receptionist_address` varchar(100) NOT NULL,
+  `receptionist_email` varchar(50) NOT NULL,
+  `receptionist_password` varchar(50) NOT NULL,
+  `doj` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `receptionist`
+--
+
+INSERT INTO `receptionist` (`receptionist_id`, `receptionist_name`, `receptionist_dob`, `receptionist_gender`, `receptionist_phone`, `receptionist_city`, `receptionist_address`, `receptionist_email`, `receptionist_password`, `doj`) VALUES
+('18_rcst_4', 'beast boy', '1999-01-09', 'Male', '1121221222', 'Bhuj', 'jugnle', 'beasty@gmail.com', 'beasty@123', '2018-01-26 16:46:33.704101');
 
 --
 -- Indexes for dumped tables
@@ -105,8 +143,7 @@ ALTER TABLE `admin`
 -- Indexes for table `doctor`
 --
 ALTER TABLE `doctor`
-  ADD PRIMARY KEY (`doctor_id`),
-  ADD UNIQUE KEY `count` (`count`);
+  ADD PRIMARY KEY (`doctor_id`);
 
 --
 -- Indexes for table `patient`
@@ -120,16 +157,10 @@ ALTER TABLE `patient`
 --
 
 --
--- AUTO_INCREMENT for table `doctor`
---
-ALTER TABLE `doctor`
-  MODIFY `count` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `count` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `count` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

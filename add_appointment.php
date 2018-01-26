@@ -13,6 +13,11 @@ elseif(isset($_SESSION["admin_token"]))
 }
 $result = fetch_data("select * from admin where admin_id= '$id'","result");
 $data = mysqli_fetch_assoc($result);
+include("assets/modules/db_config.php");
+
+$result1 = fetch_data("select * from patient","result");
+
+
 
 ?>
 
@@ -40,9 +45,11 @@ $data = mysqli_fetch_assoc($result);
 
 
     <!--     Fonts and icons     -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link href="assets/css/material-bootstrap-wizard.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -112,6 +119,12 @@ $data = mysqli_fetch_assoc($result);
                         <p>Receptionist</p>
                     </a>
                 </li>
+                <li >
+                    <a href="add_designation.php">
+                        <i class="pe-7s-study"></i>
+                        <p>Designation</p>
+                    </a>
+                </li>
 
             </ul>
         </div>
@@ -160,13 +173,13 @@ $data = mysqli_fetch_assoc($result);
 
                                 <div class="wizard-header">
                                     <h3 class="wizard-title">
-                                        Take Appointment
+                                        Add Appointment
                                     </h3>
 
                                 </div>
                                 <div class="wizard-navigation">
                                     <ul>
-                                        <li><a href="#about" data-toggle="tab">Specialization</a></li>
+                                        <li><a href="#about" data-toggle="tab">Patient</a></li>
                                         <li><a href="#account" data-toggle="tab">Doctor</a></li>
                                         <li><a href="#address" data-toggle="tab">Date</a></li>
                                     </ul>
@@ -175,9 +188,37 @@ $data = mysqli_fetch_assoc($result);
                                 <div class="tab-content">
                                     <div class="tab-pane" id="about">
                                         <div class="container-fluid">
-                                            <h4 class="info-text"> Select Specialization </h4>
+                                            <h4 class="info-text"> Select Patient </h4>
 
 
+
+                                            <div class="input-group">
+														<span class="input-group-addon">
+														  <i class="material-icons">loupe</i>
+														</span>
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Patient</label>
+                                                    <select name="country" class="form-control">
+                                                        <option  >18_ptnt_17</option>
+                                                        <option disabled="" selected=""></option>
+                                                        <?php if($result1)
+                                                        {
+
+                                                            while($row = mysqli_fetch_array($result)) {
+                                                                echo $row["patient_id"];
+                                                            }
+                                                        } ?>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="account">
+                                        <div class="container-fluid">
+                                            <h4 class="info-text"> Select Doctor </h4>
 
                                             <div class="input-group">
 														<span class="input-group-addon">
@@ -193,13 +234,6 @@ $data = mysqli_fetch_assoc($result);
                                                     </select>
                                                 </div>
                                             </div>
-
-
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="account">
-                                        <div class="container-fluid">
-                                            <h4 class="info-text"> Select Doctor </h4>
 
                                             <div class="input-group">
 														<span class="input-group-addon">
@@ -276,7 +310,9 @@ $data = mysqli_fetch_assoc($result);
 <!--   Core JS Files   -->
 <script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-
+<script src="assets/js/jquery.bootstrap.js" type="text/javascript"></script>
+<script src="assets/js/jquery.validate.min.js"></script>
+<script src="assets/js/material-bootstrap-wizard.js"></script>
 <!--  Charts Plugin -->
 <script src="assets/js/chartist.min.js"></script>
 

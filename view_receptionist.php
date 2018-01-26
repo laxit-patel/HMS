@@ -116,6 +116,12 @@ $data = mysqli_fetch_assoc($result);
                         </a>
                     </li>
                 </ul>
+                <li >
+                    <a href="add_designation.php">
+                        <i class="pe-7s-study"></i>
+                        <p>Designation</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

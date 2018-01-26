@@ -137,7 +137,8 @@ function fetch_data($query,$type)
 		elseif($type == "result")
 		{
 
-			return $result;
+			 $res = mysqli_query($conn,$query);
+			 return $res;
 		}
 	}
 	else
