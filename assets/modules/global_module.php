@@ -171,6 +171,67 @@ function master_login($role,$email,$pass)
 	
 }
 
+function add_patient($query)
+{
+    include("assets/modules/db_config.php");
+
+    $result = mysqli_query($conn,$query);
+    if($result)
+    {
+       return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function view_table($for)
+{
+    include("assets/modules/db_config.php");
+
+    if($for == "patient")
+    {
+        $query = "select * from patient";
+        $result = mysqli_query($conn,$query);
+
+        if($result)
+        {
+
+            while($row = mysqli_fetch_array($result)) {
+                $age = date_diff(date_create($row[6]), date_create('today'))->y;
+                $id = $row[1];
+                echo "<tr>
+                <td>$id</td>
+                <td>$row[2]</td>
+              
+                <td>$row[5]</td>
+                <td>$age</td>
+                <td > <a href='view_patient_profile.php?id=$id'> <i class='material-icons'>edit</i></a></td>
+               
+                </tr>";
+
+            }
+
+        }
+    }
+
+}
+
+function update_data($query)
+{
+    include("assets/modules/db_config.php"); // include database for $conn variable
+    $result = mysqli_query($conn,$query);
+    if($result)
+    {
+        return "Success";
+    }
+    else
+    {
+        return "Error";
+    }
+}
+
 ?>
 
 

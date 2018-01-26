@@ -38,12 +38,14 @@ $data = mysqli_fetch_assoc($result);
     <!--  Light Bootstrap Table core CSS    -->
     <link href="assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
 
+    <!--fresh table-->
+    <link href="assets/css/fresh-bootstrap-table.css" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
 </head>
 <body>
@@ -135,7 +137,39 @@ $data = mysqli_fetch_assoc($result);
             </div>
         </nav>
 
+<br>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
 
+                    <div class="fresh-table full-color-purple" >
+                        <!--    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
+                                Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
+                        -->
+
+
+
+                        <table id="fresh-table" class="table">
+                            <thead>
+                            <th data-field="id">ID</th>
+                            <th data-field="name" data-sortable="true">Name</th>
+
+                            <th data-field="country" data-sortable="true">Phone</th>
+                            <th data-field="city">age</th>
+                            <th  data-field="actions"  >Actions</th>
+                            </thead>
+                            <tbody>
+
+                            <?php view_table("patient"); ?>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
 
 
         <footer class="footer">
@@ -172,6 +206,11 @@ $data = mysqli_fetch_assoc($result);
 
 <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 <script src="assets/js/demo.js"></script>
+
+<script type="text/javascript" src="assets/js/bootstrap-table.js"></script>
+
+<!-- Fressh table-->
+<script src="assets/js/fresh_table.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function(){

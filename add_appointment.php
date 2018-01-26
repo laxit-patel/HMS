@@ -135,7 +135,113 @@ $data = mysqli_fetch_assoc($result);
         </nav>
 
 
+        <!--   Big container   -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <!--      Wizard container        -->
+                    <div class="wizard-container">
+                        <div class="card wizard-card" data-color="purple" id="wizardProfile">
+                            <form action="" method="">
+                                <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
 
+                                <div class="wizard-header">
+                                    <h3 class="wizard-title">
+                                        Take Appointment
+                                    </h3>
+
+                                </div>
+                                <div class="wizard-navigation">
+                                    <ul>
+                                        <li><a href="#about" data-toggle="tab">Specialization</a></li>
+                                        <li><a href="#account" data-toggle="tab">Doctor</a></li>
+                                        <li><a href="#address" data-toggle="tab">Date</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane" id="about">
+                                        <div class="container-fluid">
+                                            <h4 class="info-text"> Select Specialization </h4>
+
+
+
+                                            <div class="input-group">
+														<span class="input-group-addon">
+														  <i class="material-icons">loupe</i>
+														</span>
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Specialization</label>
+                                                    <select name="country" class="form-control">
+                                                        <option disabled="" selected=""></option>
+                                                        <option value="Orthopedic"> Orthopedic </option>
+                                                        <option value="Ghynechologist"> Gynaechologist </option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="account">
+                                        <div class="container-fluid">
+                                            <h4 class="info-text"> Select Doctor </h4>
+
+                                            <div class="input-group">
+														<span class="input-group-addon">
+														  <i class="material-icons">streetview</i>
+														</span>
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Doctor</label>
+                                                    <select name="country" class="form-control">
+                                                        <option disabled="" selected=""></option>
+                                                        <option value="Orthopedic"> Mr.Panna </option>
+                                                        <option value="Ghynechologist"> Mrs.Panna </option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="address">
+                                        <div class="container-fluid">
+                                            <h4 class="info-text"> Pick A Date </h4>
+
+                                            <div class="input-group">
+														<span class="input-group-addon">
+														  <i class="material-icons">date_range</i>
+														</span>
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Date</label>
+
+                                                    <input type="text" class="datepicker form-control"  />
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="wizard-footer">
+                                    <div class="pull-right">
+                                        <input type='button' class='btn btn-next btn-fill btn-success btn-wd' name='next' value='Next' style="background-color:#9C27B0"/>
+                                        <input type='button' class='btn btn-finish btn-fill btn-success btn-wd ' name='finish' value='Finish' style="background-color:#9C27B0"/>
+                                    </div>
+
+                                    <div class="pull-left">
+                                        <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div> <!-- wizard container -->
+                </div>
+            </div><!-- end row -->
+        </div> <!--  big container -->
 
 
         <footer class="footer">

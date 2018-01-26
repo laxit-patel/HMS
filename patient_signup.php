@@ -16,8 +16,6 @@ if($_POST)
   $p_password = $_POST["p_password"];
   $p_repassword = $_POST["p_repassword"];
 
-  $d_old = explode("/",$p_dob);
-  $p_dob = $d_old[2]."/".$d_old[0]."/".$d_old[1];
 
   echo $p_id."<br>";
   echo $p_name."<br>";
@@ -77,9 +75,12 @@ if($_POST)
   }
   else
   {
-	  $loc = $p_city."~".$p_address;
+      $d_old = explode("/",$p_dob);
+      $p_dob = $d_old[2]."/".$d_old[0]."/".$d_old[1];
+
+      $loc = $p_city."~".$p_address;
 	 
-		echo insert_data("insert into patient(patient_id,patient_name,patient_gender,patient_email,patient_phone,patient_dob,patient_address,patient_password) values('$p_id','$p_name','$p_gender','$p_email','$p_phone','$p_dob','$loc','$p_password')");
+		echo insert_data("insert into patient(patient_id,patient_name,patient_gender,patient_email,patient_phone,patient_dob,patient_address,patient_password,added_by) values('$p_id','$p_name','$p_gender','$p_email','$p_phone','$p_dob','$loc','$p_password','self')");
 		
 			header("LOCATION:patient_otp.php?id=$p_id&p_email=$p_email");
   }
@@ -118,7 +119,7 @@ if($_POST)
 
      
           
-        <div class="section  section-signup" style="background-image: url('assets/img/city.jpg'); background-size: cover; background-position: fixed;background-attachment: fixed;
+        <div class="section  section-signup" style="background-image: url('assets/img/city.jpg'); background-size: cover;background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat; min-height: 700px;">
 
@@ -134,7 +135,7 @@ if($_POST)
               <form class="form" method=POST>
                 <div class="header header-primary text-center" >
                   <h4>Signup</h4>
-<?php               
+<?php
                  if(isset($alert_danger))
                  {
                   echo "<div class='alert alert-danger' style='margin-bottom:-7%;'>
