@@ -13,11 +13,27 @@ elseif(isset($_SESSION["admin_token"]))
 }
 $result = fetch_data("select * from admin where admin_id= '$id'","result");
 $data = mysqli_fetch_assoc($result);
-include("assets/modules/db_config.php");
 
-$result_p = fetch_data("select patient_id from patient","result");
-$result_d = fetch_data("select designation_name from designation");
-
+if($_POST)
+{
+    $designation = $_POST["designation"];
+    $designation_id = key_engine("designation");
+    if($designation == "")
+    {
+        $alert_danger = "Enter Designation";
+    }
+    else
+    {
+        if(add_designation("insert into designation(designation_id,designation_name)values('$designation_id','$designation')"))
+        {
+            $alert_success = "Designation Added";
+        }
+        else
+        {
+            $alert_danger = "Error";
+        }
+    }
+}
 
 ?>
 
@@ -28,11 +44,13 @@ $result_d = fetch_data("select designation_name from designation");
     <link rel="icon" type="image/png" href="assets/img/HMS.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Dashboard - Patient</title>
+    <title>Dashboard - Designation</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
+    <!--fresh table-->
+    <link href="assets/css/fresh-bootstrap-table.css" rel="stylesheet" />
 
     <!-- Bootstrap core CSS     -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -86,25 +104,12 @@ $result_d = fetch_data("select designation_name from designation");
                     </a>
 
                 </li>
-                <li class="active">
+                <li >
                     <a href="add_appointment.php">
                         <i class="pe-7s-note2"></i>
                         <p>Appointment</p>
                     </a>
-                    <ul>
-                        <li class="active">
-                            <a href="add_appointment.php" >
-                                <i class="pe-7s-add-user"></i>
-                                <p>Add Appointment</p>
-                            </a>
-                        </li>
-                        <li >
-                            <a href="view_appointment.php" >
-                                <i class="pe-7s-search"></i>
-                                <p>View Appointment</p>
-                            </a>
-                        </li>
-                    </ul>
+
                 </li>
                 <li >
                     <a href="add_doctor.php">
@@ -119,12 +124,13 @@ $result_d = fetch_data("select designation_name from designation");
                         <p>Receptionist</p>
                     </a>
                 </li>
-                <li >
+                <li class="active">
                     <a href="designation.php">
                         <i class="pe-7s-study"></i>
                         <p>Designation</p>
                     </a>
                 </li>
+
 
             </ul>
         </div>
@@ -141,7 +147,7 @@ $result_d = fetch_data("select designation_name from designation");
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard<i class="pe-7s-angle-right"></i>Add Appointment</a>
+                    <a class="navbar-brand" href="#">Dashboard<i class="pe-7s-angle-right"></i>Add Designation</a>
                 </div>
                 <div class="collapse navbar-collapse">
 
@@ -168,123 +174,134 @@ $result_d = fetch_data("select designation_name from designation");
                     <!--      Wizard container        -->
                     <div class="wizard-container">
                         <div class="card wizard-card" data-color="purple" id="wizardProfile">
-                            <form action="" method="">
+                            <form name="designation_form" method="POST">
                                 <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
 
                                 <div class="wizard-header">
+                                    <?php
+
+                                    if(isset($alert_success))
+                                    {
+                                        echo "<div class='container-fluid'><div class='alert alert-success' style='margin-bottom:-7%;'>
+               <div class='container-fluid'>
+           <div class='alert-icon'>
+            <i class='material-icons'>error_outline</i>
+          </div>
+          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
+          </button>
+                   <b>$alert_success</b> 
+              </div>
+          </div></div>";
+                                    }
+                                    else
+                                    {
+                                        echo "";
+                                    }
+
+                                    if(isset($alert_danger))
+                                    {
+                                    echo "<div class='alert alert-danger' style='margin-bottom:-7%;'>
+                                        <div class='container-fluid'>
+                                            <div class='alert-icon'>
+                                                <i class='material-icons'>error_outline</i>
+                                            </div>
+                                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                                <span aria-hidden='true'><i class='material-icons'>clear</i></span>
+                                            </button>
+                                            <b>Error Alert:</b> $alert_danger
+                                        </div>
+                                    </div>";
+                                    }
+                                    else
+                                    {
+                                    echo "";
+                                    }?>
                                     <h3 class="wizard-title">
-                                        Add Appointment
+                                        Designation
                                     </h3>
 
                                 </div>
                                 <div class="wizard-navigation">
                                     <ul>
-                                        <li><a href="#about" data-toggle="tab">Patient</a></li>
-                                        <li><a href="#account" data-toggle="tab">Doctor</a></li>
-                                        <li><a href="#address" data-toggle="tab">Date</a></li>
+                                        <li><a href="#about" data-toggle="tab">Add</a></li>
+                                        <li><a href="#account" data-toggle="tab">View</a></li>
+
                                     </ul>
                                 </div>
 
                                 <div class="tab-content">
                                     <div class="tab-pane" id="about">
                                         <div class="container-fluid">
-                                            <h4 class="info-text"> Select Patient </h4>
+
 
 
 
                                             <div class="input-group">
-														<span class="input-group-addon">
-														  <i class="material-icons">loupe</i>
-														</span>
+
+                                                <i class="material-icons">school</i>
+                                                <span class="input-group-addon"></span>
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Patient</label>
-                                                    <select name="country" class="form-control">
+                                                    <label class="control-label">Designation</label>
+                                                    <input type="text" class="form-control" name="designation" />
 
-                                                        <option disabled="" selected=""></option>
-                                                        <?php if($result_p)
-                                                        {
-
-                                                            while($row = mysqli_fetch_array($result_p)) {
-                                                                echo "<option>".$row["patient_id"]."</option>";
-                                                            }
-                                                        } ?>
-
-                                                    </select>
                                                 </div>
                                             </div>
+
+                                            <div class="clearfix"></div>
+
+                                                <input type='submit' class='btn btn-block btn-fill btn-success btn-wd '  value='Add' style="background-color:#9C27B0;"/>
+
 
 
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="account">
                                         <div class="container-fluid">
-                                            <h4 class="info-text"> Select Doctor </h4>
-
-                                            <div class="input-group">
-														<span class="input-group-addon">
-														  <i class="material-icons">loupe</i>
-														</span>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Specialization</label>
-                                                    <select name="country" class="form-control">
-                                                        <option disabled="" selected=""></option>
-                                                       <?php
 
 
 
-                                                       ?>
+                                                <div class="row">
+                                                    <div class="col-md-12">
 
-                                                    </select>
+                                                        <div class="fresh-table full-color-purple" >
+                                                            <!--    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
+                                                                    Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
+                                                            -->
+
+
+
+                                                            <table id="fresh-table" class="table">
+                                                                <thead>
+                                                                <th data-field="id">ID</th>
+                                                                <th data-field="name" data-sortable="true">Designation</th>
+                                                                <th data-field="action" >Action</th>
+
+                                                                </thead>
+                                                                <tbody>
+
+                                                                <?php view_table("designation"); ?>
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+
+
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="input-group">
-														<span class="input-group-addon">
-														  <i class="material-icons">streetview</i>
-														</span>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Doctor</label>
-                                                    <select name="country" class="form-control">
-                                                        <option disabled="" selected=""></option>
-                                                        <option value="Orthopedic"> Mr.Panna </option>
-                                                        <option value="Ghynechologist"> Mrs.Panna </option>
 
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="address">
-                                        <div class="container-fluid">
-                                            <h4 class="info-text"> Pick A Date </h4>
-
-                                            <div class="input-group">
-														<span class="input-group-addon">
-														  <i class="material-icons">date_range</i>
-														</span>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Date</label>
-
-                                                    <input type="text" class="datepicker form-control"  />
-
-                                                </div>
-                                            </div>
 
 
                                         </div>
                                     </div>
+
                                 </div>
                                 <div class="wizard-footer">
-                                    <div class="pull-right">
-                                        <input type='button' class='btn btn-next btn-fill btn-success btn-wd' name='next' value='Next' style="background-color:#9C27B0"/>
-                                        <input type='button' class='btn btn-finish btn-fill btn-success btn-wd ' name='finish' value='Finish' style="background-color:#9C27B0"/>
-                                    </div>
 
-                                    <div class="pull-left">
-                                        <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />
-                                    </div>
-                                    <div class="clearfix"></div>
+
+
+
                                 </div>
                             </form>
                         </div>
@@ -318,6 +335,11 @@ $result_d = fetch_data("select designation_name from designation");
 <script src="assets/js/material-bootstrap-wizard.js"></script>
 <!--  Charts Plugin -->
 <script src="assets/js/chartist.min.js"></script>
+
+<script type="text/javascript" src="assets/js/bootstrap-table.js"></script>
+
+<!-- Fressh table-->
+<script src="assets/js/fresh_table.js"></
 
 <!--  Notifications Plugin    -->
 <script src="assets/js/bootstrap-notify.js"></script>

@@ -212,7 +212,7 @@ if($_POST)
                     </a>
                 </li>
                 <li >
-                    <a href="add_designaition.php">
+                    <a href="designation.php">
                         <i class="pe-7s-study"></i>
                         <p>Designation</p>
                     </a>

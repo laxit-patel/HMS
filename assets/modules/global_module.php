@@ -93,6 +93,36 @@ function key_engine($for)
         }
 
     }
+    elseif($for == "designation")
+    {
+        $key = $for."_id";
+        $sql_test = "select $key from $for order by $key desc limit 1";
+        $result_test = mysqli_query($conn,$sql_test);
+
+        if($result_test)
+        {
+            $row=mysqli_fetch_row($result_test); //$row gets the key_val array
+
+            $data = explode("_",$row[0]); // key_val explodes and saved in $data
+
+            $year = $data[0];
+            $initial = $data[1];
+            $number = $data[2];
+
+            $year_new = date("y");
+
+            $number_new = $number+1;
+
+            $key = $year_new."_".$initial."_".$number_new;
+
+            return $key;
+        }
+        else
+        {
+            return ";_;";
+        }
+
+    }
 
 
 }
@@ -282,6 +312,23 @@ function view_table($for)
 
         }
     }
+    elseif ($for == "designation")
+    {
+        $query = "select * from designation";
+        $result = mysqli_query($conn,$query);
+
+        while($row = mysqli_fetch_array($result))
+        {
+            $id = $row[0];
+            echo "<tr>
+                <td>$id</td>
+                <td>$row[1]</td>
+                <td > <a href='delete_designation.php?id=$id'> <i class='material-icons'>delete_forever</i></a></td>
+               
+                </tr>";
+
+        }
+    }
 
 }
 
@@ -373,6 +420,35 @@ function delete_receptionist($by,$for)
         return false;
     }
 }
+
+function add_designation($query)
+{
+    include("assets/modules/db_config.php"); // include database for $conn variable
+    $result = mysqli_query($conn,$query);
+    if($result)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+function delete_designation($id)
+{
+    include("assets/modules/db_config.php"); // include database for $conn variable
+
+    $result = mysqli_query($conn,"delete from designation where designation_id = '$id'");
+    if($result)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 ?>
 
 
