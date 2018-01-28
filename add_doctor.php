@@ -13,6 +13,7 @@ elseif(isset($_SESSION["admin_token"]))
 }
 $result = fetch_data("select * from admin where admin_id= '$id'","result");
 $data = mysqli_fetch_assoc($result);
+$result_d = fetch_data("select designation_name from designation","result");
 
 if($_POST)
 {
@@ -72,7 +73,9 @@ if($_POST)
     else
     {
         $d_old = explode("/",$dr_dob);
-        $d_dob = $d_old[2]."/".$d_old[0]."/".$d_old[1];
+
+        $d_dob = $d_old[2].$d_old[1].$d_old[0];
+
         if(add_doctor("insert into doctor(doctor_id,doctor_name,doctor_gender,doctor_email,doctor_phone,doctor_dob,doctor_city,doctor_address,doctor_password,doctor_designation)
                                          values('$doctor_id','$d_name','$d_gender','$d_email','$d_phone','$d_dob','$d_city','$d_address','$d_password','$d_designation')"))
         {
@@ -324,7 +327,7 @@ if($_POST)
                                                 </span>
                                                 <div class="form-group label-floating">
 
-                                                    <input type="text" name="dr_dob" value="<?php if(isset($dr_dob)){ echo $dr_dob; }?>" class="datepicker form-control" placeholder="Enter Birthdate" />
+                                                    <input type="date" name="dr_dob" value="<?php if(isset($dr_dob)){ echo $dr_dob; }?>" class="datepicker form-control" placeholder="Enter Birthdate" />
                                                 </div>
                                             </div>
 
@@ -388,8 +391,17 @@ if($_POST)
                                                     <label class="control-label">Designation</label>
                                                     <select name="d_designation" class="form-control">
                                                         <option>--Select Designation--</option>
-                                                        <option>Orthopedic</option>
-                                                        <option>gynechologyst</option>
+                                                        <?php
+
+                                                        if($result_d)
+                                                        {
+
+                                                            while($row_d = mysqli_fetch_array($result_d)) {
+                                                                echo "<option>".$row_d["designation_name"]."</option>";
+                                                            }
+                                                        }
+
+                                                        ?>
                                                     </select>
                                                 </div>
                                             </div>

@@ -16,7 +16,8 @@ $data = mysqli_fetch_assoc($result);
 include("assets/modules/db_config.php");
 
 $result_p = fetch_data("select patient_id from patient","result");
-$result_d = fetch_data("select designation_name from designation");
+$result_d = fetch_data("select designation_name from designation","result");
+$result_dr = fetch_data("select doctor_name from doctor","result");
 
 
 ?>
@@ -226,11 +227,17 @@ $result_d = fetch_data("select designation_name from designation");
 														</span>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Specialization</label>
-                                                    <select name="country" class="form-control">
+                                                    <select name="country" class="form-control" id="js_designation">
                                                         <option disabled="" selected=""></option>
                                                        <?php
 
+                                                       if($result_d)
+                                                        {
 
+                                                            while($row_d = mysqli_fetch_array($result_d)) {
+                                                                echo "<option>".$row_d["designation_name"]."</option>";
+                                                            }
+                                                        }
 
                                                        ?>
 
@@ -244,10 +251,8 @@ $result_d = fetch_data("select designation_name from designation");
 														</span>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Doctor</label>
-                                                    <select name="country" class="form-control">
+                                                    <select name="country" class="form-control" id="js_doc_list">
                                                         <option disabled="" selected=""></option>
-                                                        <option value="Orthopedic"> Mr.Panna </option>
-                                                        <option value="Ghynechologist"> Mrs.Panna </option>
 
                                                     </select>
                                                 </div>
@@ -260,14 +265,12 @@ $result_d = fetch_data("select designation_name from designation");
                                             <h4 class="info-text"> Pick A Date </h4>
 
                                             <div class="input-group">
-														<span class="input-group-addon">
-														  <i class="material-icons">date_range</i>
-														</span>
+                                                <span class="input-group-addon">
+                                                  <i class="material-icons">today</i>
+                                                </span>
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Date</label>
 
-                                                    <input type="text" class="datepicker form-control"  />
-
+                                                    <input type="date" name="ap_date" class="datepicker form-control" id="appointment_date" placeholder="Enter Birthdate" />
                                                 </div>
                                             </div>
 
@@ -321,7 +324,10 @@ $result_d = fetch_data("select designation_name from designation");
 
 <!--  Notifications Plugin    -->
 <script src="assets/js/bootstrap-notify.js"></script>
-
+<!--Appointment Slot js-->
+<script src="assets/js/appointment_slot.js"></script>
+<!--select Dcotor as designation AJAX-->
+<script src="assets/js/ajax_doctor.js"></script>
 <!--  Google Maps Plugin    -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 
@@ -345,7 +351,12 @@ $result_d = fetch_data("select designation_name from designation");
             timer: 4000
         });
 
+
     });
+
+
 </script>
+
+
 
 </html>
