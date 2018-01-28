@@ -43,7 +43,8 @@ $result_dr = fetch_data("select doctor_name from doctor","result");
 
     <!--  Light Bootstrap Table core CSS    -->
     <link href="assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
-
+    <!--fresh table-->
+    <link href="assets/css/fresh-bootstrap-table.css" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -262,18 +263,18 @@ $result_dr = fetch_data("select doctor_name from doctor","result");
                                     </div>
                                     <div class="tab-pane" id="address">
                                         <div class="container-fluid">
-                                            <h4 class="info-text"> Pick A Date </h4>
+                                            <h4 class="info-text"> Choose Slot </h4>
 
+                                            <?php slot_generator('18_dctr_17'); ?>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
-                                                  <i class="material-icons">today</i>
+                                                  <i class="material-icons">av_timer</i>
                                                 </span>
                                                 <div class="form-group label-floating">
-
-                                                    <input type="date" name="ap_date" class="datepicker form-control" id="appointment_date" placeholder="Enter Birthdate" />
+                                                    <label class="control-label">Time</label>
+                                                    <input type="text" name="appointment_time" id="appointment_time" class="form-control" disabled>
                                                 </div>
                                             </div>
-
 
                                         </div>
                                     </div>
@@ -321,7 +322,8 @@ $result_dr = fetch_data("select doctor_name from doctor","result");
 <script src="assets/js/material-bootstrap-wizard.js"></script>
 <!--  Charts Plugin -->
 <script src="assets/js/chartist.min.js"></script>
-
+<!-- Fressh table-->
+<script src="assets/js/fresh_table.js"></script>
 <!--  Notifications Plugin    -->
 <script src="assets/js/bootstrap-notify.js"></script>
 <!--Appointment Slot js-->

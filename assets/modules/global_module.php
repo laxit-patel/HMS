@@ -312,6 +312,7 @@ function view_table($for)
 
         }
     }
+
     elseif ($for == "designation")
     {
         $query = "select * from designation";
@@ -329,6 +330,7 @@ function view_table($for)
 
         }
     }
+
 
 }
 
@@ -447,6 +449,92 @@ function delete_designation($id)
     {
         return false;
     }
+}
+
+function slot_generator($doctor)
+{
+    include("assets/modules/db_config.php"); // include database for $conn variable
+    $result = mysqli_query($conn,"select * from slot where doctor_id = '18_dctr_9'");
+    $row = mysqli_fetch_assoc($result);
+    $s1 = $row['8-9'];
+    $s2 = $row['9-10'];
+    $s3 = $row['10-11'];
+    $s4 = $row['11-12'];
+    $s5 = $row['1-2'];
+    $s6 = $row['2-3'];
+    $s7 = $row['3-4'];
+    $s8 = $row['4-5'];
+
+    echo "<div class='container-fluid text-center'>";
+    echo "<div class='row'>";
+            if($s1 == 1)
+            {
+             echo "<div class='col-md-3'><button class='btn btn-success' >08-09</button></div>";
+            }
+            else
+            {
+                echo "<div class='col-md-3'><button class='btn btn-danger' disabled>08-09</button></div>";
+            }
+            if(!$s2 == 1)
+            {
+                echo "<div class='col-md-3'><button class='btn btn-success' >09-10</button></div>";
+            }
+            else
+            {
+                echo "<div class='col-md-3'><button class='btn btn-danger' disabled>09-10</button></div>";
+            }
+            if(!$s3 == 1)
+            {
+                echo "<div class='col-md-3'><button class='btn btn-success' >10-11</button></div>";
+            }
+            else
+            {
+                echo "<div class='col-md-3'><button class='btn btn-danger' disabled>10-11</button></div>";
+            }
+            if(!$s4 == 1)
+            {
+                echo "<div class='col-md-3'><button class='btn btn-success' >11-12</button></div>";
+            }
+            else
+            {
+                echo "<div class='col-md-3'><button class='btn btn-danger' disabled>11-12</button></div>";
+            }
+    echo "</div><div class='row'>";
+
+            if(!$s5 == 1)
+            {
+                echo "<div class='col-md-3'><button class='btn btn-success' >01-02</button></div>";
+            }
+            else
+            {
+                echo "<div class='col-md-3'><button class='btn btn-danger' disabled>01-02</button></div>";
+            }
+            if(!$s6 == 1)
+            {
+                echo "<div class='col-md-3'><button class='btn btn-success' >02-03</button></div>";
+            }
+            else
+            {
+                echo "<div class='col-md-3'><button class='btn btn-danger' disabled>02-03</button></div>";
+            }
+            if(!$s7 == 1)
+            {
+                echo "<div class='col-md-3'><button class='btn btn-success' >03-04</button></div>";
+            }
+            else
+            {
+                echo "<div class='col-md-3'><button class='btn btn-danger' disabled>03-04</button></div>";
+            }
+            if(!$s8 == 1)
+            {
+                echo "<div class='col-md-3'><button class='btn btn-success' >04-05</button></div>";
+            }
+            else
+            {
+                echo "<div class='col-md-3'><button class='btn btn-danger' disabled>04-05</button></div>";
+            }
+
+echo "</div></div>";
 }
 
 ?>
