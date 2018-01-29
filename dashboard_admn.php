@@ -23,7 +23,7 @@ $data = mysqli_fetch_assoc($result);
 	<link rel="icon" type="image/png" href="assets/img/HMS.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Dashboard - Patient</title>
+	<title>Dashboard - Admin</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -40,6 +40,7 @@ $data = mysqli_fetch_assoc($result);
 
 
     <!--     Fonts and icons     -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
@@ -107,6 +108,12 @@ $data = mysqli_fetch_assoc($result);
                         <p>Designation</p>
                     </a>
                 </li>
+                <li >
+                    <a href="ward.php">
+                        <i class="pe-7s-culture"></i>
+                        <p>Ward</p>
+                    </a>
+                </li>
 
             </ul>
     	</div>
@@ -141,9 +148,78 @@ $data = mysqli_fetch_assoc($result);
                 </div>
             </div>
         </nav>
-		
-		
-		
+
+        <div class="container-fluid text-center">
+            <div class="row">
+
+                <div class="col-md-6 pull-left">
+                    <div class="card" style="background-color:#ff0080">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                            <img src="assets/img/avatars/027-boy-6.png"   alt="..." height="150" width="150">
+                                </div>
+                                <div class="col-md-8">
+                                    <h2>2487</h2>
+                                    <h3>Patients have registered</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 pul-right">
+                    <div class="card" style="background-color: #00ffc0">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="assets/img/avatars/005-woman-11.png"   alt="..." height="150" width="150">
+                                </div>
+                                <div class="col-md-8">
+                                    <h2>13</h2>
+                                    <h3>Doctors are Working</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6 pull-left">
+                    <div class="card" style="background-color: #9517ff">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="assets/img/avatars/016-man-10.png"   alt="..." height="150" width="150">
+                                </div>
+                                <div class="col-md-8">
+                                    <h2>27</h2>
+                                    <h3>Staff enrolled</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6  pull-right">
+                    <div class="card" style="background-color: #ccff00">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="assets/img/avatars/024-man-2.png"   alt="..." height="150" width="150">
+                                </div>
+                                <div class="col-md-8">
+                                    <h2>1394</h2>
+                                    <h3>Appointments</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 		
 
         <footer class="footer">

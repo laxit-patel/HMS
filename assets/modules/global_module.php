@@ -330,6 +330,25 @@ function view_table($for)
 
         }
     }
+    elseif ($for == "appointment")
+    {
+        $query = "select * from appointment";
+        $result = mysqli_query($conn,$query);
+
+        while($row = mysqli_fetch_array($result))
+        {
+            $id = $row[0];
+            echo "<tr>
+                <td>$id</td>
+                <td>$row[1]</td>
+                <td>$row[2]</td>
+                <td>$row[3]</td>
+                <td > <a href='delete_designation.php?id=$id'> <i class='material-icons'>delete_forever</i></a></td>
+               
+                </tr>";
+
+        }
+    }
 
 
 }

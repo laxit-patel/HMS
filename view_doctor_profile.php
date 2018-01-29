@@ -138,6 +138,12 @@ if($_POST)
                         <p>Designation</p>
                     </a>
                 </li>
+                <li >
+                    <a href="ward.php">
+                        <i class="pe-7s-culture"></i>
+                        <p>Ward</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

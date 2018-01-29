@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2018 at 06:31 PM
+-- Generation Time: Jan 29, 2018 at 05:32 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -45,6 +45,63 @@ INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_password`, `admin_role`) V
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `adminssion`
+--
+
+CREATE TABLE `adminssion` (
+  `adminssion_id` varchar(10) NOT NULL,
+  `admission_patient` varchar(10) NOT NULL,
+  `admission_doctor_assigned` varchar(10) NOT NULL,
+  `admission_nurse_assigned` varchar(10) NOT NULL,
+  `admission_date` date NOT NULL,
+  `admission_status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `appointment`
+--
+
+CREATE TABLE `appointment` (
+  `appointment_id` varchar(10) NOT NULL,
+  `appointment_for` varchar(10) NOT NULL,
+  `appointment_by` varchar(10) NOT NULL,
+  `appointment_date` date NOT NULL,
+  `appointment_status` tinyint(1) NOT NULL,
+  `appointment_slot` varchar(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `appointment`
+--
+
+INSERT INTO `appointment` (`appointment_id`, `appointment_for`, `appointment_by`, `appointment_date`, `appointment_status`, `appointment_slot`) VALUES
+('18_apmt_0', '18_dctr_7', '18_ptnt_20', '2018-01-29', 0, '10-11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `designation`
+--
+
+CREATE TABLE `designation` (
+  `designation_id` varchar(10) NOT NULL,
+  `designation_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `designation`
+--
+
+INSERT INTO `designation` (`designation_id`, `designation_name`) VALUES
+('18_dsgn_0', 'Orthopedic'),
+('18_dsgn_1', 'Gynecologist'),
+('18_dsgn_2', 'Dentist');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `doctor`
 --
 
@@ -67,7 +124,9 @@ CREATE TABLE `doctor` (
 --
 
 INSERT INTO `doctor` (`doctor_id`, `doctor_name`, `doctor_dob`, `doctor_gender`, `doctor_phone`, `doctor_city`, `doctor_address`, `doctor_designation`, `doctor_email`, `doctor_password`, `doj`) VALUES
-('18_dctr_6', 'pannaben', '1997-01-01', 'Female', '1212121212', 'Bhuj', 'bhuj', 'gynechologist@gmail', 'panna_rudani@gmail.com', 'panna_mf', '2018-01-26 13:19:14.940429');
+('18_dctr_7', 'pannabhai mbbs', '1980-01-16', 'Male', '1212121212', 'Bhuj', 'pramukhswami nagar', 'Orthopedic', 'panna_bhai@gmail.com', 'pannabhai@123', '2018-01-28 06:23:43.091421'),
+('18_dctr_8', 'pannaben', '1987-11-24', 'Female', '457849865', 'Bhuj', 'pramukhswami nagar', 'Orthopedic', 'panna_rudani@gmail.com', 'pannaben@123', '2018-01-28 06:26:22.185171'),
+('18_dctr_9', 'Dr.strange', '1990-03-06', 'Male', '7896541231', 'Bhuj', 'dark dimension', 'Gynecologist', 'dr.strange@gmail.com', 'strange@123', '2018-01-28 06:27:30.169546');
 
 -- --------------------------------------------------------
 
@@ -129,6 +188,44 @@ CREATE TABLE `receptionist` (
 INSERT INTO `receptionist` (`receptionist_id`, `receptionist_name`, `receptionist_dob`, `receptionist_gender`, `receptionist_phone`, `receptionist_city`, `receptionist_address`, `receptionist_email`, `receptionist_password`, `doj`) VALUES
 ('18_rcst_4', 'beast boy', '1999-01-09', 'Male', '1121221222', 'Bhuj', 'jugnle', 'beasty@gmail.com', 'beasty@123', '2018-01-26 16:46:33.704101');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `slot`
+--
+
+CREATE TABLE `slot` (
+  `doctor_id` varchar(10) NOT NULL,
+  `8-9` tinyint(1) NOT NULL,
+  `9-10` tinyint(1) NOT NULL,
+  `10-11` tinyint(1) NOT NULL,
+  `11-12` tinyint(1) NOT NULL,
+  `1-2` tinyint(1) NOT NULL,
+  `2-3` tinyint(1) NOT NULL,
+  `3-4` tinyint(1) NOT NULL,
+  `4-5` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `slot`
+--
+
+INSERT INTO `slot` (`doctor_id`, `8-9`, `9-10`, `10-11`, `11-12`, `1-2`, `2-3`, `3-4`, `4-5`) VALUES
+('18_dctr_7', 0, 0, 0, 0, 0, 0, 0, 0),
+('18_dctr_8', 1, 0, 0, 0, 0, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ward`
+--
+
+CREATE TABLE `ward` (
+  `ward_id` varchar(10) NOT NULL,
+  `ward_name` varchar(10) NOT NULL,
+  `ward_capacity` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Indexes for dumped tables
 --
@@ -138,6 +235,18 @@ INSERT INTO `receptionist` (`receptionist_id`, `receptionist_name`, `receptionis
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`);
+
+--
+-- Indexes for table `adminssion`
+--
+ALTER TABLE `adminssion`
+  ADD PRIMARY KEY (`adminssion_id`);
+
+--
+-- Indexes for table `appointment`
+--
+ALTER TABLE `appointment`
+  ADD PRIMARY KEY (`appointment_id`);
 
 --
 -- Indexes for table `doctor`
@@ -151,6 +260,12 @@ ALTER TABLE `doctor`
 ALTER TABLE `patient`
   ADD PRIMARY KEY (`patient_id`),
   ADD UNIQUE KEY `count` (`count`);
+
+--
+-- Indexes for table `ward`
+--
+ALTER TABLE `ward`
+  ADD PRIMARY KEY (`ward_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables

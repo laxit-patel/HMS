@@ -76,12 +76,7 @@ $data = mysqli_fetch_assoc(fetch_data("select * from patient where patient_id = 
                 
                 
                
-                <li>
-                    <a href="notifications.html">
-                        <i class="pe-7s-bell"></i>
-                        <p>Notifications</p>
-                    </a>
-                </li>
+
 				
             </ul>
     	</div>

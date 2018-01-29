@@ -28,7 +28,8 @@ $data = mysqli_fetch_assoc($result);
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
-
+    <!--fresh table-->
+    <link href="assets/css/fresh-bootstrap-table.css" rel="stylesheet" />
     <!-- Bootstrap core CSS     -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -40,6 +41,7 @@ $data = mysqli_fetch_assoc($result);
 
 
     <!--     Fonts and icons     -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
@@ -118,6 +120,12 @@ $data = mysqli_fetch_assoc($result);
                         <p>Designation</p>
                     </a>
                 </li>
+                <li >
+                    <a href="ward.php">
+                        <i class="pe-7s-culture"></i>
+                        <p>Ward</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -151,9 +159,39 @@ $data = mysqli_fetch_assoc($result);
                 </div>
             </div>
         </nav>
+        <br>
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="fresh-table full-color-purple" >
+                    <!--    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
+                            Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
+                    -->
 
 
 
+                    <table id="fresh-table" class="table">
+                        <thead>
+                        <th data-field="id">ID</th>
+                        <th data-field="name" data-sortable="true">For</th>
+                        <th data-field="name" data-sortable="true">By</th>
+                        <th data-field="name" data-sortable="true">Date</th>
+                        <th data-field="action" >Action</th>
+
+                        </thead>
+                        <tbody>
+
+                        <?php view_table("appointment"); ?>
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
 
 
         <footer class="footer">
@@ -178,7 +216,8 @@ $data = mysqli_fetch_assoc($result);
 
 <!--  Charts Plugin -->
 <script src="assets/js/chartist.min.js"></script>
-
+<!-- Fressh table-->
+<script src="assets/js/fresh_table.js"></script>
 <!--  Notifications Plugin    -->
 <script src="assets/js/bootstrap-notify.js"></script>
 

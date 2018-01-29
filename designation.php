@@ -130,7 +130,12 @@ if($_POST)
                         <p>Designation</p>
                     </a>
                 </li>
-
+                <li >
+                    <a href="ward.php">
+                        <i class="pe-7s-culture"></i>
+                        <p>Ward</p>
+                    </a>
+                </li>
 
             </ul>
         </div>
@@ -339,7 +344,7 @@ if($_POST)
 <script type="text/javascript" src="assets/js/bootstrap-table.js"></script>
 
 <!-- Fressh table-->
-<script src="assets/js/fresh_table.js"></
+<script src="assets/js/fresh_table.js"></script>
 
 <!--  Notifications Plugin    -->
 <script src="assets/js/bootstrap-notify.js"></script>
