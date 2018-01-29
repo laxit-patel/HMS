@@ -1,15 +1,15 @@
 <?php
-include("assets/modules/global_module.php"); 
+include("assets/modules/global_module.php");
 check_token("admin");
 
 $name = $_SESSION["admin_token"];
 if(isset($_GET["id"]))
 {
-	$id = $_GET["id"];
+    $id = $_GET["id"];
 }
 elseif(isset($_SESSION["admin_token"]))
 {
-	$id = $_SESSION["admin_token"];
+    $id = $_SESSION["admin_token"];
 }
 $result = fetch_data("select * from admin where admin_id= '$id'","result");
 $data = mysqli_fetch_assoc($result);
@@ -19,13 +19,13 @@ $data = mysqli_fetch_assoc($result);
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="assets/img/HMS.png">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/img/HMS.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Dashboard - Admin</title>
+    <title>Dashboard - Receptionist</title>
 
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
 
@@ -51,17 +51,17 @@ $data = mysqli_fetch_assoc($result);
 <div class="wrapper">
     <div class="sidebar" data-color="purple" data-image="assets/img/waterfall.gif" >
 
-    <!--
+        <!--
 
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
+            Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+            Tip 2: you can also add an image using data-image tag
 
-    -->
+        -->
 
-    	<div class="sidebar-wrapper" id="">
+        <div class="sidebar-wrapper" id="">
             <div class="logo">
                 <a href="#" class="simple-text">
-                    <?php echo $data["admin_name"];?>
+                    Receptionist
                 </a>
             </div>
 
@@ -87,40 +87,13 @@ $data = mysqli_fetch_assoc($result);
                     </a>
                 </li>
 
-                <li >
-                    <a href="add_doctor.php">
-                        <i class="pe-7s-id"></i>
-                        <p>Doctor</p>
-                    </a>
-
-                </li>
-
-                <li >
-                    <a href="add_receptionist.php">
-                        <i class="pe-7s-monitor"></i>
-                        <p>Receptionist</p>
-                    </a>
-                </li>
-
-                <li >
-                    <a href="designation.php">
-                        <i class="pe-7s-study"></i>
-                        <p>Designation</p>
-                    </a>
-                </li>
-                <li >
-                    <a href="ward.php">
-                        <i class="pe-7s-culture"></i>
-                        <p>Ward</p>
-                    </a>
-                </li>
 
             </ul>
-    	</div>
+        </div>
     </div>
 
     <div class="main-panel">
-	
+
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -133,23 +106,23 @@ $data = mysqli_fetch_assoc($result);
                     <a class="navbar-brand" href="#">Dashboard</a>
                 </div>
                 <div class="collapse navbar-collapse">
-                    
+
 
                     <ul class="nav navbar-nav navbar-right">
 
-                       
+
                         <li>
                             <a href="logout.php?for=<?php echo $data["admin_id"] ?>">
                                 <p>Log out</p>
                             </a>
                         </li>
-						<li class="separator hidden-lg"></li>
+                        <li class="separator hidden-lg"></li>
                     </ul>
                 </div>
             </div>
         </nav>
         <div class="container-fluid ">
-        <h1>Admin Panel</h1>
+            <h1>Receptionist Panel</h1>
         </div>
         <div class="container-fluid text-center">
             <div class="row">
@@ -159,7 +132,7 @@ $data = mysqli_fetch_assoc($result);
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
-                            <img src="assets/img/avatars/027-boy-6.png"   alt="..." height="150" width="150">
+                                    <img src="assets/img/avatars/027-boy-6.png"   alt="..." height="150" width="150">
                                 </div>
                                 <div class="col-md-8">
                                     <h2>2487</h2>
@@ -222,14 +195,14 @@ $data = mysqli_fetch_assoc($result);
 
             </div>
         </div>
-		
+
 
         <footer class="footer">
             <div class="container-fluid">
-               
+
                 <p class="copyright pull-right">
                     &copy; <script>document.write(new Date().getFullYear())</script>
-					<a href="#">By HPL Team</a>
+                    <a href="#">By HPL Team</a>
                 </p>
             </div>
         </footer>
@@ -240,40 +213,40 @@ $data = mysqli_fetch_assoc($result);
 
 </body>
 
-    <!--   Core JS Files   -->
-    <script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
-	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+<!--   Core JS Files   -->
+<script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 
-	<!--  Charts Plugin -->
-	<script src="assets/js/chartist.min.js"></script>
+<!--  Charts Plugin -->
+<script src="assets/js/chartist.min.js"></script>
 
-    <!--  Notifications Plugin    -->
-    <script src="assets/js/bootstrap-notify.js"></script>
+<!--  Notifications Plugin    -->
+<script src="assets/js/bootstrap-notify.js"></script>
 
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!--  Google Maps Plugin    -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 
-    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-	<script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
+<!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+<script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
 
-    <1-- Drop down javascript -->
-    <script src="assets/js/dropdown.js"></script>
+<1-- Drop down javascript -->
+<script src="assets/js/dropdown.js"></script>
 
-	<script type="text/javascript">
-    	$(document).ready(function(){
+<script type="text/javascript">
+    $(document).ready(function(){
 
-        	demo.initChartist();
+        demo.initChartist();
 
-        	$.notify({
-            	icon: 'pe-7s-gift',
-            	message: "Welcome to <b>Rudani Hospital</b> <br> Your Health Companion on-the-go."
+        $.notify({
+            icon: 'pe-7s-gift',
+            message: "Welcome to <b>Rudani Hospital</b> <br> Your Health Companion on-the-go."
 
-            },{
-                type: 'info',
-                timer: 4000
-            });
+        },{
+            type: 'info',
+            timer: 4000
+        });
 
-    	});
-	</script>
+    });
+</script>
 
 </html>
