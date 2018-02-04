@@ -19,6 +19,16 @@ $result_p = fetch_data("select patient_id from patient","result");
 $result_d = fetch_data("select designation_name from designation","result");
 $result_dr = fetch_data("select doctor_name from doctor","result");
 
+if($_POST)
+{
+    $ap_patient = $_POST["ap_patient"];
+    $ap_doctor = $_POST["ap_doctor"];
+    $ap_time = $_POST["appointment_time"];
+
+    echo $ap_patient."<br>";
+    echo $ap_doctor."<br>";
+    echo $ap_time."<br>";
+}
 
 ?>
 
@@ -170,13 +180,13 @@ $result_dr = fetch_data("select doctor_name from doctor","result");
 
 
         <!--   Big container   -->
-        <div class="container-fluid">
+        <form class="container-fluid">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2">
                     <!--      Wizard container        -->
                     <div class="wizard-container">
                         <div class="card wizard-card" data-color="purple" id="wizardProfile">
-                            <form action="" method="">
+                            <form method="POST">
                                 <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
 
                                 <div class="wizard-header">
@@ -206,7 +216,7 @@ $result_dr = fetch_data("select doctor_name from doctor","result");
 														</span>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Patient</label>
-                                                    <select name="country" class="form-control">
+                                                    <select  class="form-control" name="ap_patient">
 
                                                         <option disabled="" selected=""></option>
                                                         <?php if($result_p)
@@ -234,7 +244,7 @@ $result_dr = fetch_data("select doctor_name from doctor","result");
 														</span>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Specialization</label>
-                                                    <select name="country" class="form-control" id="js_designation">
+                                                    <select class="form-control" id="js_designation">
                                                         <option disabled="" selected=""></option>
                                                        <?php
 
@@ -258,7 +268,7 @@ $result_dr = fetch_data("select doctor_name from doctor","result");
 														</span>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Doctor</label>
-                                                    <select name="country" class="form-control" id="js_doc_list">
+                                                    <select name="ap_doctor" class="form-control" id="js_doc_list">
                                                         <option disabled="" selected=""></option>
 
                                                     </select>
@@ -271,16 +281,20 @@ $result_dr = fetch_data("select doctor_name from doctor","result");
                                         <div class="container-fluid">
                                             <h4 class="info-text"> Choose Slot </h4>
 
-                                            <?php slot_generator('18_dctr_17'); ?>
+                                            <p id="slot-container"></p>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
-                                                  <i class="material-icons">av_timer</i>
+                                                 Time
+
                                                 </span>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Time</label>
-                                                    <input type="text" name="appointment_time" id="appointment_time" value="10-11" class="form-control" disabled>
+                                                < div class="form-group label-floating">
+                                                    <input   type="text" name="appointment_date" value="fuck">
+                                                    <input type="text" name="appointment_date" id="appointment_time"  class="form-control col-md-4" disabled style="font-size:larger" >
                                                 </div>
                                             </div>
+                                                </div>
+                                            </div>
+
 
                                         </div>
                                     </div>
@@ -288,7 +302,7 @@ $result_dr = fetch_data("select doctor_name from doctor","result");
                                 <div class="wizard-footer">
                                     <div class="pull-right">
                                         <input type='button' class='btn btn-next btn-fill btn-success btn-wd' name='next' value='Next' style="background-color:#9C27B0"/>
-                                        <input type='button' class='btn btn-finish btn-fill btn-success btn-wd ' name='finish' value='Finish' style="background-color:#9C27B0"/>
+                                        <input type='submit' class='btn btn-finish btn-fill btn-success btn-wd '  value='Book' style="background-color:#9C27B0"/>
                                     </div>
 
                                     <div class="pull-left">
@@ -296,8 +310,9 @@ $result_dr = fetch_data("select doctor_name from doctor","result");
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
-                            </form>
+
                         </div>
+        </form>
                     </div> <!-- wizard container -->
                 </div>
             </div><!-- end row -->
@@ -336,6 +351,9 @@ $result_dr = fetch_data("select doctor_name from doctor","result");
 <script src="assets/js/appointment_slot.js"></script>
 <!--select Dcotor as designation AJAX-->
 <script src="assets/js/ajax_doctor.js"></script>
+<!-- Load Selected Time -->
+<script src="assets/js/load_final_slot.js"></script>
+
 <!--  Google Maps Plugin    -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 

@@ -473,7 +473,7 @@ function delete_designation($id)
 function slot_generator($doctor)
 {
     include("assets/modules/db_config.php"); // include database for $conn variable
-    $result = mysqli_query($conn,"select * from slot where doctor_id = '18_dctr_9'");
+    $result = mysqli_query($conn,"select * from slot where doctor_id = '$doctor' " );
     $row = mysqli_fetch_assoc($result);
     $s1 = $row['8-9'];
     $s2 = $row['9-10'];
@@ -488,72 +488,72 @@ function slot_generator($doctor)
     echo "<div class='row'>";
             if($s1 == 1)
             {
-             echo "<div class='col-md-3'><button class='btn btn-success' >08-09</button></div>";
+             echo "<div class='col-md-3'><div class='btn btn-success' id='slot-btn'>08-09</div></div>";
             }
             else
             {
-                echo "<div class='col-md-3'><button class='btn btn-danger' disabled>08-09</button></div>";
+                echo "<div class='col-md-3'><div class='btn btn-danger' disabled>08-09</div></div>";
             }
             if(!$s2 == 1)
             {
-                echo "<div class='col-md-3'><button class='btn btn-success' >09-10</button></div>";
+                echo "<div class='col-md-3'><div class='btn btn-success' id='slot-btn'>09-10</div></div>";
             }
             else
             {
-                echo "<div class='col-md-3'><button class='btn btn-danger' disabled>09-10</button></div>";
+                echo "<div class='col-md-3'><div class='btn btn-danger' disabled>09-10</div></div>";
             }
             if(!$s3 == 1)
             {
-                echo "<div class='col-md-3'><button class='btn btn-success' >10-11</button></div>";
+                echo "<div class='col-md-3'><div class='btn btn-success' id='slot-btn'>10-11</div></div>";
             }
             else
             {
-                echo "<div class='col-md-3'><button class='btn btn-danger' disabled>10-11</button></div>";
+                echo "<div class='col-md-3'><div class='btn btn-danger' disabled>10-11</div></div>";
             }
             if(!$s4 == 1)
             {
-                echo "<div class='col-md-3'><button class='btn btn-success' >11-12</button></div>";
+                echo "<div class='col-md-3'><div class='btn btn-success' id='slot-btn'>11-12</div></div>";
             }
             else
             {
-                echo "<div class='col-md-3'><button class='btn btn-danger' disabled>11-12</button></div>";
+                echo "<div class='col-md-3'><div class='btn btn-danger' disabled>11-12</div></div>";
             }
     echo "</div><div class='row'>";
 
             if(!$s5 == 1)
             {
-                echo "<div class='col-md-3'><button class='btn btn-success' >01-02</button></div>";
+                echo "<div class='col-md-3'><div class='btn btn-success' id='slot-btn'>01-02</div></div>";
             }
             else
             {
-                echo "<div class='col-md-3'><button class='btn btn-danger' disabled>01-02</button></div>";
+                echo "<div class='col-md-3'><div class='btn btn-danger' disabled>01-02</div></div>";
             }
             if(!$s6 == 1)
             {
-                echo "<div class='col-md-3'><button class='btn btn-success' >02-03</button></div>";
+                echo "<div class='col-md-3'><div class='btn btn-success' id='slot-btn'>02-03</div></div>";
             }
             else
             {
-                echo "<div class='col-md-3'><button class='btn btn-danger' disabled>02-03</button></div>";
+                echo "<div class='col-md-3'><div class='btn btn-danger' disabled>02-03</div></div>";
             }
             if(!$s7 == 1)
             {
-                echo "<div class='col-md-3'><button class='btn btn-success' >03-04</button></div>";
+                echo "<div class='col-md-3'><div class='btn btn-success' id='slot-btn'>03-04</div></div>";
             }
             else
             {
-                echo "<div class='col-md-3'><button class='btn btn-danger' disabled>03-04</button></div>";
+                echo "<div class='col-md-3'><div class='btn btn-danger' disabled>03-04</div></div>";
             }
             if(!$s8 == 1)
             {
-                echo "<div class='col-md-3'><button class='btn btn-success' >04-05</button></div>";
+                echo "<div class='col-md-3'><div class='btn btn-success' id='slot-btn'>04-05</div></div>";
             }
             else
             {
-                echo "<div class='col-md-3'><button class='btn btn-danger' disabled>04-05</button></div>";
+                echo "<div class='col-md-3'><div class='btn btn-danger' disabled>04-05</div></div>";
             }
 
-echo "</div></div>";
+echo "</div></div>  <script src='../js/load_final_slot.js'></script>";
 }
 
 ?>
