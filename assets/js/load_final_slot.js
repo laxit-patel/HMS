@@ -21,9 +21,6 @@ $(document).on('click', '#slot-btn', function() {
     var yyyy = today.getFullYear();
 
     var slot_date = yyyy+'-'+mm+'-'+dd+','+day;
-
-
-
     $("#appointment_time").val(slot_date+","+slot_time);
 });
 

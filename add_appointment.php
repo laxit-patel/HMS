@@ -23,7 +23,7 @@ if($_POST)
 {
     $ap_patient = $_POST["ap_patient"];
     $ap_doctor = $_POST["ap_doctor"];
-    $ap_time = $_POST["appointment_time"];
+    $ap_time = $_REQUEST["ap_time"];
 
     echo $ap_patient."<br>";
     echo $ap_doctor."<br>";
@@ -180,13 +180,13 @@ if($_POST)
 
 
         <!--   Big container   -->
-        <form class="container-fluid">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2">
                     <!--      Wizard container        -->
                     <div class="wizard-container">
                         <div class="card wizard-card" data-color="purple" id="wizardProfile">
-                            <form method="POST">
+                            <form  method="POST" name="appointment_form">
                                 <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
 
                                 <div class="wizard-header">
@@ -216,7 +216,7 @@ if($_POST)
 														</span>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Patient</label>
-                                                    <select  class="form-control" name="ap_patient">
+                                                    <select name="ap_patient" class="form-control">
 
                                                         <option disabled="" selected=""></option>
                                                         <?php if($result_p)
@@ -244,11 +244,11 @@ if($_POST)
 														</span>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Specialization</label>
-                                                    <select class="form-control" id="js_designation">
+                                                    <select  class="form-control" id="js_designation">
                                                         <option disabled="" selected=""></option>
-                                                       <?php
+                                                        <?php
 
-                                                       if($result_d)
+                                                        if($result_d)
                                                         {
 
                                                             while($row_d = mysqli_fetch_array($result_d)) {
@@ -256,7 +256,7 @@ if($_POST)
                                                             }
                                                         }
 
-                                                       ?>
+                                                        ?>
 
                                                     </select>
                                                 </div>
@@ -284,50 +284,37 @@ if($_POST)
                                             <p id="slot-container"></p>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
-                                                 Time
-
+                                                  <i class="material-icons">av_timer</i>
                                                 </span>
-                                                < div class="form-group label-floating">
-                                                    <input   type="text" name="appointment_date" value="fuck">
-                                                    <input type="text" name="appointment_date" id="appointment_time"  class="form-control col-md-4" disabled style="font-size:larger" >
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Time</label>
+                                                    <input type="text" name="ap_time" id="appointment_time" value=" " class="form-control" disabled>
                                                 </div>
                                             </div>
-                                                </div>
-                                            </div>
-
 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="wizard-footer">
                                     <div class="pull-right">
-                                        <input type='button' class='btn btn-next btn-fill btn-success btn-wd' name='next' value='Next' style="background-color:#9C27B0"/>
+                                        <input type='button' class='btn btn-next btn-fill btn-success btn-wd'  value='Next' style="background-color:#9C27B0"/>
                                         <input type='submit' class='btn btn-finish btn-fill btn-success btn-wd '  value='Book' style="background-color:#9C27B0"/>
                                     </div>
 
                                     <div class="pull-left">
-                                        <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />
+                                        <input type='button' class='btn btn-previous btn-fill btn-default btn-wd'  value='Previous' />
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
-
+                            </form>
                         </div>
-        </form>
                     </div> <!-- wizard container -->
                 </div>
             </div><!-- end row -->
         </div> <!--  big container -->
 
 
-        <footer class="footer">
-            <div class="container-fluid">
 
-                <p class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script>
-                    <a href="#">By HPL Team</a>
-                </p>
-            </div>
-        </footer>
 
     </div>
 </div>
@@ -336,6 +323,7 @@ if($_POST)
 </body>
 
 <!--   Core JS Files   -->
+
 <script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="assets/js/jquery.bootstrap.js" type="text/javascript"></script>
@@ -353,14 +341,10 @@ if($_POST)
 <script src="assets/js/ajax_doctor.js"></script>
 <!-- Load Selected Time -->
 <script src="assets/js/load_final_slot.js"></script>
-
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
 
-<1-- Drop down javascript -->
+<!-- Drop down javascript -->
 <script src="assets/js/dropdown.js"></script>
 
 <script type="text/javascript">

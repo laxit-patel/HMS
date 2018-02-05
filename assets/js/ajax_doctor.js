@@ -9,8 +9,6 @@ $("#js_designation").change(function(){
         data: {designation:designation},
         dataType: 'text',
         success:function(response){
-
-
                 $("#js_doc_list").html("<option >"+response+"</option>");
         }
     });
