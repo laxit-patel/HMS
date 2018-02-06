@@ -30,7 +30,12 @@ function key_engine($for)
 		}	
 		else
 		{
-			return ";_;";
+            $year_new = date("y");
+            $initial = $for;
+            $number_new = 0;
+            $key = $year_new."_".$initial."_".$number_new;
+
+            return $key;
 		}
 	}
 	elseif($for == "doctor")
@@ -59,7 +64,12 @@ function key_engine($for)
 		}	
 		else
 		{
-			return ";_;";
+            $year_new = date("y");
+            $initial = $for;
+            $number_new = 0;
+            $key = $year_new."_".$initial."_".$number_new;
+
+            return $key;
 		}
 
 	}
@@ -89,7 +99,12 @@ function key_engine($for)
         }
         else
         {
-            return ";_;";
+            $year_new = date("y");
+            $initial = $for;
+            $number_new = 0;
+            $key = $year_new."_".$initial."_".$number_new;
+
+            return $key;
         }
 
     }
@@ -119,11 +134,53 @@ function key_engine($for)
         }
         else
         {
-            return ";_;";
+            $year_new = date("y");
+            $initial = $for;
+            $number_new = 0;
+            $key = $year_new."_".$initial."_".$number_new;
+
+            return $key;
         }
 
     }
+    elseif($for == "slot")
+    {
+        $key = $for."_id";
+        $sql_test = "select $key from $for order by $key desc limit 1";
+        $result_test = mysqli_query($conn,$sql_test);
 
+        if(mysqli_num_rows($result_test) != 0 )
+        {
+            $row=mysqli_fetch_row($result_test); //$row gets the key_val array
+
+            $data = explode("_",$row[0]); // key_val explodes and saved in $data
+
+            $year = $data[0];
+            $initial = $data[1];
+            $number = $data[2];
+
+            $year_new = date("y");
+
+            $number_new = $number+1;
+
+            $key = $year_new."_".$initial."_".$number_new;
+
+            return $key;
+        }
+        else
+        {
+            $year_new = date("y");
+            $initial = $for;
+            $number_new = 0;
+            $key = $year_new."_".$initial."_".$number_new;
+
+            return $key;
+        }
+    }
+    else
+    {
+        return "Invalid Arguments";
+    }
 
 }
 
@@ -389,6 +446,7 @@ function add_doctor($query)
     $result = mysqli_query($conn,$query);
     if($result)
     {
+
         return true;
     }
     else
@@ -404,11 +462,19 @@ function delete_doctor($by,$for)
     $result = mysqli_query($conn,"delete from doctor where doctor_id = '$for'");
     if($result)
     {
-        return true;
+        $slot_del = mysqli_query($conn,"delete from slot where doctor_id='$for'");
+        if($slot_del)
+        {
+            return true;
+        }
+        else
+        {
+            return "slot not deleted";
+        }
     }
     else
     {
-        return false;
+        return "doc not deleted";
     }
 }
 
@@ -475,18 +541,21 @@ function slot_generator($doctor)
     include("assets/modules/db_config.php"); // include database for $conn variable
     $result = mysqli_query($conn,"select * from slot where doctor_id = '$doctor' " );
     $row = mysqli_fetch_assoc($result);
-    $s1 = $row['8-9'];
-    $s2 = $row['9-10'];
+    $doc_data = mysqli_fetch_assoc(mysqli_query($conn,"select doctor_name from doctor where doctor_id = '$doctor' "));
+    $doc_name = $doc_data["doctor_name"];
+
+    $s1 = $row['08-09'];
+    $s2 = $row['09-10'];
     $s3 = $row['10-11'];
     $s4 = $row['11-12'];
-    $s5 = $row['1-2'];
-    $s6 = $row['2-3'];
-    $s7 = $row['3-4'];
-    $s8 = $row['4-5'];
+    $s5 = $row['01-02'];
+    $s6 = $row['02-03'];
+    $s7 = $row['03-04'];
+    $s8 = $row['04-05'];
 
-    echo "<div class='container-fluid text-center'>";
+    echo "<div class='container-fluid text-center'><h3>Book $doc_name</h3>";
     echo "<div class='row'>";
-            if($s1 == 1)
+            if(!$s1 == 1)
             {
              echo "<div class='col-md-3'><div class='btn btn-success' id='slot-btn'>08-09</div></div>";
             }
@@ -554,6 +623,22 @@ function slot_generator($doctor)
             }
 
 echo "</div></div>  <script src='../js/load_final_slot.js'></script>";
+}
+
+function add_slot($slot,$doctor)
+{
+    include("assets/modules/db_config.php"); // include database for $conn variable
+    $query = "insert into slot(slot_id,doctor_id) values('$slot','$doctor')";
+    $result = mysqli_query($conn,$query);
+    if($result)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+
 }
 
 ?>

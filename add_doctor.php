@@ -74,12 +74,19 @@ if($_POST)
     {
         $d_old = explode("/",$dr_dob);
 
-        $d_dob = $d_old[2].$d_old[1].$d_old[0];
+        $d_dob = $d_old[2].$d_old[0].$d_old[1];
+        $slot = key_engine('slot');
 
-        if(add_doctor("insert into doctor(doctor_id,doctor_name,doctor_gender,doctor_email,doctor_phone,doctor_dob,doctor_city,doctor_address,doctor_password,doctor_designation)
-                                         values('$doctor_id','$d_name','$d_gender','$d_email','$d_phone','$d_dob','$d_city','$d_address','$d_password','$d_designation')"))
+        if(add_doctor("insert into doctor(doctor_id,doctor_name,doctor_gender,doctor_email,doctor_phone,doctor_dob,doctor_city,doctor_address,doctor_password,doctor_designation,slot_id)
+                                         values('$doctor_id','$d_name','$d_gender','$d_email','$d_phone','$d_dob','$d_city','$d_address','$d_password','$d_designation','$slot')"))
         {
-            header("LOCATION:add_doctor.php");
+            if(add_slot($slot,$doctor_id)) {
+                header("LOCATION:add_doctor.php");
+            }
+            else
+            {
+                echo "slot Generation Failed";
+            }
         }
 
     }

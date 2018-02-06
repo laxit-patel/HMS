@@ -10,3 +10,7 @@ if(delete_doctor($delete_by,$delete_for))
 {
     header("LOCATION:view_doctor.php");
 }
+else
+{
+    echo "Deletion Error";
+}

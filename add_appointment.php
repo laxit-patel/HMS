@@ -21,13 +21,9 @@ $result_dr = fetch_data("select doctor_name from doctor","result");
 
 if($_POST)
 {
-    $ap_patient = $_POST["ap_patient"];
-    $ap_doctor = $_POST["ap_doctor"];
-    $ap_time = $_REQUEST["ap_time"];
 
-    echo $ap_patient."<br>";
-    echo $ap_doctor."<br>";
-    echo $ap_time."<br>";
+    print_r($_POST);
+
 }
 
 ?>
@@ -186,7 +182,7 @@ if($_POST)
                     <!--      Wizard container        -->
                     <div class="wizard-container">
                         <div class="card wizard-card" data-color="purple" id="wizardProfile">
-                            <form  method="POST" name="appointment_form">
+                            <form  name="app_form">
                                 <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
 
                                 <div class="wizard-header">
@@ -278,17 +274,17 @@ if($_POST)
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="address">
-                                        <div class="container-fluid">
-                                            <h4 class="info-text"> Choose Slot </h4>
 
+                                        <div class="container-fluid">
                                             <p id="slot-container"></p>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
                                                   <i class="material-icons">av_timer</i>
                                                 </span>
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Time</label>
-                                                    <input type="text" name="ap_time" id="appointment_time" value=" " class="form-control" disabled>
+                                                    <label class="control-label" for="appointment_time">Time</label>
+                                                    <input type="text" name="ap_time" id="appointment_time"  value=" " class="form-control" readonly="readonly" />
+
                                                 </div>
                                             </div>
 
