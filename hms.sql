@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 29, 2018 at 05:32 AM
+-- Generation Time: Feb 06, 2018 at 06:18 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -97,7 +97,8 @@ CREATE TABLE `designation` (
 INSERT INTO `designation` (`designation_id`, `designation_name`) VALUES
 ('18_dsgn_0', 'Orthopedic'),
 ('18_dsgn_1', 'Gynecologist'),
-('18_dsgn_2', 'Dentist');
+('18_dsgn_2', 'Dentist'),
+('18_dsgn_3', 'Surgeon');
 
 -- --------------------------------------------------------
 
@@ -116,17 +117,18 @@ CREATE TABLE `doctor` (
   `doctor_designation` varchar(30) NOT NULL,
   `doctor_email` varchar(50) NOT NULL,
   `doctor_password` varchar(50) NOT NULL,
-  `doj` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+  `doj` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  `slot_id` varchar(10) NOT NULL,
+  `doctor_exist` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `doctor`
 --
 
-INSERT INTO `doctor` (`doctor_id`, `doctor_name`, `doctor_dob`, `doctor_gender`, `doctor_phone`, `doctor_city`, `doctor_address`, `doctor_designation`, `doctor_email`, `doctor_password`, `doj`) VALUES
-('18_dctr_7', 'pannabhai mbbs', '1980-01-16', 'Male', '1212121212', 'Bhuj', 'pramukhswami nagar', 'Orthopedic', 'panna_bhai@gmail.com', 'pannabhai@123', '2018-01-28 06:23:43.091421'),
-('18_dctr_8', 'pannaben', '1987-11-24', 'Female', '457849865', 'Bhuj', 'pramukhswami nagar', 'Orthopedic', 'panna_rudani@gmail.com', 'pannaben@123', '2018-01-28 06:26:22.185171'),
-('18_dctr_9', 'Dr.strange', '1990-03-06', 'Male', '7896541231', 'Bhuj', 'dark dimension', 'Gynecologist', 'dr.strange@gmail.com', 'strange@123', '2018-01-28 06:27:30.169546');
+INSERT INTO `doctor` (`doctor_id`, `doctor_name`, `doctor_dob`, `doctor_gender`, `doctor_phone`, `doctor_city`, `doctor_address`, `doctor_designation`, `doctor_email`, `doctor_password`, `doj`, `slot_id`, `doctor_exist`) VALUES
+('18_dctr_10', 'mrs.pannaben', '1977-02-21', 'Female', '7896541231', 'Bhuj', 'pramukhswami nagar', 'Gynecologist', 'panna_rudani@gmail.com', 'pannaben@123', '2018-02-06 18:14:01.241210', '18_slot_1', 0),
+('18_dctr_9', 'Dr.strange', '1995-02-15', 'Male', '1212121212', 'Bhuj', 'dark dimension', 'Surgeon', 'dr.strange@gmail.com', 'strange@123', '2018-02-06 17:41:20.870117', '18_slot_0', 0);
 
 -- --------------------------------------------------------
 
@@ -195,24 +197,25 @@ INSERT INTO `receptionist` (`receptionist_id`, `receptionist_name`, `receptionis
 --
 
 CREATE TABLE `slot` (
+  `slot_id` varchar(10) NOT NULL,
   `doctor_id` varchar(10) NOT NULL,
-  `8-9` tinyint(1) NOT NULL,
-  `9-10` tinyint(1) NOT NULL,
+  `08-09` tinyint(1) NOT NULL,
+  `09-10` tinyint(1) NOT NULL,
   `10-11` tinyint(1) NOT NULL,
   `11-12` tinyint(1) NOT NULL,
-  `1-2` tinyint(1) NOT NULL,
-  `2-3` tinyint(1) NOT NULL,
-  `3-4` tinyint(1) NOT NULL,
-  `4-5` tinyint(1) NOT NULL
+  `01-02` tinyint(1) NOT NULL,
+  `02-03` tinyint(1) NOT NULL,
+  `03-04` tinyint(1) NOT NULL,
+  `04-05` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `slot`
 --
 
-INSERT INTO `slot` (`doctor_id`, `8-9`, `9-10`, `10-11`, `11-12`, `1-2`, `2-3`, `3-4`, `4-5`) VALUES
-('18_dctr_7', 0, 0, 0, 0, 0, 0, 0, 0),
-('18_dctr_8', 1, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO `slot` (`slot_id`, `doctor_id`, `08-09`, `09-10`, `10-11`, `11-12`, `01-02`, `02-03`, `03-04`, `04-05`) VALUES
+('18_slot_0', '18_dctr_9', 0, 0, 0, 1, 0, 0, 0, 0),
+('18_slot_1', '18_dctr_10', 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -260,6 +263,12 @@ ALTER TABLE `doctor`
 ALTER TABLE `patient`
   ADD PRIMARY KEY (`patient_id`),
   ADD UNIQUE KEY `count` (`count`);
+
+--
+-- Indexes for table `slot`
+--
+ALTER TABLE `slot`
+  ADD PRIMARY KEY (`slot_id`);
 
 --
 -- Indexes for table `ward`
