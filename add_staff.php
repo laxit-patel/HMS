@@ -71,7 +71,7 @@ if($_POST)
         if(add_receptionist("insert into receptionist(receptionist_id,receptionist_name,receptionist_gender,receptionist_email,receptionist_phone,receptionist_dob,receptionist_city,receptionist_address,receptionist_password)
                                          values('$r_id','$r_name','$r_gender','$r_email','$r_phone','$r_dob','$r_city','$r_address','$r_password')"))
         {
-            header("LOCATION:add_receptionist.php");
+            header("LOCATION:add_staff.php");
         }
 
     }
@@ -112,86 +112,8 @@ if($_POST)
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="purple" data-image="assets/img/waterfall.gif" >
 
-        <!--
-
-            Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-            Tip 2: you can also add an image using data-image tag
-
-        -->
-
-        <div class="sidebar-wrapper" id="">
-            <div class="logo">
-                <a href="#" class="simple-text">
-                    <?php echo $data["admin_name"];?>
-                </a>
-            </div>
-
-            <ul class="nav" >
-                <li >
-                    <a href="dashboard_admn.php">
-                        <i class="pe-7s-graph"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="add_patient.php" >
-                        <i class="pe-7s-user"></i>
-                        <p>Patient</p>
-                    </a>
-
-                </li>
-                <li >
-                    <a href="add_appointment.php">
-                        <i class="pe-7s-note2"></i>
-                        <p>Appointment</p>
-                    </a>
-
-                </li>
-                <li >
-                    <a href="add_doctor.php">
-                        <i class="pe-7s-id"></i>
-                        <p>Doctor</p>
-                    </a>
-
-                </li>
-                <li class="active">
-                    <a href="add_receptionist.php">
-                        <i class="pe-7s-id"></i>
-                        <p>Receptionist</p>
-                    </a>
-                    <ul>
-                        <li class="active">
-                            <a href="add_receptionist.php" >
-                                <i class="pe-7s-add-user"></i>
-                                <p>Add Receptionist</p>
-                            </a>
-                        </li>
-                        <li >
-                            <a href="view_receptionist.php" >
-                                <i class="pe-7s-search"></i>
-                                <p>View Receptionist</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li >
-                    <a href="designation.php">
-                        <i class="pe-7s-study"></i>
-                        <p>Designation</p>
-                    </a>
-                </li>
-                <li >
-                    <a href="ward.php">
-                        <i class="pe-7s-culture"></i>
-                        <p>Ward</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <?php menu($data["admin_name"],"staff","add_staff"); ?>
 
     <div class="main-panel">
 
@@ -204,7 +126,7 @@ if($_POST)
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard<i class="pe-7s-angle-right"></i>View Appointment</a>
+                    <a class="navbar-brand" href="#">Dashboard<i class="pe-7s-angle-right"></i>Add Staff</a>
                 </div>
                 <div class="collapse navbar-collapse">
 
@@ -234,7 +156,7 @@ if($_POST)
 
                         <div class="card wizard-card" data-color="purple" id="wizardProfile">
 
-                            <form name="add_patient" method="POST">
+                            <form name="add_staff" method="POST">
                                 <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
 
                                 <div class="wizard-header">
@@ -277,11 +199,8 @@ if($_POST)
                                     {
                                         echo "";
                                     }
-                                    ?><br><br>
-                                    <h3 class="wizard-title">
-                                        Add Receptionist
-                                    </h3>
-
+                                    ?>
+                                    <h3>Staff</h3>
                                 </div>
                                 <div class="wizard-navigation">
                                     <ul>
@@ -301,8 +220,8 @@ if($_POST)
                                                   <i class="material-icons">vpn_key</i>
                                                 </span>
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Receptionist's Id</label>
-                                                    <input type="text" name="r_id" value="<?php echo key_engine("receptionist"); ?>" class="form-control" disabled>
+                                                    <label class="control-label">Staff's Id</label>
+                                                    <input type="text" name="r_id" value="<?php echo key_engine("staff"); ?>" class="form-control" disabled>
 
 
                                                 </div>
@@ -313,7 +232,7 @@ if($_POST)
                                                   <i class="material-icons">account_circle</i>
                                                 </span>
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Receptionist's Name</label>
+                                                    <label class="control-label">Staff's Name</label>
                                                     <input type="text" name="r_name" value="<?php if(isset($r_name)){ echo $r_name; }?>" class="form-control">
                                                 </div>
                                             </div>
@@ -324,7 +243,7 @@ if($_POST)
                                                 </span>
                                                 <div class="form-group label-floating">
 
-                                                    <input type="text" name="r_dob" value="<?php if(isset($r_dob)){ echo $r_dob; }?>" class="datepicker form-control" placeholder="Enter Birthdate" />
+                                                    <input type="text" name="r_dob" value="<?php if(isset($r_dob)){ echo $r_dob; }?>" class="datepicker form-control" placeholder="CHOOSE BIRTHDATE" />
                                                 </div>
                                             </div>
 
@@ -347,7 +266,7 @@ if($_POST)
                                                   <i class="material-icons">call</i>
                                                 </span>
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Receptionist's Phone</label>
+                                                    <label class="control-label"> Phone</label>
                                                     <input type="text" name="r_phone" value="<?php if(isset($r_phone)){ echo $r_phone; }?>" class="form-control">
                                                 </div>
                                             </div>
@@ -358,10 +277,7 @@ if($_POST)
                                                 </span>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">city</label>
-                                                    <select name="r_city" class="form-control">
-                                                        <option>--Select City--</option>
-                                                        <option>Bhuj</option>
-                                                    </select>
+                                                    <input type="text" name="s_city" value="<?php if(isset($s_city)){ echo $s_city; }?>" class="form-control">
                                                 </div>
                                             </div>
 
@@ -387,7 +303,7 @@ if($_POST)
                                                   <i class="material-icons">email</i>
                                                 </span>
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Doctor's Email</label>
+                                                    <label class="control-label">Staff Email</label>
                                                     <input type="email" name="r_email" value="<?php if(isset($r_email)){ echo $r_email; }?>" class="form-control">
                                                 </div>
                                             </div>
@@ -399,6 +315,16 @@ if($_POST)
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Password</label>
                                                     <input type="text" name="r_password" value="<?php if(isset($r_password)){ echo $r_password; }?>" class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                  <i class="material-icons">lock_outline</i>
+                                                </span>
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Password</label>
+
                                                 </div>
                                             </div>
 

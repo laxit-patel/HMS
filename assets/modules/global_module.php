@@ -73,13 +73,13 @@ function key_engine($for)
 		}
 
 	}
-	elseif($for == "receptionist")
+	elseif($for == "staff")
     {
         $key = $for."_id";
         $sql_test = "select $key from $for order by $key desc limit 1";
         $result_test = mysqli_query($conn,$sql_test);
 
-        if($result_test)
+        if(mysqli_num_rows($result_test) != 0)
         {
             $row=mysqli_fetch_row($result_test); //$row gets the key_val array
 
@@ -638,6 +638,210 @@ function add_slot($slot,$doctor)
     {
         return false;
     }
+
+}
+
+function menu($user,$active,$sub_active)
+{
+   echo "<div class='sidebar' data-color='purple' data-image='assets/img/waterfall.gif' >
+        <div class='sidebar-wrapper' >";
+
+    echo "<div class='logo'>
+                <a href='#' class='simple-text'>";
+                    if(isset($user)){echo $user;};
+                echo "</a>
+            </div>";
+
+    echo "<ul class='nav' >
+
+                <li "; if($active == "dashboard"){ echo "class=active"; } echo ">
+                    <a href='dashboard_admn.php'>
+                        <i class='pe-7s-graph'></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                
+                <li "; if($active == "patient"){ echo"class=active"; } echo ">
+                    <a href='add_patient.php' >
+                        <i class='pe-7s-user'></i>
+                        <p>Patient</p>
+                    </a>";
+
+                        if($active == "patient") {
+                            echo "<ul>";
+
+                            echo "<li ";
+                            if ($sub_active == "add_patient") {
+                                echo "class=active";
+                            }
+                            echo ">
+                                                    <a href = 'add_patient.php' >
+                                                        <i class='pe-7s-add-user' ></i >
+                                                        <p > Add Patient </p >
+                                                    </a >
+                                                </li >";
+
+                            echo "<li ";
+                            if ($sub_active == "view_patient") {
+                                echo "class=active";
+                            }
+                            echo ">
+                                                    <a href = 'view_patient.php' >
+                                                        <i class='pe-7s-search' ></i >
+                                                        <p > view Patient </p >
+                                                    </a >
+                                                </li >";
+
+                            echo "</ul>";
+                        }
+                echo "</li >
+                
+                <li "; if($active == "appointment"){ echo"class=active"; } echo ">
+                    <a href='add_appointment.php'>
+                        <i class='pe-7s-note2'></i>
+                        <p>Appointment</p>
+                    </a>";
+
+                        if($active == "appointment") {
+                            echo "<ul>";
+
+                            echo "<li ";
+                            if ($sub_active == "add_appointment") {
+                                echo "class=active";
+                            }
+                            echo ">
+                                <a href = 'add_appointment.php' >
+                                    <i class='pe-7s-add-user' ></i >
+                                    <p > Add Appointment </p >
+                                </a >
+                            </li >";
+
+                            echo "<li ";
+                            if ($sub_active == "view_appointment") {
+                                echo "class=active";
+                            }
+                            echo ">
+                                <a href = 'view_appointment.php' >
+                                    <i class='pe-7s-search' ></i >
+                                    <p > view Appointment </p >
+                                </a >
+                            </li >";
+
+        echo "</ul>";
+    }
+
+                echo "</li>
+
+                <li "; if($active == "doctor"){ echo"class=active"; } echo ">
+                    <a href='add_doctor.php'>
+                        <i class='pe-7s-id'></i>
+                        <p>Doctor</p>
+                    </a>";
+
+                        if($active == "doctor") {
+                            echo "<ul>";
+
+                            echo "<li ";
+                            if ($sub_active == "add_doctor") {
+                                echo "class=active";
+                            }
+                            echo ">
+                                    <a href = 'add_doctor.php' >
+                                        <i class='pe-7s-add-user' ></i >
+                                        <p > Add Doctor </p >
+                                    </a >
+                                </li >";
+
+                            echo "<li ";
+                            if ($sub_active == "view_doctor") {
+                                echo "class=active";
+                            }
+                            echo ">
+                                    <a href = 'view_doctor.php' >
+                                        <i class='pe-7s-search' ></i >
+                                        <p > view Doctor </p >
+                                    </a >
+                                </li >";
+
+                            echo "</ul>";
+                        }
+
+                echo "</li>
+
+                <li "; if($active == "staff"){ echo"class=active"; } echo ">
+                    <a href='add_staff.php'>
+                        <i class='pe-7s-users'></i>
+                        <p>Staff</p>
+                    </a>";
+
+                        if($active == "staff") {
+                            echo "<ul>";
+
+                            echo "<li ";
+                            if ($sub_active == "add_staff") {
+                                echo "class=active";
+                            }
+                            echo ">
+                                    <a href = 'add_staff.php' >
+                                        <i class='pe-7s-add-user' ></i >
+                                        <p > Add Staff </p >
+                                    </a >
+                                </li >";
+
+                            echo "<li ";
+                            if ($sub_active == "view_staff") {
+                                echo "class=active";
+                            }
+                            echo ">
+                                    <a href = 'view_staff.php' >
+                                        <i class='pe-7s-search' ></i >
+                                        <p > view Staff </p >
+                                    </a >
+                                </li >";
+
+                            echo "</ul>";
+                        }
+
+                echo "</li>
+
+                <li "; if($active == "setting"){ echo"class=active"; } echo ">
+                    <a href='admn_settings.php'>
+                        <i class='pe-7s-edit'></i>
+                        <p>Setting</p>
+                    </a>";
+                            if($active == "setting") {
+                                echo "<ul>";
+
+                                echo "<li ";
+                                if ($sub_active == "designation") {
+                                    echo "class=active";
+                                }
+                                echo ">
+                                <a href = 'add_designation.php' >
+                                    <i class='pe-7s-add-user' ></i >
+                                    <p > Add Designation </p >
+                                </a >
+                            </li >";
+
+                                echo "<li ";
+                                if ($sub_active == "ward") {
+                                    echo "class=active";
+                                }
+                                echo ">
+                                <a href = 'add_ward.php' >
+                                    <i class='pe-7s-search' ></i >
+                                    <p > Add Ward </p >
+                                </a >
+                            </li >";
+
+                                echo "</ul>";
+                            }
+                echo "</li>";
+
+          echo "</ul>";
+
+    echo "</div>
+    </div>";
 
 }
 

@@ -19,17 +19,17 @@ $data = mysqli_fetch_assoc($result);
 <!doctype html>
 <html lang="en">
 <head>
+
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="assets/img/HMS.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Dashboard - Patient</title>
+    <title>Dashboard - Admin</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
-    <!--fresh table-->
-    <link href="assets/css/fresh-bootstrap-table.css" rel="stylesheet" />
+
     <!-- Bootstrap core CSS     -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -51,7 +51,7 @@ $data = mysqli_fetch_assoc($result);
 
 <div class="wrapper">
 
-    <?php menu($data["admin_name"],"appointment","view_appointment"); ?>
+    <?php menu($data["admin_name"],"setting","designation"); ?>
 
     <div class="main-panel">
 
@@ -64,7 +64,7 @@ $data = mysqli_fetch_assoc($result);
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard<i class="pe-7s-angle-right"></i>View Appointment</a>
+                    <a class="navbar-brand" href="#">Dashboard</a>
                 </div>
                 <div class="collapse navbar-collapse">
 
@@ -82,39 +82,8 @@ $data = mysqli_fetch_assoc($result);
                 </div>
             </div>
         </nav>
-        <br>
-        <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-
-                <div class="fresh-table full-color-purple" >
-                    <!--    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
-                            Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
-                    -->
 
 
-
-                    <table id="fresh-table" class="table">
-                        <thead>
-                        <th data-field="id">ID</th>
-                        <th data-field="name" data-sortable="true">For</th>
-                        <th data-field="name" data-sortable="true">By</th>
-                        <th data-field="name" data-sortable="true">Date</th>
-                        <th data-field="action" >Action</th>
-
-                        </thead>
-                        <tbody>
-
-                        <?php view_table("appointment"); ?>
-
-                        </tbody>
-                    </table>
-                </div>
-
-
-            </div>
-        </div>
-    </div>
 
 
         <footer class="footer">
@@ -139,13 +108,11 @@ $data = mysqli_fetch_assoc($result);
 
 <!--  Charts Plugin -->
 <script src="assets/js/chartist.min.js"></script>
-<!-- Fressh table-->
-<script src="assets/js/fresh_table.js"></script>
+
 <!--  Notifications Plugin    -->
 <script src="assets/js/bootstrap-notify.js"></script>
 
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
 
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>

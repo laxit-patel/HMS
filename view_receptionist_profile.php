@@ -114,13 +114,13 @@ if($_POST)
 
                 </li>
                 <li  class="active">
-                    <a href="add_receptionist.php">
+                    <a href="add_staff.php">
                         <i class="pe-7s-monitor"></i>
                         <p>Receptionist</p>
                     </a>
                     <ul>
                         <li >
-                            <a href="add_receptionist.php" >
+                            <a href="add_staff.php" >
                                 <i class="pe-7s-add-user"></i>
                                 <p>Add Receptionist</p>
                             </a>

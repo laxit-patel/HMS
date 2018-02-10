@@ -63,86 +63,8 @@ if($_POST)
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="purple" data-image="assets/img/waterfall.gif" >
 
-        <!--
-
-            Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-            Tip 2: you can also add an image using data-image tag
-
-        -->
-
-        <div class="sidebar-wrapper" id="">
-            <div class="logo">
-                <a href="#" class="simple-text">
-                    <?php echo $data["admin_name"];?>
-                </a>
-            </div>
-
-            <ul class="nav" >
-                <li >
-                    <a href="dashboard_admn.php">
-                        <i class="pe-7s-graph"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="add_patient.php" >
-                        <i class="pe-7s-user"></i>
-                        <p>Patient</p>
-                    </a>
-
-                </li>
-                <li class="active">
-                    <a href="add_appointment.php">
-                        <i class="pe-7s-note2"></i>
-                        <p>Appointment</p>
-                    </a>
-                    <ul>
-                        <li class="active">
-                            <a href="add_appointment.php" >
-                                <i class="pe-7s-add-user"></i>
-                                <p>Add Appointment</p>
-                            </a>
-                        </li>
-                        <li >
-                            <a href="view_appointment.php" >
-                                <i class="pe-7s-search"></i>
-                                <p>View Appointment</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li >
-                    <a href="add_doctor.php">
-                        <i class="pe-7s-id"></i>
-                        <p>Doctor</p>
-                    </a>
-
-                </li>
-                <li >
-                    <a href="add_receptionist.php">
-                        <i class="pe-7s-monitor"></i>
-                        <p>Receptionist</p>
-                    </a>
-                </li>
-                <li >
-                    <a href="designation.php">
-                        <i class="pe-7s-study"></i>
-                        <p>Designation</p>
-                    </a>
-                </li>
-                <li >
-                    <a href="ward.php">
-                        <i class="pe-7s-culture"></i>
-                        <p>Ward</p>
-                    </a>
-                </li>
-
-            </ul>
-        </div>
-    </div>
+    <?php menu($data["admin_name"],"appointment","add_appointment"); ?>
 
     <div class="main-panel">
 

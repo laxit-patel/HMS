@@ -119,7 +119,7 @@ if($_POST)
 
                 </li>
                 <li >
-                    <a href="add_receptionist.php">
+                    <a href="add_staff.php">
                         <i class="pe-7s-monitor"></i>
                         <p>Receptionist</p>
                     </a>

@@ -19,6 +19,47 @@ $data = mysqli_fetch_assoc($result);
 <!doctype html>
 <html lang="en">
 <head>
+    <!--Charts Starts-->
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+        // Load the Visualization API and the corechart package.
+        google.charts.load('current', {'packages':['corechart']});
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawChart);
+
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function drawChart() {
+
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Topping');
+            data.addColumn('number', 'Slices');
+            data.addRows([
+                ['Mushrooms', 2],
+                ['Onions', 2],
+                ['Olives', 2],
+                ['Zucchini', 2],
+                ['Pepperoni', 2]
+            ]);
+
+            // Set chart options
+            var options = {'title':'How Much Pizza I Ate Last Night',
+                'width':400,
+                'height':300};
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+
+    <!--Charts Ends-->
+
 	<meta charset="utf-8" />
 	<link rel="icon" type="image/png" href="assets/img/HMS.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -49,75 +90,8 @@ $data = mysqli_fetch_assoc($result);
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="purple" data-image="assets/img/waterfall.gif" >
 
-    <!--
-
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
-
-    	<div class="sidebar-wrapper" id="">
-            <div class="logo">
-                <a href="#" class="simple-text">
-                    <?php echo $data["admin_name"];?>
-                </a>
-            </div>
-
-            <ul class="nav" >
-                <li class="active">
-                    <a href="dashboard_admn.php">
-                        <i class="pe-7s-graph"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="add_patient.php" >
-                        <i class="pe-7s-user"></i>
-                        <p>Patient</p>
-                    </a>
-
-                </li>
-                <li >
-                    <a href="add_appointment.php">
-                        <i class="pe-7s-note2"></i>
-                        <p>Appointment</p>
-                    </a>
-                </li>
-
-                <li >
-                    <a href="add_doctor.php">
-                        <i class="pe-7s-id"></i>
-                        <p>Doctor</p>
-                    </a>
-
-                </li>
-
-                <li >
-                    <a href="add_receptionist.php">
-                        <i class="pe-7s-monitor"></i>
-                        <p>Receptionist</p>
-                    </a>
-                </li>
-
-                <li >
-                    <a href="designation.php">
-                        <i class="pe-7s-study"></i>
-                        <p>Designation</p>
-                    </a>
-                </li>
-                <li >
-                    <a href="ward.php">
-                        <i class="pe-7s-culture"></i>
-                        <p>Ward</p>
-                    </a>
-                </li>
-
-            </ul>
-    	</div>
-    </div>
+    <?php menu($data["admin_name"],"dashboard",""); ?>
 
     <div class="main-panel">
 	
@@ -148,6 +122,10 @@ $data = mysqli_fetch_assoc($result);
                 </div>
             </div>
         </nav>
+
+        <div id="chart_div"></div>
+
+
         <div class="container-fluid ">
         <h1>Admin Panel</h1>
         </div>
