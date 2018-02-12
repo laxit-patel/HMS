@@ -22,7 +22,47 @@ $result_dr = fetch_data("select doctor_name from doctor","result");
 if($_POST)
 {
 
-    print_r($_POST);
+    $patient = $_POST["ap_patient"];
+    $doctor = $_POST["ap_doctor"];
+    $time = $_POST["ap_time"];
+
+    if($patient == "")
+    {
+        $alert_danger = "Choose Patient";
+    }
+    elseif($doctor == "")
+    {
+        $alert_danger = "Choose Doctor";
+    }
+    elseif($time == " ")
+    {
+        $alert_danger = "Select Slot";
+    }
+    else
+    {
+        $id = key_engine("appointment");
+        $full_time = explode(",",$time);
+        $date = $full_time[0];
+        $slot = $full_time[2];
+       if(insert("insert into appointment(appointment_id,appointment_for,appointment_by,appointment_date,appointment_slot)
+                                          values('$id','$doctor','$patient','$date','$slot')"))
+        {
+            if(book_slot($slot,$doctor))
+            {
+                $alert_success = "Appointment Booked";
+            }
+            else
+            {
+                $alert_danger = "Slot Updation Failed";
+            }
+        }
+        else
+        {
+            $alert_danger = "Error in Booking";
+        }
+
+    }
+
 
 }
 
@@ -104,14 +144,57 @@ if($_POST)
                     <!--      Wizard container        -->
                     <div class="wizard-container">
                         <div class="card wizard-card" data-color="purple" id="wizardProfile">
-                            <form  name="app_form">
+                            <form  name="app_form" method="POST">
                                 <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
 
                                 <div class="wizard-header">
                                     <h3 class="wizard-title">
                                         Add Appointment
                                     </h3>
+                                    <div class="container-fluid" id="alert_box" >
+                                        <?php
 
+                                        if(isset($alert_success))
+                                        {
+                                            echo "<div class='container-fluid'><div class='alert alert-success' style='color:black'>
+               <div class='container-fluid'>
+           <div class='alert-icon'>
+            <i class='material-icons'>done_all</i>
+          </div>
+          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
+          </button>
+                   <h4>$alert_success</h4> 
+              </div>
+          </div></div>";
+                                        }
+                                        else
+                                        {
+                                            echo "";
+                                        }
+
+                                        if(isset($alert_danger))
+                                        {
+                                            echo "<div class='alert alert-danger' >
+               <div class='container-fluid'>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
+          </button>
+           <div class='alert-icon pull-left'>
+            <i class='material-icons'>error_outline</i>
+          </div>
+          <h4> $alert_danger </h4>
+         
+                   
+              </div>
+          </div>";
+                                        }
+                                        else
+                                        {
+                                            echo "";
+                                        }
+                                        ?>
+                                    </div>
                                 </div>
                                 <div class="wizard-navigation">
                                     <ul>

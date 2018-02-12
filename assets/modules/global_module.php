@@ -82,7 +82,6 @@ function key_engine($for)
         if(mysqli_num_rows($result_test) != 0)
         {
             $row=mysqli_fetch_row($result_test); //$row gets the key_val array
-
             $data = explode("_",$row[0]); // key_val explodes and saved in $data
 
             $year = $data[0];
@@ -177,6 +176,40 @@ function key_engine($for)
             return $key;
         }
     }
+    elseif($for == "appointment")
+    {
+        $key = $for."_id";
+        $sql_test = "select $key from $for order by $key desc limit 1";
+        $result_test = mysqli_query($conn,$sql_test);
+
+        if(mysqli_num_rows($result_test) != 0 )
+        {
+            $row=mysqli_fetch_row($result_test); //$row gets the key_val array
+
+            $data = explode("_",$row[0]); // key_val explodes and saved in $data
+
+            $year = $data[0];
+            $initial = $data[1];
+            $number = $data[2];
+
+            $year_new = date("y");
+
+            $number_new = $number+1;
+
+            $key = $year_new."_".$initial."_".$number_new;
+
+            return $key;
+        }
+        else
+        {
+            $year_new = date("y");
+            $initial = $for;
+            $number_new = 0;
+            $key = $year_new."_".$initial."_".$number_new;
+
+            return $key;
+        }
+    }
     else
     {
         return "Invalid Arguments";
@@ -196,6 +229,20 @@ function insert_data($query)
 	{
 		return "Error";
 	}	
+}
+
+function insert($query)
+{
+    include("assets/modules/db_config.php"); // include database for $conn variable
+    $result = mysqli_query($conn,$query);
+    if($result)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 function fetch_data($query,$type)
@@ -478,35 +525,6 @@ function delete_doctor($by,$for)
     }
 }
 
-function add_receptionist($query)
-{
-    include("assets/modules/db_config.php");
-
-    $result = mysqli_query($conn,$query);
-    if($result)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
-function delete_receptionist($by,$for)
-{
-    include("assets/modules/db_config.php"); // include database for $conn variable
-    $del_by = $by;
-    $result = mysqli_query($conn,"delete from receptionist where receptionist_id = '$for'");
-    if($result)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
 
 function add_designation($query)
 {
@@ -544,14 +562,14 @@ function slot_generator($doctor)
     $doc_data = mysqli_fetch_assoc(mysqli_query($conn,"select doctor_name from doctor where doctor_id = '$doctor' "));
     $doc_name = $doc_data["doctor_name"];
 
-    $s1 = $row['08-09'];
-    $s2 = $row['09-10'];
-    $s3 = $row['10-11'];
-    $s4 = $row['11-12'];
-    $s5 = $row['01-02'];
-    $s6 = $row['02-03'];
-    $s7 = $row['03-04'];
-    $s8 = $row['04-05'];
+    $s1 = $row['s1'];
+    $s2 = $row['s2'];
+    $s3 = $row['s3'];
+    $s4 = $row['s4'];
+    $s5 = $row['s5'];
+    $s6 = $row['s6'];
+    $s7 = $row['s7'];
+    $s8 = $row['s8'];
 
     echo "<div class='container-fluid text-center'><h3>Book $doc_name</h3>";
     echo "<div class='row'>";
@@ -639,6 +657,54 @@ function add_slot($slot,$doctor)
         return false;
     }
 
+}
+function book_slot($slot,$doctor)
+{
+    include("assets/modules/db_config.php"); // include database for $conn variable
+
+    if($slot == "08-09")
+    {
+        $sl = "s1";
+    }
+    elseif($slot == "09-10")
+    {
+        $sl = "s2";
+    }
+    elseif($slot == "10-11")
+    {
+        $sl = "s3";
+    }
+    elseif($slot == "11-12")
+    {
+        $sl = "s4";
+    }
+    elseif($slot == "01-02")
+    {
+        $sl = "s5";
+    }
+    elseif($slot == "02-03")
+    {
+        $sl = "s6";
+    }
+    elseif($slot == "03-04")
+    {
+        $sl = "s7";
+    }
+    elseif($slot == "04-05")
+    {
+        $sl = "s8";
+    }
+
+    $query = "update slot set $sl = 1 where doctor_id = '$doctor'";
+    $result = mysqli_query($conn,$query);
+    if($result)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 function menu($user,$active,$sub_active)
@@ -805,7 +871,7 @@ function menu($user,$active,$sub_active)
                 echo "</li>
 
                 <li "; if($active == "setting"){ echo"class=active"; } echo ">
-                    <a href='admn_settings.php'>
+                    <a href='designation.php'>
                         <i class='pe-7s-edit'></i>
                         <p>Setting</p>
                     </a>";
@@ -817,7 +883,7 @@ function menu($user,$active,$sub_active)
                                     echo "class=active";
                                 }
                                 echo ">
-                                <a href = 'add_designation.php' >
+                                <a href = 'designation.php' >
                                     <i class='pe-7s-add-user' ></i >
                                     <p > Add Designation </p >
                                 </a >
