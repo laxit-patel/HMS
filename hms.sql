@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 06, 2018 at 06:18 PM
+-- Generation Time: Feb 14, 2018 at 05:54 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -68,6 +68,7 @@ CREATE TABLE `appointment` (
   `appointment_for` varchar(10) NOT NULL,
   `appointment_by` varchar(10) NOT NULL,
   `appointment_date` date NOT NULL,
+  `appointment_reg_date` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
   `appointment_status` tinyint(1) NOT NULL,
   `appointment_slot` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -76,8 +77,18 @@ CREATE TABLE `appointment` (
 -- Dumping data for table `appointment`
 --
 
-INSERT INTO `appointment` (`appointment_id`, `appointment_for`, `appointment_by`, `appointment_date`, `appointment_status`, `appointment_slot`) VALUES
-('18_apmt_0', '18_dctr_7', '18_ptnt_20', '2018-01-29', 0, '10-11');
+INSERT INTO `appointment` (`appointment_id`, `appointment_for`, `appointment_by`, `appointment_date`, `appointment_reg_date`, `appointment_status`, `appointment_slot`) VALUES
+('18_apmt_0', '18_dctr_7', '18_ptnt_20', '2018-01-29', '2018-02-12 18:33:03.016218', 0, '10-11'),
+('18_apmt_1', '18_dctr_10', '18_ptnt_15', '2018-02-13', '2018-02-12 18:38:49.409773', 0, '03-04'),
+('18_apmt_10', '18_dctr_10', '18_ptnt_21', '2018-02-13', '2018-02-12 19:04:51.901960', 0, '01-02'),
+('18_apmt_2', '18_dctr_10', '18_ptnt_20', '2018-02-13', '2018-02-12 18:44:54.805281', 0, '03-04'),
+('18_apmt_3', '18_dctr_10', '18_ptnt_15', '2018-02-13', '2018-02-12 18:52:22.536726', 0, '10-11'),
+('18_apmt_4', '18_dctr_10', '18_ptnt_15', '2018-02-13', '2018-02-12 18:58:24.499617', 0, '08-09'),
+('18_apmt_5', '18_dctr_10', '18_ptnt_15', '2018-02-13', '2018-02-12 18:59:24.222273', 0, '08-09'),
+('18_apmt_6', '18_dctr_10', '18_ptnt_15', '2018-02-13', '2018-02-12 19:00:14.033796', 0, '08-09'),
+('18_apmt_7', '18_dctr_10', '18_ptnt_19', '2018-02-13', '2018-02-12 19:03:54.233015', 0, '09-10'),
+('18_apmt_8', '18_dctr_10', '18_ptnt_19', '2018-02-13', '2018-02-12 19:04:15.806257', 0, '10-11'),
+('18_apmt_9', '18_dctr_10', '18_ptnt_19', '2018-02-13', '2018-02-12 19:04:37.010359', 0, '11-12');
 
 -- --------------------------------------------------------
 
@@ -199,23 +210,51 @@ INSERT INTO `receptionist` (`receptionist_id`, `receptionist_name`, `receptionis
 CREATE TABLE `slot` (
   `slot_id` varchar(10) NOT NULL,
   `doctor_id` varchar(10) NOT NULL,
-  `08-09` tinyint(1) NOT NULL,
-  `09-10` tinyint(1) NOT NULL,
-  `10-11` tinyint(1) NOT NULL,
-  `11-12` tinyint(1) NOT NULL,
-  `01-02` tinyint(1) NOT NULL,
-  `02-03` tinyint(1) NOT NULL,
-  `03-04` tinyint(1) NOT NULL,
-  `04-05` tinyint(1) NOT NULL
+  `s1` tinyint(1) NOT NULL,
+  `s2` tinyint(1) NOT NULL,
+  `s3` tinyint(1) NOT NULL,
+  `s4` tinyint(1) NOT NULL,
+  `s5` tinyint(1) NOT NULL,
+  `s6` tinyint(1) NOT NULL,
+  `s7` tinyint(1) NOT NULL,
+  `s8` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `slot`
 --
 
-INSERT INTO `slot` (`slot_id`, `doctor_id`, `08-09`, `09-10`, `10-11`, `11-12`, `01-02`, `02-03`, `03-04`, `04-05`) VALUES
-('18_slot_0', '18_dctr_9', 0, 0, 0, 1, 0, 0, 0, 0),
-('18_slot_1', '18_dctr_10', 0, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO `slot` (`slot_id`, `doctor_id`, `s1`, `s2`, `s3`, `s4`, `s5`, `s6`, `s7`, `s8`) VALUES
+('18_slot_0', '18_dctr_9', 0, 0, 1, 1, 0, 0, 0, 0),
+('18_slot_1', '18_dctr_10', 1, 1, 1, 1, 1, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `staff`
+--
+
+CREATE TABLE `staff` (
+  `staff_id` varchar(10) NOT NULL,
+  `staff_name` varchar(30) NOT NULL,
+  `staff_dob` date NOT NULL,
+  `staff_gender` varchar(10) NOT NULL,
+  `staff_phone` varchar(15) NOT NULL,
+  `staff_city` varchar(30) NOT NULL,
+  `staff_address` varchar(100) NOT NULL,
+  `staff_email` varchar(50) NOT NULL,
+  `staff_password` varchar(50) NOT NULL,
+  `doj` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `staff_type` varchar(30) NOT NULL,
+  `staff_exist` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `staff`
+--
+
+INSERT INTO `staff` (`staff_id`, `staff_name`, `staff_dob`, `staff_gender`, `staff_phone`, `staff_city`, `staff_address`, `staff_email`, `staff_password`, `doj`, `staff_type`, `staff_exist`) VALUES
+('18_staf_1', 'mr.staff', '1990-02-23', 'Male', '1236445455', 'ahemdabad', 'paldi', 'staff@gmail.com', 'staff@123', '2018-02-12 17:45:44', 'Nurse', 0);
 
 -- --------------------------------------------------------
 
@@ -269,6 +308,12 @@ ALTER TABLE `patient`
 --
 ALTER TABLE `slot`
   ADD PRIMARY KEY (`slot_id`);
+
+--
+-- Indexes for table `staff`
+--
+ALTER TABLE `staff`
+  ADD PRIMARY KEY (`staff_id`);
 
 --
 -- Indexes for table `ward`

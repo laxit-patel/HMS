@@ -72,21 +72,29 @@ if($_POST)
     }
     else
     {
-        $d_old = explode("/",$dr_dob);
+        $d_old = explode("-",$dr_dob);
 
-        $d_dob = $d_old[2].$d_old[0].$d_old[1];
+        $d_dob = $d_old[0]."-".$d_old[1]."-".$d_old[2];
+
         $slot = key_engine('slot');
 
         if(add_doctor("insert into doctor(doctor_id,doctor_name,doctor_gender,doctor_email,doctor_phone,doctor_dob,doctor_city,doctor_address,doctor_password,doctor_designation,slot_id)
                                          values('$doctor_id','$d_name','$d_gender','$d_email','$d_phone','$d_dob','$d_city','$d_address','$d_password','$d_designation','$slot')"))
         {
-            if(add_slot($slot,$doctor_id)) {
-                header("LOCATION:add_doctor.php");
+            if(add_slot($slot,$doctor_id))
+            {
+                $alert_success = "Doctor Added";
+
+               // header("LOCATION:add_doctor.php");
             }
             else
             {
-                echo "slot Generation Failed";
+                echo "Slot Generation Failed";
             }
+        }
+        else
+        {
+            $alert_danger = "Doctor Not Added";
         }
 
     }
@@ -177,50 +185,54 @@ if($_POST)
                                 <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
 
                                 <div class="wizard-header">
-                                    <?php
 
-                                    if(isset($alert_success))
-                                    {
-                                        echo "<div class='container-fluid'><div class='alert alert-success' style='margin-bottom:-7%;'>
-               <div class='container-fluid'>
-           <div class='alert-icon'>
-            <i class='material-icons'>error_outline</i>
-          </div>
-          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
-          </button>
-                   <b>$alert_success</b> 
-              </div>
-          </div></div>";
-                                    }
-                                    else
-                                    {
-                                        echo "";
-                                    }
-
-                                    if(isset($alert_danger))
-                                    {
-                                        echo "<div class='alert alert-danger' style='margin-bottom:-7%;'>
-               <div class='container-fluid'>
-           <div class='alert-icon'>
-            <i class='material-icons'>error_outline</i>
-          </div>
-          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
-          </button>
-                   <b>Error Alert:</b> $alert_danger
-              </div>
-          </div>";
-                                    }
-                                    else
-                                    {
-                                        echo "";
-                                    }
-                                    ?><br><br>
                                     <h3 class="wizard-title">
                                         Add Doctor
                                     </h3>
+                                    <div class="container-fluid" id="alert_box" >
+                                        <?php
 
+                                        if(isset($alert_success))
+                                        {
+                                            echo "<div class='container-fluid'><div class='alert alert-success' style='color:black'>
+               <div class='container-fluid'>
+           <div class='alert-icon'>
+            <i class='material-icons'>done_all</i>
+          </div>
+          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
+          </button>
+                   <h4>$alert_success</h4> 
+              </div>
+          </div></div>";
+                                        }
+                                        else
+                                        {
+                                            echo "";
+                                        }
+
+                                        if(isset($alert_danger))
+                                        {
+                                            echo "<div class='alert alert-danger' >
+               <div class='container-fluid'>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
+          </button>
+           <div class='alert-icon pull-left'>
+            <i class='material-icons'>error_outline</i>
+          </div>
+          <h4> $alert_danger </h4>
+         
+                   
+              </div>
+          </div>";
+                                        }
+                                        else
+                                        {
+                                            echo "";
+                                        }
+                                        ?>
+                                    </div>
                                 </div>
                                 <div class="wizard-navigation">
                                     <ul>
@@ -241,7 +253,7 @@ if($_POST)
                                                 </span>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Docotr's Id</label>
-                                                    <input type="text" name="docotr_id" value="<?php echo key_engine("doctor"); ?>" class="form-control" disabled>
+                                                    <input type="text" name="doctor_id" value="<?php echo key_engine("doctor"); ?>" class="form-control" disabled>
 
 
                                                 </div>
@@ -421,7 +433,7 @@ if($_POST)
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
 
-<1-- Drop down javascript -->
+<!-- Drop down javascript -->
 <script src="assets/js/dropdown.js"></script>
 
 <script type="text/javascript">

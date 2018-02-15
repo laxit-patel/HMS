@@ -44,6 +44,7 @@ if($_POST)
         $full_time = explode(",",$time);
         $date = $full_time[0];
         $slot = $full_time[2];
+
        if(insert("insert into appointment(appointment_id,appointment_for,appointment_by,appointment_date,appointment_slot)
                                           values('$id','$doctor','$patient','$date','$slot')"))
         {

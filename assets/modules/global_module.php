@@ -41,7 +41,7 @@ function key_engine($for)
 	elseif($for == "doctor")
 	{
 		$key = $for."_id";
-		$sql_test = "select $key from $for order by $key desc limit 1";
+		$sql_test = "select $key from $for order by $key DESC LIMIT 1";
 		$result_test = mysqli_query($conn,$sql_test);
 
 		if($result_test)
@@ -205,6 +205,75 @@ function key_engine($for)
             $year_new = date("y");
             $initial = $for;
             $number_new = 0;
+            $key = $year_new."_".$initial."_".$number_new;
+
+            return $key;
+        }
+    }
+    elseif($for == "ward")
+    {
+        $key = $for."_id";
+        $sql_test = "select $key from $for order by $key desc limit 1";
+        $result_test = mysqli_query($conn,$sql_test);
+
+        if(mysqli_num_rows($result_test) != 0 )
+        {
+            $row=mysqli_fetch_row($result_test); //$row gets the key_val array
+
+            $data = explode("_",$row[0]); // key_val explodes and saved in $data
+
+            $year = $data[0];
+            $initial = $data[1];
+            $number = $data[2];
+
+            $year_new = date("y");
+
+            $number_new = $number+1;
+
+            $key = $year_new."_".$initial."_".$number_new;
+
+            return $key;
+        }
+        else
+        {
+            $year_new = date("y");
+            $initial = $for;
+            $number_new = 0;
+            $key = $year_new."_".$initial."_".$number_new;
+
+            return $key;
+        }
+    }
+	 elseif($for == "bed")
+    {
+        $key = $for."_id";
+        $sql_test = "select $key from $for order by $key desc limit 1";
+        $result_test = mysqli_query($conn,$sql_test);
+
+        if(mysqli_num_rows($result_test) != 0 )
+        {
+            $row=mysqli_fetch_row($result_test); //$row gets the key_val array
+
+            $data = explode("_",$row[0]); // key_val explodes and saved in $data
+
+            $year = $data[0];
+            $initial = $data[1];
+            $number = $data[2];
+
+            $year_new = date("y");
+
+            $number_new = $number+1;
+
+            $key = $year_new."_".$initial."_".$number_new;
+
+            return $key;
+        }
+        else
+        {
+            $year_new = date("y");
+            $initial = $for;
+            $number_new = 0;
+			$initial = "bedd";
             $key = $year_new."_".$initial."_".$number_new;
 
             return $key;
@@ -453,6 +522,27 @@ function view_table($for)
 
         }
     }
+	elseif( $for == "ward")
+	 {
+        $query = "select * from ward";
+        $result = mysqli_query($conn,$query);
+
+        while($row = mysqli_fetch_array($result))
+        {
+            $id = $row[0];
+            echo "<tr>
+                <td>$id</td>
+                <td>$row[1]</td>
+                <td>$row[2]</td>
+                <td > <a href='view_ward.php?id=$id'> <i class='material-icons'>edit</i></a></td>
+                </tr>";
+
+        }
+    }
+	else
+	{
+		echo "<tr><td>Invalid Arguments</td></tr>";
+	}
 
 
 }
@@ -909,6 +999,32 @@ function menu($user,$active,$sub_active)
     echo "</div>
     </div>";
 
+}
+
+function generate_bed($ward_id,$ward_bed)
+{
+	 include("assets/modules/db_config.php"); // include database for $conn variable
+	 
+	 for($i=1;$i<=$ward_bed;$i++)
+	 {
+	 $bed_id = key_engine("bed");
+	 $sql = "insert into bed(bed_id,ward_id) values('$bed_id','$ward_id')";
+	 $result = mysqli_query($conn,$sql);
+	 if(!$result)
+	 {
+		 $flag = 1;
+	 }
+	 }
+	 
+	 if(isset($flag))
+	 {
+		 return false;
+	 }
+	 else
+	 {
+		 return true;
+	 }
+	 
 }
 
 ?>
