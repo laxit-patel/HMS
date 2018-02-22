@@ -247,7 +247,7 @@ function key_engine($for)
 	 elseif($for == "bed")
     {
         $key = $for."_id";
-        $sql_test = "select $key from $for order by $key desc limit 1";
+        $sql_test = "select $key from $for order by $key ASC limit 1";
         $result_test = mysqli_query($conn,$sql_test);
 
         if(mysqli_num_rows($result_test) != 0 )
@@ -534,6 +534,22 @@ function view_table($for)
                 <td>$id</td>
                 <td>$row[1]</td>
                 <td>$row[2]</td>
+                <td > <a href='view_ward.php?ward_id=$id'> <i class='material-icons'>edit</i></a></td>
+                </tr>";
+
+        }
+    }
+	elseif( $for == "bed")
+	 {
+        $query = "select * from bed";
+        $result = mysqli_query($conn,$query);
+
+        while($row = mysqli_fetch_array($result))
+        {
+            $id = $row[0];
+            echo "<tr>
+                <td>$id</td>
+                <td>$row[1]</td>
                 <td > <a href='view_ward.php?id=$id'> <i class='material-icons'>edit</i></a></td>
                 </tr>";
 
@@ -1004,16 +1020,18 @@ function menu($user,$active,$sub_active)
 function generate_bed($ward_id,$ward_bed)
 {
 	 include("assets/modules/db_config.php"); // include database for $conn variable
-	 
+	 $bed_id = key_engine('bed');
 	 for($i=1;$i<=$ward_bed;$i++)
 	 {
-	 $bed_id = key_engine("bed");
+		 echo "Before".$bed_id;
 	 $sql = "insert into bed(bed_id,ward_id) values('$bed_id','$ward_id')";
 	 $result = mysqli_query($conn,$sql);
 	 if(!$result)
 	 {
 		 $flag = 1;
 	 }
+	  $bed_id = key_engine('bed');
+	   echo "After".$bed_id."<br>";
 	 }
 	 
 	 if(isset($flag))
@@ -1025,6 +1043,34 @@ function generate_bed($ward_id,$ward_bed)
 		 return true;
 	 }
 	 
+}
+
+function view_filtered_table($id)
+{
+	 include("assets/modules/db_config.php"); // include database for $conn variable
+	$data = explode("_",$id);
+	$for = $data[1];
+	
+	if($for == "ward")
+	{
+	 $query = "select * from bed where ward_id = '$id'";
+        $result = mysqli_query($conn,$query);
+
+        while($row = mysqli_fetch_array($result))
+        {
+            $id = $row[0];
+            echo "<tr>
+                <td>$id</td>
+                <td>$row[1]</td>
+                <td > <a href='delete_ward.php?id=$id'> <i class='material-icons'>delete</i></a></td>
+                </tr>";
+
+        }
+	}
+	else
+	{
+		echo "<td>Invalid Arguments</td>";
+	}
 }
 
 ?>

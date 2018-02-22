@@ -2,6 +2,19 @@
 include("assets/modules/global_module.php");
 check_token("admin");
 $name = $_SESSION["admin_token"];
+
+if(isset($_GET["msg_t"]))
+{
+	$alert_success = $_GET["msg_t"];
+}
+if(isset($_GET["msg_f"]))
+{
+	$alert_danger = $_GET["msg_f"];
+}
+if(isset($_GET["ward_id"]))
+{
+	$ward_id = $_GET["ward_id"];
+}
 if(isset($_GET["id"]))
 {
     $id = $_GET["id"];
@@ -12,44 +25,8 @@ elseif(isset($_SESSION["admin_token"]))
 }
 $result = fetch_data("select * from admin where admin_id= '$id'","result");
 $data = mysqli_fetch_assoc($result);
+$result = fetch_data("select * from ward where ward_id= '$id'","result");
 
-if($_POST)
-{
-
-
-if($_POST["ward_id"] == "")
-{
-	$alert_danger = "Enter Id";
-}
-elseif($_POST["ward_floor"] == "")
-{
-	$alert_danger = "Choose Floor";
-}	
-elseif($_POST["ward_type"] == "")
-{
-	$alert_danger = "Choose Type";
-}	
-else
-{
-	$num = explode("_",$_POST["ward_id"]);
-	
-		$ward_name = $_POST["ward_floor"]."_".$_POST["ward_type"]."_".$num[2];
-	
-	
-	$ward_id = $_POST["ward_id"];
-	
-	$ward_type = $_POST["ward_type"];
-	if(insert("insert into ward(ward_id,ward_name,ward_type)values('$ward_id','$ward_name','$ward_type')"))
-	{
-		$alert_success = "Ward Added";
-	}
-	else
-	{
-		$alert_danger = "Ward Not Added";
-	}
-}
-
-}
 
 ?>
 
@@ -102,7 +79,7 @@ else
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard<i class="pe-7s-angle-right"></i>Add Ward</a>
+                    <a class="navbar-brand" href="#">Dashboard<i class="pe-7s-angle-right"></i>View Ward</a>
                 </div>
                 <div class="collapse navbar-collapse">
 
@@ -121,22 +98,15 @@ else
             </div>
         </nav>
 
-
+		<br>
         <!--   Big container   -->
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-8 col-sm-offset-2">
-                    <!--      Wizard container        -->
-                    <div class="wizard-container">
-                        <div class="card wizard-card" data-color="purple" id="wizardProfile">
-                            <form  name="app_form" method="POST">
-                                <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
-
-                                <div class="wizard-header">
-                                    <h3 class="wizard-title">
-                                        Add Ward
-                                    </h3>
-                                    <div class="container-fluid" id="alert_box" >
+                <div class="col-md-12 ">
+				
+                    <div class="card card-user">
+                            
+							<div class="container-fluid" id="alert_box" >
                                         <?php
 
                                         if(isset($alert_success))
@@ -180,106 +150,74 @@ else
                                         }
                                         ?>
                                     </div>
-                                </div>
-                                <div class="wizard-navigation">
-                                    <ul>
-                                        <li><a href="#about" data-toggle="tab">Add</a></li>
-                                        <li><a href="#account" data-toggle="tab">View</a></li>
-
-                                    </ul>
-                                </div>
-
-                                <div class="tab-content">
-                                    <div class="tab-pane" id="about">
-                                        <div class="container-fluid">
-                                                                             
-											<div class="input-group">
-												<i class="material-icons">home</i>
-												<span class="input-group-addon"></span>
-												<div class="form-group label-floating">
-													<label class="control-label">Ward Id</label>
-													<input type="text" class="form-control" name="ward_id" value="<?php echo key_engine("ward"); ?>" readonly/>
-
-												</div>
-											</div>
-											
-											
-											
-											<div class="input-group">
-												<i class="material-icons">business</i>
-												<span class="input-group-addon"></span>
-												<div class="form-group label-floating">
-													
-													
-													<select name="ward_floor" class="form-control">
-														<option>--Select Floor--</option>
-														<option>1</option>
-														<option>2</option>
-														<option>3</option>
-														<option>4</option>
-													</select>
-													
-												</div>
-											</div>
-											
-											<div class="input-group">
-												<i class="material-icons">school</i>
-												<span class="input-group-addon"></span>	
-												<div class="form-group label-floating">
-													
-													<select name="ward_type" class="form-control">
-														<option>--Select Type--</option>
-														<option>General</option>
-														<option>ICU</option>
-														<option>Maternity</option>
-														
-													</select>
-													
-												</div>
-											</div>
-											
-											
-                                         	
-                                         	
-											
-                                            <div class="clearfix"></div>
-											<input type='submit' class='btn btn-block btn-fill'  value='Add' style="background-color:#9C27B0;"/>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="account">
-                                        <div class="container-fluid">
+							
+                            <div class="content">
+                                                          
+                                <div class="content">
+                                    <form method="POST" name="admin_edit_patient">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Id</label>
+                                                    <input type="text" name="d_id" class="form-control" id="ward_id" readonly value="<?php if(isset($ward_id)){ echo $ward_id; } ?>">
+                                                </div>
+                                            </div>
                                             
-
-											 <div class="fresh-table full-color-purple" >
+                                             <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label >Name</label>
+                                                    <input type="text" name="d_name" id="ward_name" class="form-control" >
+                                                </div>
+                                            </div>
+                                        </div>
+										
+										<hr>
+										
+										<div class="row ">
+                                            
+                                            
+                                             <div class="col-md-12">
+                                                
+												<div class="fresh-table full-color-purple" >
                                                           
 
                                                             <table id="fresh-table" class="table">
                                                                 <thead>
                                                                 <th data-field="id">ID</th>
                                                                 <th data-field="name" data-sortable="true">Name</th>
-                                                                <th data-field="capacity" >Capacity</th>
 																<th data-field="action" >Action</th>
 
                                                                 </thead>
                                                                 <tbody>
 
-                                                                <?php view_table("ward"); ?>
-
+                                                                <?php view_filtered_table($ward_id); ?>
+																<tr>
+																<td colspan=3 class="text-center">
+																<a href="add_bed.php?ward_id=<?php echo $ward_id; ?>">
+																<div class="btn btn-primary" >Add New Bed</div>
+																</a>
+																</td>
+																</tr>	
                                                                 </tbody>
                                                             </table>
                                                         </div>
-
+												
+                                            </div>
+											
+											
                                         </div>
-                                    </div>
-
+                                        </div>
+										
+										<div class="text-center">
+                                        <a href="delete_ward.php?ward_id=<?php echo $ward_id; ?>" class="btn btn-danger btn-fill  " data-toggle="modal" data-target="#myModal">
+                                            Delete
+                                        </a></div>
+                                        
+                                        <br><br>
+                                    </form>
                                 </div>
-                                <div class="wizard-footer">
-
-                                    
-                                </div>
-                            </form>
+                            </div>
                         </div>
-                    </div> <!-- wizard container -->
                 </div>
             </div><!-- end row -->
         </div> <!--  big container -->
@@ -317,6 +255,7 @@ else
 
 <!-- Drop down javascript -->
 <script src="assets/js/dropdown.js"></script>
+
 
 <script type="text/javascript">
     $(document).ready(function(){

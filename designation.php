@@ -284,7 +284,7 @@ if($_POST)
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
 
-<1-- Drop down javascript -->
+<!-- Drop down javascript -->
 <script src="assets/js/dropdown.js"></script>
 
 <script type="text/javascript">
