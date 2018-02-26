@@ -118,48 +118,55 @@ if($_POST)
                                 <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
 
                                 <div class="wizard-header">
-                                    <?php
+                                    
+                                    <h3 class="wizard-title">
+                                        Designation
+                                    </h3>
+									
+									<div class="container-fluid" id="alert_box" >
+                                        <?php
 
-                                    if(isset($alert_success))
-                                    {
-                                        echo "<div class='container-fluid'><div class='alert alert-success' style='margin-bottom:-7%;'>
+                                        if(isset($alert_success))
+                                        {
+                                            echo "<div class='container-fluid'><div class='alert alert-success' style='color:black'>
                <div class='container-fluid'>
            <div class='alert-icon'>
-            <i class='material-icons'>error_outline</i>
+            <i class='material-icons'>done_all</i>
           </div>
           <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
             <span aria-hidden='true'><i class='material-icons'>clear</i></span>
           </button>
-                   <b>$alert_success</b> 
+                   <h4>$alert_success</h4> 
               </div>
           </div></div>";
-                                    }
-                                    else
-                                    {
-                                        echo "";
-                                    }
+                                        }
+                                        else
+                                        {
+                                            echo "";
+                                        }
 
-                                    if(isset($alert_danger))
-                                    {
-                                    echo "<div class='alert alert-danger' style='margin-bottom:-7%;'>
-                                        <div class='container-fluid'>
-                                            <div class='alert-icon'>
-                                                <i class='material-icons'>error_outline</i>
-                                            </div>
-                                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                                                <span aria-hidden='true'><i class='material-icons'>clear</i></span>
-                                            </button>
-                                            <b>Error Alert:</b> $alert_danger
-                                        </div>
-                                    </div>";
-                                    }
-                                    else
-                                    {
-                                    echo "";
-                                    }?>
-                                    <h3 class="wizard-title">
-                                        Designation
-                                    </h3>
+                                        if(isset($alert_danger))
+                                        {
+                                            echo "<div class='alert alert-danger' >
+               <div class='container-fluid'>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
+          </button>
+           <div class='alert-icon pull-left'>
+            <i class='material-icons'>error_outline</i>
+          </div>
+          <h4> $alert_danger </h4>
+         
+                   
+              </div>
+          </div>";
+                                        }
+                                        else
+                                        {
+                                            echo "";
+                                        }
+                                        ?>
+                                    </div>
 
                                 </div>
                                 <div class="wizard-navigation">

@@ -7,6 +7,17 @@ if(isset($_GET["id"]))
 {
     $id = $_GET["id"];
 }
+
+if(isset($_GET["msg_t"]))
+{
+	$alert_success = $_GET["msg_t"];
+}
+if(isset($_GET["msg_f"]))
+{
+	$alert_danger = $_GET["msg_f"];
+}
+
+
 elseif(isset($_SESSION["admin_token"]))
 {
     $id = $_SESSION["admin_token"];
@@ -75,22 +86,11 @@ if($_POST)
         $d_old = explode("-",$dr_dob);
 
         $d_dob = $d_old[0]."-".$d_old[1]."-".$d_old[2];
-
-        $slot = key_engine('slot');
-
-        if(add_doctor("insert into doctor(doctor_id,doctor_name,doctor_gender,doctor_email,doctor_phone,doctor_dob,doctor_city,doctor_address,doctor_password,doctor_designation,slot_id)
+		$slot = key_engine("slot");
+        if(add_doctor($doctor_id,"insert into doctor(doctor_id,doctor_name,doctor_gender,doctor_email,doctor_phone,doctor_dob,doctor_city,doctor_address,doctor_password,doctor_designation,slot_id)
                                          values('$doctor_id','$d_name','$d_gender','$d_email','$d_phone','$d_dob','$d_city','$d_address','$d_password','$d_designation','$slot')"))
         {
-            if(add_slot($slot,$doctor_id))
-            {
-                $alert_success = "Doctor Added";
-
-               // header("LOCATION:add_doctor.php");
-            }
-            else
-            {
-                echo "Slot Generation Failed";
-            }
+               header("LOCATION:add_doctor.php?msg_t='Doctor Added'");
         }
         else
         {
@@ -253,7 +253,7 @@ if($_POST)
                                                 </span>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Docotr's Id</label>
-                                                    <input type="text" name="doctor_id" value="<?php echo key_engine("doctor"); ?>" class="form-control" disabled>
+                                                    <input type="text" name="doctor_id" value="<?php echo key_engine("doctor"); ?>" class="form-control" readonly>
 
 
                                                 </div>
@@ -309,10 +309,7 @@ if($_POST)
                                                 </span>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">city</label>
-                                                    <select name="d_city" class="form-control">
-                                                        <option>--Select City--</option>
-                                                        <option>Bhuj</option>
-                                                    </select>
+<input type="text" name="d_city" value="<?php if(isset($d_city)){ echo $d_city; }?>" class="form-control">
                                                 </div>
                                             </div>
 
@@ -381,7 +378,7 @@ if($_POST)
                                 </div>
                                 <div class="wizard-footer">
                                     <div class="pull-right">
-                                        <input type='button' class='btn btn-next btn-fill btn-success btn-wd' name='next' value='Next' style="background-color:#9C27B0"/>
+                                        <input type='' class='btn btn-next btn-fill ' name='next' value='Next' style="background-color:#9C27B0"/>
                                         <input type='submit' class='btn btn-finish btn-fill btn-success btn-wd ' value='Add' style="background-color:#9C27B0"/>
                                     </div>
 

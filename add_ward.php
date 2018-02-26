@@ -2,6 +2,16 @@
 include("assets/modules/global_module.php");
 check_token("admin");
 $name = $_SESSION["admin_token"];
+
+if(isset($_GET["msg_t"]))
+{
+	$alert_success = $_GET["msg_t"];
+}
+if(isset($_GET["msg_f"]))
+{
+	$alert_danger = $_GET["msg_f"];
+}
+
 if(isset($_GET["id"]))
 {
     $id = $_GET["id"];

@@ -7,6 +7,16 @@ if(isset($_GET["id"]))
 {
     $id = $_GET["id"];
 }
+
+if(isset($_GET["msg_t"]))
+{
+	$alert_success = $_GET["msg_t"];
+}
+if(isset($_GET["msg_f"]))
+{
+	$alert_danger = $_GET["msg_f"];
+}
+
 elseif(isset($_SESSION["admin_token"]))
 {
     $id = $_SESSION["admin_token"];
@@ -23,7 +33,7 @@ $data = mysqli_fetch_assoc($result);
     <link rel="icon" type="image/png" href="assets/img/HMS.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Dashboard - Admin</title>
+    <title>Dashboard - View Staff</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -52,7 +62,7 @@ $data = mysqli_fetch_assoc($result);
 
 <div class="wrapper">
 
-    <?php menu($data["admin_name"],"patient","view_patient"); ?>
+    <?php menu($data["admin_name"],"staff","view_staff"); ?>
 
     <div class="main-panel">
 
@@ -65,7 +75,7 @@ $data = mysqli_fetch_assoc($result);
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard<i class="pe-7s-angle-right"></i>View Patient</a>
+                    <a class="navbar-brand" href="#">Dashboard<i class="pe-7s-angle-right"></i>View Staff</a>
                 </div>
                 <div class="collapse navbar-collapse">
 
@@ -84,8 +94,60 @@ $data = mysqli_fetch_assoc($result);
             </div>
         </nav>
 
-<br>
+        <br>
+		<div class="row">
+		<div class=col-md-1></div>
+			<div class="col-md-10">
+			<div class="container-fluid" id="alert_box" >
+                                        <?php
+
+                                        if(isset($alert_success))
+                                        {
+                                            echo "<div class='container-fluid'><div class='alert alert-success' style='color:black'>
+               <div class='container-fluid'>
+           <div class='alert-icon'>
+            <i class='material-icons'>done_all</i>
+          </div>
+          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
+          </button>
+                   <h4>$alert_success</h4> 
+              </div>
+          </div></div>";
+                                        }
+                                        else
+                                        {
+                                            echo "";
+                                        }
+
+                                        if(isset($alert_danger))
+                                        {
+                                            echo "<div class='alert alert-danger' >
+               <div class='container-fluid'>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
+          </button>
+           <div class='alert-icon pull-left'>
+            <i class='material-icons'>error_outline</i>
+          </div>
+          <h4> $alert_danger </h4>
+         
+                   
+              </div>
+          </div>";
+                                        }
+                                        else
+                                        {
+                                            echo "";
+                                        }
+                                        ?>
+                                    </div>
+			</div>
+			<div class=col-md-1></div>
+		</div>
+		
         <div class="container-fluid">
+		
             <div class="row">
                 <div class="col-md-12">
 
@@ -97,17 +159,18 @@ $data = mysqli_fetch_assoc($result);
 
 
                         <table id="fresh-table" class="table">
+						
                             <thead>
                             <th data-field="id">ID</th>
                             <th data-field="name" data-sortable="true">Name</th>
 
-                            <th data-field="country" data-sortable="true">Age</th>
-                            <th data-field="city">Blood Group</th>
+                            <th data-field="country" data-sortable="true">Designation</th>
+                            <th data-field="city">Gender</th>
                             <th  data-field="actions"  >Actions</th>
                             </thead>
                             <tbody>
 
-                            <?php view_table("patient"); ?>
+                            <?php view_table("staff"); ?>
 
                             </tbody>
                         </table>
@@ -145,8 +208,7 @@ $data = mysqli_fetch_assoc($result);
 <!--  Notifications Plugin    -->
 <script src="assets/js/bootstrap-notify.js"></script>
 
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
 
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>

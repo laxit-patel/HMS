@@ -7,15 +7,16 @@ function key_engine($for)
 	if($for == "patient")
 	{
 		$key = $for."_id";
-		$sql_test = "select $key from $for order by count desc limit 1"; 
+		
+		$sql_test = "select $key from $for order by cast(substring($key,9) as int ) desc limit 1"; 
 		$result_test = mysqli_query($conn,$sql_test);
 		
-		if($result_test)
+		if( mysqli_num_rows($result_test) != 0 )
 		{
 			$row=mysqli_fetch_row($result_test); //$row gets the key_val array
 			
 			$data = explode("_",$row[0]); // key_val explodes and saved in $data
-
+			
 			$year = $data[0];
 			$initial = $data[1];
 			$number = $data[2];
@@ -30,9 +31,10 @@ function key_engine($for)
 		}	
 		else
 		{
-            $year_new = date("y");
+           $year_new = date("y");
             $initial = $for;
             $number_new = 0;
+			$initial = "ptnt";
             $key = $year_new."_".$initial."_".$number_new;
 
             return $key;
@@ -41,10 +43,10 @@ function key_engine($for)
 	elseif($for == "doctor")
 	{
 		$key = $for."_id";
-		$sql_test = "select $key from $for order by $key DESC LIMIT 1";
+		$sql_test = "select $key from $for order by cast(substring($key,9) as int ) desc limit 1";
 		$result_test = mysqli_query($conn,$sql_test);
 
-		if($result_test)
+		if(mysqli_num_rows($result_test) != 0 )
 		{
 			$row=mysqli_fetch_row($result_test); //$row gets the key_val array
 			
@@ -67,6 +69,7 @@ function key_engine($for)
             $year_new = date("y");
             $initial = $for;
             $number_new = 0;
+			$initial = "dctr";
             $key = $year_new."_".$initial."_".$number_new;
 
             return $key;
@@ -76,7 +79,7 @@ function key_engine($for)
 	elseif($for == "staff")
     {
         $key = $for."_id";
-        $sql_test = "select $key from $for order by $key desc limit 1";
+        $sql_test = "select $key from $for order by cast(substring($key,9) as int ) desc limit 1";
         $result_test = mysqli_query($conn,$sql_test);
 
         if(mysqli_num_rows($result_test) != 0)
@@ -110,10 +113,10 @@ function key_engine($for)
     elseif($for == "designation")
     {
         $key = $for."_id";
-        $sql_test = "select $key from $for order by $key desc limit 1";
+        $sql_test = "select $key from $for order by cast(substring($key,9) as int ) desc limit 1";
         $result_test = mysqli_query($conn,$sql_test);
 
-        if($result_test)
+        if(mysqli_num_rows($result_test) != 0 )
         {
             $row=mysqli_fetch_row($result_test); //$row gets the key_val array
 
@@ -133,9 +136,10 @@ function key_engine($for)
         }
         else
         {
-            $year_new = date("y");
+              $year_new = date("y");
             $initial = $for;
             $number_new = 0;
+			$initial = "dsgn";
             $key = $year_new."_".$initial."_".$number_new;
 
             return $key;
@@ -145,7 +149,7 @@ function key_engine($for)
     elseif($for == "slot")
     {
         $key = $for."_id";
-        $sql_test = "select $key from $for order by $key desc limit 1";
+        $sql_test = "select $key from $for order by cast(substring($key,9) as int ) desc limit 1";
         $result_test = mysqli_query($conn,$sql_test);
 
         if(mysqli_num_rows($result_test) != 0 )
@@ -168,9 +172,10 @@ function key_engine($for)
         }
         else
         {
-            $year_new = date("y");
+           $year_new = date("y");
             $initial = $for;
             $number_new = 0;
+			$initial = "slot";
             $key = $year_new."_".$initial."_".$number_new;
 
             return $key;
@@ -179,15 +184,15 @@ function key_engine($for)
     elseif($for == "appointment")
     {
         $key = $for."_id";
-        $sql_test = "select $key from $for order by $key desc limit 1";
+        $sql_test = "select $key from $for order by cast(substring($key,9) as int ) desc limit 1";
         $result_test = mysqli_query($conn,$sql_test);
 
         if(mysqli_num_rows($result_test) != 0 )
         {
             $row=mysqli_fetch_row($result_test); //$row gets the key_val array
-
+			
             $data = explode("_",$row[0]); // key_val explodes and saved in $data
-
+			
             $year = $data[0];
             $initial = $data[1];
             $number = $data[2];
@@ -202,9 +207,10 @@ function key_engine($for)
         }
         else
         {
-            $year_new = date("y");
+             $year_new = date("y");
             $initial = $for;
             $number_new = 0;
+			$initial = "apmt";
             $key = $year_new."_".$initial."_".$number_new;
 
             return $key;
@@ -213,7 +219,7 @@ function key_engine($for)
     elseif($for == "ward")
     {
         $key = $for."_id";
-        $sql_test = "select $key from $for order by $key desc limit 1";
+        $sql_test = "select $key from $for order by cast(substring($key,9) as int ) desc limit 1";
         $result_test = mysqli_query($conn,$sql_test);
 
         if(mysqli_num_rows($result_test) != 0 )
@@ -247,9 +253,10 @@ function key_engine($for)
 	 elseif($for == "bed")
     {
         $key = $for."_id";
-        $sql_test = "select $key from $for order by $key ASC limit 1";
+		
+        $sql_test = "select $key from $for order by cast(substring($key,9) as int ) desc limit 1";
         $result_test = mysqli_query($conn,$sql_test);
-
+		
         if(mysqli_num_rows($result_test) != 0 )
         {
             $row=mysqli_fetch_row($result_test); //$row gets the key_val array
@@ -422,21 +429,21 @@ function view_table($for)
 
     if($for == "patient")
     {
-        $query = "select * from patient";
+        $query = "select * from patient where patient_exist = 0";
         $result = mysqli_query($conn,$query);
 
         if($result)
         {
 
             while($row = mysqli_fetch_array($result)) {
-                $age = date_diff(date_create($row[6]), date_create('today'))->y;
-                $id = $row[1];
+               
+                $id = $row[0];
+				$age = date_diff(date_create($row[5]), date_create('today'))->y;
                 echo "<tr>
                 <td>$id</td>
-                <td>$row[2]</td>
-              
-                <td>$row[5]</td>
+                <td>$row[1]</td>
                 <td>$age</td>
+				<td>$row[14]</td>
                 <td > <a href='view_patient_profile.php?id=$id'> <i class='material-icons'>edit</i></a></td>
                
                 </tr>";
@@ -444,10 +451,11 @@ function view_table($for)
             }
 
         }
+		
     }
     elseif ($for == "doctor")
     {
-        $query = "select * from doctor";
+        $query = "select * from doctor where doctor_exist = 0";
         $result = mysqli_query($conn,$query);
 
         while($row = mysqli_fetch_array($result))
@@ -505,7 +513,33 @@ function view_table($for)
     }
     elseif ($for == "appointment")
     {
-        $query = "select * from appointment";
+        $query = "select * from appointment order by substring(appointment_id,9) desc";
+        $result = mysqli_query($conn,$query);
+        while($row = mysqli_fetch_array($result))
+        {
+            $id = $row[0];
+			$d_id = $row[1];
+			$p_id = $row[2];
+			
+			
+			$d_data = mysqli_fetch_assoc(mysqli_query($conn,"select doctor_name from doctor where doctor_id = '$d_id' "));
+			
+			$p_data = mysqli_fetch_assoc(mysqli_query($conn,"select patient_name from patient where patient_id = '$p_id' "));
+			
+            echo "<tr>
+                <td>$id</td>
+                <td>". $d_data['doctor_name'] ."</td>
+                <td>". $p_data['patient_name'] ."</td>
+                <td>$row[6]</td>
+                <td > <a href='delete_designation.php?id=$id'> <i class='material-icons'>delete_forever</i></a></td>
+               
+                </tr>";
+
+        }
+    }
+	elseif ($for == "staff")
+    {
+        $query = "select * from staff where staff_exist = 0 ";
         $result = mysqli_query($conn,$query);
 
         while($row = mysqli_fetch_array($result))
@@ -514,9 +548,9 @@ function view_table($for)
             echo "<tr>
                 <td>$id</td>
                 <td>$row[1]</td>
-                <td>$row[2]</td>
+                <td>$row[10]</td>
                 <td>$row[3]</td>
-                <td > <a href='delete_designation.php?id=$id'> <i class='material-icons'>delete_forever</i></a></td>
+                <td > <a href='view_staff_profile.php?id=$id'> <i class='material-icons'>edit</i></a></td>
                
                 </tr>";
 
@@ -524,7 +558,7 @@ function view_table($for)
     }
 	elseif( $for == "ward")
 	 {
-        $query = "select * from ward";
+        $query = "select * from ward where ward_exist = 0";
         $result = mysqli_query($conn,$query);
 
         while($row = mysqli_fetch_array($result))
@@ -541,7 +575,7 @@ function view_table($for)
     }
 	elseif( $for == "bed")
 	 {
-        $query = "select * from bed";
+        $query = "select * from bed where bed_exist = 0 ";
         $result = mysqli_query($conn,$query);
 
         while($row = mysqli_fetch_array($result))
@@ -569,11 +603,11 @@ function update_data($query)
     $result = mysqli_query($conn,$query);
     if($result)
     {
-        return "Success";
+        return true;
     }
     else
     {
-        return "Error";
+       return false;
     }
 }
 
@@ -581,7 +615,7 @@ function delete_patient($by,$for)
 {
     include("assets/modules/db_config.php"); // include database for $conn variable
     $del_by = $by;
-    $result = mysqli_query($conn,"delete from patient where patient_id = '$for'");
+    $result = mysqli_query($conn,"update patient set patient_exist = '1' where patient_id = '$for' ");
     if($result)
     {
         return true;
@@ -592,19 +626,23 @@ function delete_patient($by,$for)
     }
 }
 
-function add_doctor($query)
+function add_doctor($doc,$query)
 {
     include("assets/modules/db_config.php");
-
+		
     $result = mysqli_query($conn,$query);
     if($result)
     {
-
-        return true;
+        $slot_key = key_engine("slot");
+		$doc_key = $doc;
+		if(add_slot($slot_key,$doc_key))
+		{
+			return true;
+		}
     }
     else
     {
-        return mysqli_error($conn);
+        return false;
     }
 }
 
@@ -612,25 +650,39 @@ function delete_doctor($by,$for)
 {
     include("assets/modules/db_config.php"); // include database for $conn variable
     $del_by = $by;
-    $result = mysqli_query($conn,"delete from doctor where doctor_id = '$for'");
+    $result = mysqli_query($conn,"update doctor set doctor_exist = 1 where doctor_id = '$for'");
     if($result)
     {
-        $slot_del = mysqli_query($conn,"delete from slot where doctor_id='$for'");
+        $slot_del = mysqli_query($conn,"update slot set slot_exist = 1 where doctor_id='$for'");
         if($slot_del)
         {
             return true;
         }
         else
         {
-            return "slot not deleted";
+            return false;
         }
     }
     else
     {
-        return "doc not deleted";
+        return false;
     }
 }
 
+function delete_staff($by,$for)
+{
+	 include("assets/modules/db_config.php"); // include database for $conn variable
+    $del_by = $by;
+	 $result = mysqli_query($conn,"update staff set staff_exist = 1 where staff_id = '$for'");
+	 if($result)
+	 {
+		 return true;
+	 }
+	 else
+	 {
+		 return false;
+	 }
+}
 
 function add_designation($query)
 {
@@ -863,6 +915,17 @@ function menu($user,$active,$sub_active)
                                                         <p > view Patient </p >
                                                     </a >
                                                 </li >";
+												
+							 echo "<li ";
+                            if ($sub_active == "admit_patient") {
+                                echo "class=active";
+                            }
+                            echo ">
+                                                    <a href = 'admit_patient.php' >
+                                                        <i class='pe-7s-paperclip' ></i >
+                                                        <p > Admit Patient </p >
+                                                    </a >
+                                                </li >";
 
                             echo "</ul>";
                         }
@@ -1053,16 +1116,16 @@ function view_filtered_table($id)
 	
 	if($for == "ward")
 	{
-	 $query = "select * from bed where ward_id = '$id'";
+	 $query = "select * from bed where ward_id = '$id' and bed_exist = 0 ";
         $result = mysqli_query($conn,$query);
 
         while($row = mysqli_fetch_array($result))
         {
-            $id = $row[0];
+            $b_id = $row[0];
             echo "<tr>
                 <td>$id</td>
-                <td>$row[1]</td>
-                <td > <a href='delete_ward.php?id=$id'> <i class='material-icons'>delete</i></a></td>
+                <td>$b_id</td>
+                <td > <a href='delete_bed.php?b_id=$b_id&ward_id=$id'> <i class='material-icons'>delete</i></a></td>
                 </tr>";
 
         }
@@ -1072,6 +1135,125 @@ function view_filtered_table($id)
 		echo "<td>Invalid Arguments</td>";
 	}
 }
+
+function avatar_generator($age,$gender)
+{
+	$avatar = "";
+	
+	if($gender == "Male")
+	{
+		$avatar .= "man-";
+	}
+	elseif($gender == "Female")
+	{
+		$avatar .= "woman-";
+	}
+	
+	if($age <= 22)
+	{
+		$avatar .= "22";
+	}
+	elseif($age > 22 && $age <= 24)
+	{
+		$avatar .= "24";
+	}
+	elseif($age > 24 && $age <= 26)
+	{
+		$avatar .= "26";
+	}
+	elseif($age > 26 && $age <= 28)
+	{
+		$avatar .= "28";
+	}
+	elseif($age > 28 && $age <= 30)
+	{
+		$avatar .= "30";
+	}
+	elseif($age > 30 && $age <= 32)
+	{
+		$avatar .= "32";
+	}
+	elseif($age > 32 && $age <= 34)
+	{
+		$avatar .= "34";
+	}
+	elseif($age > 34 && $age <= 36)
+	{
+		$avatar .= "36";
+	}
+	elseif($age > 36 && $age <= 38)
+	{
+		$avatar .= "38";
+	}
+	elseif($age > 38 && $age <= 40)
+	{
+		$avatar .= "40";
+	}
+	elseif($age > 40 && $age <= 42)
+	{
+		$avatar .= "42";
+	}
+	elseif($age > 42 && $age <= 44)
+	{
+		$avatar .= "44";
+	}
+	elseif($age > 44 && $age <= 46)
+	{
+		$avatar .= "46";
+	}
+	elseif($age > 46 && $age <= 48 )
+	{
+		$avatar .= "48";
+	}
+	else
+	{
+		$avatar .= "48";
+	}
+	
+	echo $avatar;
+}
+
+function delete_bed($bed)
+{
+	include("assets/modules/db_config.php"); // include database for $conn variable
+	$query = "update bed set bed_exist = 1 where bed_id = '$bed' ";
+	$result = mysqli_query($conn,$query);
+	if($result)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+function delete_ward($ward_id)
+{
+	include("assets/modules/db_config.php"); // include database for $conn variable
+	$query = "update ward set ward_exist = 1 where ward_id = '$ward_id' ";
+	$result = mysqli_query($conn,$query);
+	echo $ward_id;
+	
+	if($result)
+	{
+		$b_query = "update bed set bed_exist = 1 where ward_id = '$ward_id' ";
+		$b_result = mysqli_query($conn,$b_query);
+		if($b_result)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	else
+	{
+		return false;
+	}
+}
+
 
 ?>
 

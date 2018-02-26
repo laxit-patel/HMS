@@ -23,32 +23,34 @@ if(isset($_SESSION["admin_token"]))
 }
 $result = fetch_data("select * from admin where admin_id= '$admin_id'","result");
 $a_data = mysqli_fetch_assoc($result);
-$data = mysqli_fetch_assoc(fetch_data("select * from doctor where doctor_id = '$d_id'","result"));
-$age = date_diff(date_create($data["doctor_dob"]), date_create('today'))->y;
+$data = mysqli_fetch_assoc(fetch_data("select * from staff where staff_id = '$d_id'","result"));
+
+$age = date_diff(date_create($data["staff_dob"]), date_create('today'))->y;
 
 
 if($_POST)
 {
-    $d_email = $_POST["d_email"];
-    $d_name = $_POST["d_name"];
-    $d_gender = $_POST["d_gender"];
+  print_r($_POST);
+  
+	$s_email = $_POST['s_email'];
+	$s_name = $_POST["s_name"];
+	
+	$s_phone = $_POST["s_phone"];
+	$s_address = $_POST["s_address"];
+	$s_city = $_POST["s_city"];
+  
 
-    $d_phone = $_POST["d_phone"];
-    $d_address = $_POST["d_address"];
-    $d_city = $_POST["d_city"];
-
-
-    if(update_data("update doctor set doctor_email = '$d_email',doctor_name = '$d_name',doctor_gender = '$d_gender',doctor_phone =  '$d_phone',doctor_address = '$d_address',doctor_city = '$d_city' where doctor_id = '$d_id'"))
+    if(update_data("update staff set staff_email = '$s_email',staff_name = '$s_name',staff_phone ='$s_phone',staff_address = '$s_address',staff_city = '$s_city' where staff_id = '$d_id'"))
 	{
 		$msg = "Details Updated Successfully";
-		header("LOCATION:view_doctor_profile.php?id=$d_id&msg_t=$msg");
+		header("LOCATION:view_staff_profile.php?id=$d_id&msg_t=$msg");
 	}
 	else
 	{
 		$msg = "Details Not Updated";
-		header("LOCATION:view_doctor_profile.php?id=$d_id&msg_f=$msg");
+		header("LOCATION:view_staff_profile.php?id=$d_id&msg_f=$msg");
 	}
-   
+	
 }
 
 
@@ -61,7 +63,7 @@ if($_POST)
     <link rel="icon" type="image/png" href="assets/img/HMS.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Dashboard - Profile</title>
+    <title>Dashboard - Staff Profile</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -90,7 +92,7 @@ if($_POST)
 
 <div class="wrapper">
 
-    <?php menu("","doctor","view_doctor")  ; ?>
+    <?php menu($a_data["admin_name"],"staff","view_staff"); ?>
 
     <div class="main-panel">
 
@@ -103,7 +105,7 @@ if($_POST)
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard<i class="pe-7s-angle-right"></i>Doctor Profile</a>
+                    <a class="navbar-brand" href="#">Dashboard<i class="pe-7s-angle-right"></i>Stsff Profile</a>
                 </div>
                 <div class="collapse navbar-collapse">
 
@@ -127,8 +129,7 @@ if($_POST)
                 <div class="row">
                     <div class="col-md-12">
 					
-                        <div class="card card-user">
-						<br>
+                        <div class="card card-user"><br>
 						<div class="container-fluid" id="alert_box" >
                                         <?php
 
@@ -179,10 +180,10 @@ if($_POST)
                             <div class="content">
                                 <div class="author">
                                     <a href="#">
-                                        <img class="avatar border-gray" src="assets/img/avatars/<?php if($data["doctor_gender"] == "Male"){ echo "male-doc.png"; } if($data["doctor_gender"] == "Female"){ echo "female-doc.jpg"; } ?>"   alt="..."/  >
+                                        <img class="avatar border-gray" src="assets/img/avatars/<?php if($data["staff_gender"] == "Male"){ echo "male-doc.png"; } if($data["staff_gender"] == "Female"){ echo "female-doc.jpg"; } ?>"   alt="..."/  >
 
-                                        <h4 class="title"><?php echo $data["doctor_name"]; if($data["doctor_gender"]=="Male"){ echo "&nbsp<img src='assets/img/male.png'>"; }else{ echo "&nbsp<img src='assets/img/female.png'>"; }?><br />
-                                            <small><?php echo $data["doctor_designation"]; ?></small>
+                                        <h4 class="title"><?php echo $data["staff_name"]; if($data["staff_gender"]=="Male"){ echo "&nbsp<img src='assets/img/male.png'>"; }else{ echo "&nbsp<img src='assets/img/female.png'>"; }?><br />
+                                            <small><?php echo $data["staff_type"]; ?></small>
                                         </h4>
                                     </a>
                                 </div>
@@ -194,19 +195,19 @@ if($_POST)
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Id</label>
-                                                    <input type="text" name="d_id" class="form-control" disabled value="<?php echo $data["doctor_id"]; ?>">
+                                                    <input type="text" name="s_id" class="form-control" disabled value="<?php echo $data["staff_id"]; ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-5">
                                                 <div class="form-group">
                                                     <label>Email</label>
-                                                    <input type="email" name="d_email" class="form-control"  value="<?php echo $data["doctor_email"]; ?>">
+                                                    <input type="email" name="s_email" class="form-control"  value="<?php echo $data["staff_email"]; ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label >Name</label>
-                                                    <input type="text" name="d_name" class="form-control"  value="<?php echo $data["doctor_name"]; ?>">
+                                                    <input type="text" name="s_name" class="form-control"  value="<?php echo $data["staff_name"]; ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -215,19 +216,19 @@ if($_POST)
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Gender</label>
-                                                    <input type="text" name="d_gender" class="form-control"  value="<?php echo $data["doctor_gender"]; ?>">
+                                                    <input type="text" name="s_gender" class="form-control"  value="<?php echo $data["staff_gender"]; ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Age</label>
-                                                    <input type="text" name="p_age" class="form-control" value="<?php echo $age ?>">
+                                                    <input type="text" name="s_age" class="form-control" value="<?php echo $age ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Phone</label>
-                                                    <input type="text" name="d_phone" class="form-control"  value="<?php echo $data["doctor_phone"]; ?>">
+                                                    <input type="text" name="s_phone" class="form-control"  value="<?php echo $data["staff_phone"]; ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -236,14 +237,14 @@ if($_POST)
                                             <div class="col-md-8">
                                                 <div class="form-group">
                                                     <label>Address</label>
-                                                    <input type="text" name="d_address" class="form-control"  value="<?php echo $data["doctor_address"]; ?>">
+                                                    <input type="text" name="s_address" class="form-control"  value="<?php echo $data["staff_address"]; ?>">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>City</label>
-                                                    <input type="text" name="d_city" class="form-control"  value="<?php echo $data["doctor_city"]; ?>">
+                                                    <input type="text" name="s_city" class="form-control"  value="<?php echo $data["staff_city"]; ?>">
                                                 </div>
                                             </div>
 
@@ -308,14 +309,7 @@ if($_POST)
 
         demo.initChartist();
 
-        $.notify({
-            icon: 'pe-7s-gift',
-            message: "Welcome to <b>Rudani Hospital</b> <br> Your Health Companion on-the-go."
-
-        },{
-            type: 'info',
-            timer: 4000
-        });
+        
 
     });
 </script>
@@ -329,11 +323,11 @@ if($_POST)
                 <h4 class="modal-title">Confirm</h4>
             </div>
             <div class="modal-body">
-                <p>You Want to Delete   <span class="label label-danger"><?php echo $data["doctor_name"]; ?></span> ?</p>
+                <p>You Want to Delete   <span class="label label-danger"><?php echo $data["staff_name"]; ?></span> ?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success btn-fill pull-left" data-dismiss="modal">No</button>
-                <a href="delete_doctor.php?delete_by=<?php echo $admin_id;?>&delete_for=<?php echo $data["doctor_id"]?>"><button type="button" class="btn btn-danger btn-fill pull-right" >Yes</button></a>
+                <a href="delete_staff.php?delete_by=<?php echo $admin_id;?>&delete_for=<?php echo $data["staff_id"]?>"><button type="button" class="btn btn-danger btn-fill pull-right" >Yes</button></a>
             </div>
         </div>
     </div>

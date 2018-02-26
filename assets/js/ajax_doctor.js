@@ -1,6 +1,7 @@
 $(document).ready(function(){
+	
 $("#js_designation").change(function(){
-
+		
     var designation = $(this).val();
 
     $.ajax({

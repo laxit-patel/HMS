@@ -246,7 +246,7 @@ if($_POST)
                     </span>
                   <div class="form-group label-floating">
                 <label class="control-label">Patient's Email</label>
-                <input type="email" name="p_email" value="<?php if(isset($p_email)){ echo $p_email; }?>" class="form-control">
+                <input type="email" name="p_email" value="<?php if(isset($p_email)){ echo $p_email; }?>" class="form-control" id='patient_email' >
               </div>
             </div>
 
@@ -290,7 +290,7 @@ if($_POST)
   <script src="assets/js/jquery.min.js" type="text/javascript"></script>
   <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
   <script src="assets/js/material.min.js"></script>
-
+	<script src="assets/js/email_validation.js"></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
   <script src="assets/js/nouislider.min.js" type="text/javascript"></script>
 

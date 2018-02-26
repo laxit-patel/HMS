@@ -7,6 +7,17 @@ if(isset($_GET["id"]))
 {
     $p_id = $_GET["id"];
 }
+
+if(isset($_GET["msg_t"]))
+{
+	$alert_success = $_GET["msg_t"];
+}
+if(isset($_GET["msg_f"]))
+{
+	$alert_danger = $_GET["msg_f"];
+}
+
+
 if(isset($_SESSION["admin_token"]))
 {
     $admin_id = $_SESSION["admin_token"];
@@ -27,14 +38,22 @@ if($_POST)
     $p_age = $_POST["p_age"];
     $p_phone = $_POST["p_phone"];
     $p_address = $_POST["p_address"];
-    $p_city = $_POST["p_city"];
+    $p_city = 'Bhuj';
     $r_name = $_POST["r_name"];
     $r_contact = $_POST["r_contact"];
     $mix = [$p_city,$p_address];
     $reloc = implode("~",$mix);
 
-    echo update_data("update patient set patient_email = '$p_email',patient_name = '$p_name',patient_gender = '$p_gender',patient_phone =  '$p_phone',patient_address = '$reloc',relative_name = '$r_name',relative_contact = '$r_contact' where patient_id = '$p_id'");
-    header("LOCATION:view_patient_profile.php?id=$p_id");
+    if(update_data("update patient set patient_email = '$p_email',patient_name = '$p_name',patient_gender = '$p_gender',patient_phone =  '$p_phone',patient_address = '$reloc',relative_name = '$r_name',relative_contact = '$r_contact' where patient_id = '$p_id'"))
+	{
+	$msg = "Details Updated Successfully";
+    header("LOCATION:view_patient_profile.php?id=$p_id&msg_t=$msg");
+	}
+	else
+	{
+		$msg = "Details Not Updated";
+		header("LOCATION:view_patient_profile.php?id=$p_id&msg_f=$msg");
+	}
 }
 
 
@@ -110,16 +129,64 @@ if($_POST)
 
         <div class="content">
             <div class="container-fluid">
+			
                 <div class="row">
                     <div class="col-md-12">
+					
                         <div class="card card-user">
+						<br>
+						<div class="container-fluid" id="alert_box" >
+                                        <?php
+
+                                        if(isset($alert_success))
+                                        {
+                                            echo "<div class='container-fluid'><div class='alert alert-success' style='color:black'>
+               <div class='container-fluid'>
+           <div class='alert-icon'>
+            <i class='material-icons'>done_all</i>
+          </div>
+          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
+          </button>
+                   <h4>$alert_success</h4> 
+              </div>
+          </div></div>";
+                                        }
+                                        else
+                                        {
+                                            echo "";
+                                        }
+
+                                        if(isset($alert_danger))
+                                        {
+                                            echo "<div class='alert alert-danger' >
+               <div class='container-fluid'>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
+          </button>
+           <div class='alert-icon pull-left'>
+            <i class='material-icons'>error_outline</i>
+          </div>
+          <h4> $alert_danger </h4>
+         
+                   
+              </div>
+          </div>";
+                                        }
+                                        else
+                                        {
+                                            echo "";
+                                        }
+                                        ?>
+                                    </div>
                             <div class="image" >
+							
                                 <img src="assets/img/HMS_BG.jpg" alt="..."/>
                             </div>
                             <div class="content">
                                 <div class="author">
                                     <a href="#">
-                                        <img class="avatar border-gray" src="assets/img/avatars/001-man-13.png" alt="..."/  >
+                                        <img class="avatar border-gray" src="assets/img/avatars/<?php avatar_generator('24',$data["patient_gender"]); ?>.png" alt="..."/  >
 
                                         <h4 class="title"><?php echo $data["patient_name"]; if($data["patient_gender"]=="Male"){ echo "&nbsp<img src='assets/img/male.png'>"; }else{ echo "&nbsp<img src='assets/img/female.png'>"; }?><br />
                                             <small><?php echo $data["patient_email"]; ?></small>
@@ -137,13 +204,13 @@ if($_POST)
                                                 <input type="text" name="p_id" class="form-control" disabled value="<?php echo $data["patient_id"]; ?>">
                                             </div>
                                         </div>
-                                        <div class="col-md-5">
+                                        <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Email</label>
-                                                <input type="email" name="p_email" class="form-control"  value="<?php echo $data["patient_email"]; ?>">
+                                                <label>Blood Group</label>
+                                                <input type="email" name="p_email" class="form-control"  value="<?php echo $data["patient_blood_group"]; ?>" disabled>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-5">
                                             <div class="form-group">
                                                 <label >Name</label>
                                                 <input type="text" name="p_name" class="form-control"  value="<?php echo $data["patient_name"]; ?>">
@@ -155,13 +222,13 @@ if($_POST)
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Gender</label>
-                                                <input type="text" name="p_gender" class="form-control"  value="<?php echo $data["patient_gender"]; ?>">
+                                                <input type="text" name="p_gender" class="form-control"  value="<?php echo $data["patient_gender"]; ?>" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Age</label>
-                                                <input type="text" name="p_age" class="form-control" value="<?php echo $age ?>">
+                                                <input type="text" name="p_age" class="form-control" value="<?php echo $age ?>" readonly>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -267,14 +334,7 @@ if($_POST)
 
         demo.initChartist();
 
-        $.notify({
-            icon: 'pe-7s-gift',
-            message: "Welcome to <b>Rudani Hospital</b> <br> Your Health Companion on-the-go."
-
-        },{
-            type: 'info',
-            timer: 4000
-        });
+        
 
     });
 </script>

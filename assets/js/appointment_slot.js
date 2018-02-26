@@ -11,7 +11,6 @@ $(document).ready(function(){
             dataType: 'text',
             success:function(response){
 
-
                 $("#slot-container").html(response);
 
             }

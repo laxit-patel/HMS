@@ -7,6 +7,16 @@ if(isset($_GET["id"]))
 {
     $id = $_GET["id"];
 }
+
+if(isset($_GET["msg_t"]))
+{
+	$alert_success = $_GET["msg_t"];
+}
+if(isset($_GET["msg_f"]))
+{
+	$alert_danger = $_GET["msg_f"];
+}
+
 elseif(isset($_SESSION["admin_token"]))
 {
     $id = $_SESSION["admin_token"];
@@ -85,7 +95,59 @@ $data = mysqli_fetch_assoc($result);
         </nav>
 
         <br>
+		<div class="row">
+		<div class=col-md-1></div>
+			<div class="col-md-10">
+			<div class="container-fluid" id="alert_box" >
+                                        <?php
+
+                                        if(isset($alert_success))
+                                        {
+                                            echo "<div class='container-fluid'><div class='alert alert-success' style='color:black'>
+               <div class='container-fluid'>
+           <div class='alert-icon'>
+            <i class='material-icons'>done_all</i>
+          </div>
+          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
+          </button>
+                   <h4>$alert_success</h4> 
+              </div>
+          </div></div>";
+                                        }
+                                        else
+                                        {
+                                            echo "";
+                                        }
+
+                                        if(isset($alert_danger))
+                                        {
+                                            echo "<div class='alert alert-danger' >
+               <div class='container-fluid'>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
+          </button>
+           <div class='alert-icon pull-left'>
+            <i class='material-icons'>error_outline</i>
+          </div>
+          <h4> $alert_danger </h4>
+         
+                   
+              </div>
+          </div>";
+                                        }
+                                        else
+                                        {
+                                            echo "";
+                                        }
+                                        ?>
+                                    </div>
+			</div>
+			<div class=col-md-1></div>
+		</div>
+		
         <div class="container-fluid">
+		
             <div class="row">
                 <div class="col-md-12">
 
@@ -97,6 +159,7 @@ $data = mysqli_fetch_assoc($result);
 
 
                         <table id="fresh-table" class="table">
+						
                             <thead>
                             <th data-field="id">ID</th>
                             <th data-field="name" data-sortable="true">Name</th>
@@ -163,14 +226,7 @@ $data = mysqli_fetch_assoc($result);
 
         demo.initChartist();
 
-        $.notify({
-            icon: 'pe-7s-gift',
-            message: "Welcome to <b>Rudani Hospital</b> <br> Your Health Companion on-the-go."
-
-        },{
-            type: 'info',
-            timer: 4000
-        });
+        
 
     });
 </script>

@@ -12,6 +12,15 @@ elseif(isset($_SESSION["admin_token"]))
     $id = $_SESSION["admin_token"];
 }
 
+if(isset($_GET["msg_t"]))
+{
+	$alert_success = $_GET["msg_t"];
+}
+if(isset($_GET["msg_f"]))
+{
+	$alert_danger = $_GET["msg_f"];
+}
+
 if(isset($_GET["msg"]))
 {
     $alert_success = $_GET["msg"];
@@ -29,8 +38,7 @@ if($_POST)
     $p_phone = $_POST["p_phone"];
     $p_city = $_POST["p_city"];
     $p_address = $_POST["p_address"];
-    $p_email = $_POST["p_email"];
-    $p_password = $_POST["p_password"];
+    $p_blood = $_POST["p_blood"];
     $relative_name = $_POST["relative_name"];
     $relative_contact = $_POST["relative_contact"];
 
@@ -62,20 +70,18 @@ if($_POST)
     {
         $alert_danger = "Enter Adress";
     }
-    elseif($p_email == "")
-    {
-        $alert_danger = "Enter Email";
-    }
-    elseif($p_password == "")
-    {
-        $alert_danger = "Enter Password";
-    }
-
-
+	elseif($p_blood == '--Blood Group--')
+	{
+		$alert_danger = "Select Blood Group";
+	}
     else
     {
+		
         $d_old = explode("/",$p_dob);
-        $p_dob = $d_old[2]."/".$d_old[0]."/".$d_old[1];
+        $p_dob = $d_old[0]."/".$d_old[1]."/".$d_old[2];
+		
+		
+		
         $loc = $p_city."~".$p_address;
             $raw = explode("_",$id);
             if($raw[1] == "admn")
@@ -90,8 +96,7 @@ if($_POST)
             {
                 $by = "Receptionnist";
             }
-
-            if(add_patient("insert into patient(patient_id,patient_name,patient_gender,patient_email,patient_phone,patient_dob,patient_address,patient_password,relative_name,relative_contact,added_by) values('$p_id','$p_name','$p_gender','$p_email','$p_phone','$p_dob','$loc','$p_password','$relative_name','$relative_contact','$by')"))
+            if(add_patient("insert into patient(patient_id,patient_name,patient_gender,patient_phone,patient_dob,patient_address,relative_name,relative_contact,patient_blood_group,added_by) values('$p_id','$p_name','$p_gender','$p_phone','$p_dob','$loc','$relative_name','$relative_contact','$p_blood','$by')"))
             {
                 $msg = "Patient ".$p_name." Added";
                 $p_name = "";
@@ -100,13 +105,16 @@ if($_POST)
                 $p_phone = "";
                 $p_city = "";
                 $p_address ="";
-                $p_email = "";
-                $p_password = "";
+                
                 $relative_name = "";
                 $relative_contact ="";
 
-                header("LOCATION:add_patient.php");
+                header("LOCATION:add_patient.php?msg_t=$msg");
             }
+			else
+			{
+				$alert_danger = "Doctor Not Added";
+			}
 
     }
 
@@ -198,49 +206,54 @@ if($_POST)
                                 <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
 
                                 <div class="wizard-header">
-                                    <?php
-
-                                    if(isset($alert_success))
-                                    {
-                                        echo "<div class='container-fluid'><div class='alert alert-success' style='margin-bottom:-7%;'>
-               <div class='container-fluid'>
-           <div class='alert-icon'>
-            <i class='material-icons'>error_outline</i>
-          </div>
-          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
-          </button>
-                   <b>$alert_success</b> 
-              </div>
-          </div></div>";
-                                    }
-                                    else
-                                    {
-                                        echo "";
-                                    }
-
-                                    if(isset($alert_danger))
-                                    {
-                                        echo "<div class='alert alert-danger' style='margin-bottom:-7%;'>
-               <div class='container-fluid'>
-           <div class='alert-icon'>
-            <i class='material-icons'>error_outline</i>
-          </div>
-          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
-          </button>
-                   <b>Error Alert:</b> $alert_danger
-              </div>
-          </div>";
-                                    }
-                                    else
-                                    {
-                                        echo "";
-                                    }
-                                    ?><br><br>
                                     <h3 class="wizard-title">
                                         Add patient
                                     </h3>
+									
+									<div class="container-fluid" id="alert_box" >
+                                        <?php
+
+                                        if(isset($alert_success))
+                                        {
+                                            echo "<div class='container-fluid'><div class='alert alert-success' style='color:black'>
+               <div class='container-fluid'>
+           <div class='alert-icon'>
+            <i class='material-icons'>done_all</i>
+          </div>
+          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
+          </button>
+                   <h4>$alert_success</h4> 
+              </div>
+          </div></div>";
+                                        }
+                                        else
+                                        {
+                                            echo "";
+                                        }
+
+                                        if(isset($alert_danger))
+                                        {
+                                            echo "<div class='alert alert-danger' >
+               <div class='container-fluid'>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
+          </button>
+           <div class='alert-icon pull-left'>
+            <i class='material-icons'>error_outline</i>
+          </div>
+          <h4> $alert_danger </h4>
+         
+                   
+              </div>
+          </div>";
+                                        }
+                                        else
+                                        {
+                                            echo "";
+                                        }
+                                        ?>
+                                    </div>
 
                                 </div>
                                 <div class="wizard-navigation">
@@ -262,7 +275,7 @@ if($_POST)
                                                 </span>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Patient's Id</label>
-                                                    <input type="text" name=p_id value="<?php echo key_engine("patient"); ?>" class="form-control" disabled>
+                                                    <input type="text" name=p_id value="<?php echo key_engine("patient"); ?>" class="form-control" readonly>
 
 
                                                 </div>
@@ -284,7 +297,7 @@ if($_POST)
                                                 </span>
                                                 <div class="form-group label-floating">
 
-                                                    <input type="text" name="p_dob" value="<?php if(isset($p_dob)){ echo $p_dob; }?>" class="datepicker form-control" placeholder="Enter Birthdate" />
+                                                    <input type="date" name="p_dob" value="<?php if(isset($p_dob)){ echo $p_dob; }?>" class="datepicker form-control" placeholder="Enter Birthdate" />
                                                 </div>
                                             </div>
 
@@ -312,7 +325,35 @@ if($_POST)
                                                 </div>
                                             </div>
 
-                                            <div class="input-group">
+                                            
+
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="account">
+                                        <div class="container-fluid">
+
+                                           <div class="input-group">
+                                                <span class="input-group-addon">
+                                                  <i class="material-icons">invert_colors</i>
+                                                </span>
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Blood Group</label>
+                                                    <select name="p_blood" class="form-control">
+                                                        <option>--Blood Group--</option>
+                                                        <option>A-</option>
+														<option>A+</option>
+														<option>B-</option>
+														<option>B+</option>
+														<option>O-</option>
+														<option>O+</option>
+														<option>AB-</option>
+														<option>AB+</option>
+														
+                                                    </select>
+                                                </div>
+                                            </div>
+										   
+											<div class="input-group">
                                                 <span class="input-group-addon">
                                                   <i class="material-icons">place</i>
                                                 </span>
@@ -335,30 +376,6 @@ if($_POST)
                                                 </div>
                                             </div>
 
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="account">
-                                        <div class="container-fluid">
-
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">
-                                                  <i class="material-icons">email</i>
-                                                </span>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Patient's Email</label>
-                                                    <input type="email" name="p_email" value="<?php if(isset($p_email)){ echo $p_email; }?>" class="form-control">
-                                                </div>
-                                            </div>
-
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
-                                                  <i class="material-icons">lock_outline</i>
-                                                </span>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Password</label>
-                                                    <input type="text" name="p_password" value="<?php if(isset($p_password)){ echo $p_password; }?>" class="form-control" />
-                                                </div>
-                                            </div>
 
                                             <div class="input-group">
                                                 <span class="input-group-addon">
@@ -386,7 +403,7 @@ if($_POST)
                                 </div>
                                 <div class="wizard-footer">
                                     <div class="pull-right">
-                                        <input type='button' class='btn btn-next btn-fill btn-success btn-wd' name='next' value='Next' style="background-color:#9C27B0"/>
+                                        <input type='' class='btn btn-next btn-fill btn-success btn-wd' name='next' value='Next' style="background-color:#9C27B0"/>
                                         <input type='submit' class='btn btn-finish btn-fill btn-success btn-wd ' value='Add' style="background-color:#9C27B0"/>
                                     </div>
 

@@ -25,8 +25,8 @@ elseif(isset($_SESSION["admin_token"]))
 }
 $result = fetch_data("select * from admin where admin_id= '$id'","result");
 $data = mysqli_fetch_assoc($result);
-$result = fetch_data("select * from ward where ward_id= '$id'","result");
-
+$result = fetch_data("select * from ward where ward_id = '$ward_id'","result");
+$w_data = mysqli_fetch_assoc($result);
 
 ?>
 
@@ -166,7 +166,7 @@ $result = fetch_data("select * from ward where ward_id= '$id'","result");
                                              <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label >Name</label>
-                                                    <input type="text" name="d_name" id="ward_name" class="form-control" >
+                                                    <input type="text" name="d_name" id="ward_name" class="form-control" value="<?php echo $w_data["ward_name"]; ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -197,7 +197,8 @@ $result = fetch_data("select * from ward where ward_id= '$id'","result");
 																<div class="btn btn-primary" >Add New Bed</div>
 																</a>
 																</td>
-																</tr>	
+																</tr>
+																																
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -206,12 +207,17 @@ $result = fetch_data("select * from ward where ward_id= '$id'","result");
 											
 											
                                         </div>
+										
                                         </div>
 										
 										<div class="text-center">
-                                        <a href="delete_ward.php?ward_id=<?php echo $ward_id; ?>" class="btn btn-danger btn-fill  " data-toggle="modal" data-target="#myModal">
+                                        <a  class="btn btn-danger btn-fill  " data-toggle="modal" data-target="#myModal">
                                             Delete
-                                        </a></div>
+                                        </a>
+										
+										
+										
+										</div>
                                         
                                         <br><br>
                                     </form>
@@ -277,6 +283,24 @@ $result = fetch_data("select * from ward where ward_id= '$id'","result");
 
 </script>
 
-
+<!-- Delete Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Confirm</h4>
+            </div>
+            <div class="modal-body">
+                <p>You Want to Delete Ward  <span class="label label-danger"><?php echo $w_data["ward_name"]; ?></span> Along With Beds?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-fill pull-left" data-dismiss="modal">No</button>
+                <a href="delete_ward.php?ward_id=<?php echo $ward_id; ?>"><button type="button" class="btn btn-danger btn-fill pull-right" >Yes</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--  Delete Modal -->
 
 </html>

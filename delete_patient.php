@@ -8,5 +8,11 @@ if(isset($_GET["delete_by"]) && isset($_GET["delete_for"]))
 }
     if(delete_patient($delete_by,$delete_for))
     {
-        header("LOCATION:view_patient.php");
+		$msg = "Patient Deleted";
+        header("LOCATION:view_patient.php?msg_t=$msg");
     }
+	else
+	{
+		$msg = "Patient Not Deleted";
+		 header("LOCATION:view_patient.php?msg_f=$msg");
+	}

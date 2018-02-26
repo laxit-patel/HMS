@@ -15,9 +15,9 @@ $result = fetch_data("select * from admin where admin_id= '$id'","result");
 $data = mysqli_fetch_assoc($result);
 include("assets/modules/db_config.php");
 
-$result_p = fetch_data("select patient_id from patient","result");
+$result_p = fetch_data("select patient_id from patient where patient_exist = 0","result");
 $result_d = fetch_data("select designation_name from designation","result");
-$result_dr = fetch_data("select doctor_name from doctor","result");
+$result_dr = fetch_data("select doctor_name from doctor where doctor_exist = 0","result");
 
 if($_POST)
 {
@@ -40,6 +40,9 @@ if($_POST)
     }
     else
     {
+		
+		
+		
         $id = key_engine("appointment");
         $full_time = explode(",",$time);
         $date = $full_time[0];
@@ -76,7 +79,7 @@ if($_POST)
     <link rel="icon" type="image/png" href="assets/img/HMS.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Dashboard - Patient</title>
+    <title>Dashboard - Appointment</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -339,13 +342,12 @@ if($_POST)
 <script src="assets/js/bootstrap-notify.js"></script>
 <!--Appointment Slot js-->
 <script src="assets/js/appointment_slot.js"></script>
-<!--select Dcotor as designation AJAX-->
-<script src="assets/js/ajax_doctor.js"></script>
 <!-- Load Selected Time -->
 <script src="assets/js/load_final_slot.js"></script>
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
-
+<!--select Dcotor as designation AJAX-->
+<script src="assets/js/ajax_doctor.js"></script>
 <!-- Drop down javascript -->
 <script src="assets/js/dropdown.js"></script>
 

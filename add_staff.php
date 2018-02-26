@@ -339,7 +339,7 @@ if($_POST)
                                                     <select name="s_type" class="form-control">
                                                         <option>--Select--</option>
                                                         <option>Nurse</option>
-                                                        <option>Receptionist</option>
+                                                       
                                                         <option>Wardboy</option>
                                                     </select>
                                                 </div>

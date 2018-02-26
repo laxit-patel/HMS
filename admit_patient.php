@@ -15,9 +15,10 @@ $result = fetch_data("select * from admin where admin_id= '$id'","result");
 $data = mysqli_fetch_assoc($result);
 include("assets/modules/db_config.php");
 
-$result_p = fetch_data("select patient_id from patient","result");
-$result_d = fetch_data("select designation_name from designation","result");
-$result_dr = fetch_data("select doctor_name from doctor","result");
+$result_p = fetch_data("select * from patient where patient_exist = 0","result");
+$result_d = fetch_data("select * from designation","result");
+$result_st = fetch_data("select * from staff where staff_exist = 0 and allocation = '' ","result");
+$result_wd = fetch_data("select * from ward where ward_exist = 0","result");
 
 
 ?>
@@ -29,7 +30,7 @@ $result_dr = fetch_data("select doctor_name from doctor","result");
     <link rel="icon" type="image/png" href="assets/img/HMS.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Dashboard - Patient</title>
+    <title>Dashboard - Admit</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -57,71 +58,8 @@ $result_dr = fetch_data("select doctor_name from doctor","result");
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="purple" data-image="assets/img/waterfall.gif" >
 
-        <!--
-
-            Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-            Tip 2: you can also add an image using data-image tag
-
-        -->
-
-        <div class="sidebar-wrapper" id="">
-            <div class="logo">
-                <a href="#" class="simple-text">
-                   Receptionist
-                </a>
-            </div>
-
-            <ul class="nav" >
-                <li >
-                    <a href="dashboard_admn.php">
-                        <i class="pe-7s-graph"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-
-                <li class="active">
-                    <a href="add_patient.php" >
-                        <i class="pe-7s-user"></i>
-                        <p>Patient</p>
-                    </a>
-                    <ul>
-                        <li >
-                            <a href="add_patient.php" >
-                                <i class="pe-7s-add-user"></i>
-                                <p>Add Patient</p>
-                            </a>
-                        </li>
-                        <li >
-                            <a href="view_patient.php" >
-                                <i class="pe-7s-search"></i>
-                                <p>View Patient</p>
-                            </a>
-                        </li>
-                        <li class="active">
-                            <a href="admit_patient.php" >
-                                <i class="pe-7s-search"></i>
-                                <p>Admit Patient</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li >
-                    <a href="add_appointment.php">
-                        <i class="pe-7s-note2"></i>
-                        <p>Appointment</p>
-                    </a>
-
-                </li>
-
-
-
-
-
-            </ul>
-        </div>
-    </div>
+    <?php menu($data["admin_name"],"patient","admit_patient"); ?>
 
     <div class="main-panel">
 
@@ -153,7 +91,8 @@ $result_dr = fetch_data("select doctor_name from doctor","result");
             </div>
         </nav>
 
-
+		
+		
         <!--   Big container   -->
         <div class="container-fluid">
             <div class="row">
@@ -161,50 +100,90 @@ $result_dr = fetch_data("select doctor_name from doctor","result");
                     <!--      Wizard container        -->
                     <div class="wizard-container">
                         <div class="card wizard-card" data-color="purple" id="wizardProfile">
-                            <form action="" method="">
+                            <form  name="app_form" method="POST">
                                 <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
 
                                 <div class="wizard-header">
                                     <h3 class="wizard-title">
-                                        Admit patient
+                                        Admit Patient
                                     </h3>
+                                    <div class="container-fluid" id="alert_box" >
+                                        <?php
 
+                                        if(isset($alert_success))
+                                        {
+                                            echo "<div class='container-fluid'><div class='alert alert-success' style='color:black'>
+               <div class='container-fluid'>
+           <div class='alert-icon'>
+            <i class='material-icons'>done_all</i>
+          </div>
+          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
+          </button>
+                   <h4>$alert_success</h4> 
+              </div>
+          </div></div>";
+                                        }
+                                        else
+                                        {
+                                            echo "";
+                                        }
+
+                                        if(isset($alert_danger))
+                                        {
+                                            echo "<div class='alert alert-danger' >
+               <div class='container-fluid'>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
+          </button>
+           <div class='alert-icon pull-left'>
+            <i class='material-icons'>error_outline</i>
+          </div>
+          <h4> $alert_danger </h4>
+         
+                   
+              </div>
+          </div>";
+                                        }
+                                        else
+                                        {
+                                            echo "";
+                                        }
+                                        ?>
+                                    </div>
                                 </div>
                                 <div class="wizard-navigation">
                                     <ul>
-                                        <li><a href="#about" data-toggle="tab">Ward</a></li>
-                                        <li><a href="#account" data-toggle="tab">Doctor</a></li>
-
+                                        <li><a href="#about" data-toggle="tab">Patient</a></li>
+                                        <li><a href="#account" data-toggle="tab">Incharge</a></li>
+                                        <li><a href="#address" data-toggle="tab">Ward</a></li>
                                     </ul>
                                 </div>
 
                                 <div class="tab-content">
                                     <div class="tab-pane" id="about">
                                         <div class="container-fluid">
+                                            <h4 class="info-text"> Select Patient </h4>
 
 
-
-
-                                            <div class="input-group">
-														<span class="input-group-addon">
-														  <i class="material-icons">add_to_queue</i>
-														</span>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Ward</label>
-                                                    <select name="country" class="form-control">
-                                                        <option>1</option>
-                                                    </select>
-                                                </div>
-                                            </div>
 
                                             <div class="input-group">
 														<span class="input-group-addon">
 														  <i class="material-icons">loupe</i>
 														</span>
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Bed</label>
-                                                    <select name="country" class="form-control">
-                                                        <option>1</option>
+                                                    <label class="control-label">Patient</label>
+                                                    <select name="ap_patient" class="form-control">
+
+                                                        <option disabled="" selected=""></option>
+                                                        <?php if($result_p)
+                                                        {
+
+                                                            while($row = mysqli_fetch_array($result_p)) {
+                                                                echo "<option>".$row["patient_id"]."</option>";
+                                                            }
+                                                        } ?>
+
                                                     </select>
                                                 </div>
                                             </div>
@@ -214,47 +193,71 @@ $result_dr = fetch_data("select doctor_name from doctor","result");
                                     </div>
                                     <div class="tab-pane" id="account">
                                         <div class="container-fluid">
+                                            <h4 class="info-text"> Select Nurse </h4>
 
-
-                                            <div class="input-group">
-														<span class="input-group-addon">
-														  <i class="material-icons">streetview</i>
+											<div class="form-group label-floating">
+											<span class="input-group-addon">
+														  <i class="material-icons">home</i>
 														</span>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Assign Doctor</label>
-                                                    <select name="country" class="form-control" id="js_designation">
+                                                    <label class="control-label">Nurse</label>
+                                                    <select name="ap_patient" class="form-control" >
+
                                                         <option disabled="" selected=""></option>
-                                                        <option>Dr.strange</option>
+                                                        <?php if($result_wd)
+                                                        {
+
+                                                            while($row = mysqli_fetch_array($result_st)) {
+                                                                echo"<option value='". $row['staff_id'] ."' >".$row['staff_name']."</option>";
+                                                            }
+                                                        } ?>
 
                                                     </select>
                                                 </div>
-                                            </div>
-
-                                            <div class="input-group">
-														<span class="input-group-addon">
-														  <i class="material-icons">streetview</i>
-														</span>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Assign Nurse </label>
-                                                    <select name="cy" class="form-control" id="js_ist">
-                                                        <option>Mrs.nina</option>
-                                                        <option>Mrs.nina</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
+										  
                                         </div>
                                     </div>
+                                    <div class="tab-pane" id="address">
 
+                                        <div class="container-fluid">
+                                            
+											<div class="input-group">
+														<span class="input-group-addon">
+														  <i class="material-icons">home</i>
+														</span>
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Ward</label>
+                                                    <select name="ap_patient" class="form-control" id="select_ward">
+
+                                                        <option disabled="" selected=""></option>
+                                                        <?php if($result_wd)
+                                                        {
+
+                                                            while($row = mysqli_fetch_array($result_wd)) {
+                                                                echo"<option value='". $row['ward_id'] ."' >".$row['ward_name']."</option>";
+                                                            }
+                                                        } ?>
+
+                                                    </select>
+                                                </div>
+												
+                                            </div>
+										<div class="container-fluid" id="bed_holder" ></div>
+										
+	
+                                        </div>
+										
+										
+										
+                                    </div>
                                 </div>
                                 <div class="wizard-footer">
                                     <div class="pull-right">
-                                        <input type='button' class='btn btn-next btn-fill btn-success btn-wd' name='next' value='Next' style="background-color:#9C27B0"/>
-                                        <input type='button' class='btn btn-finish btn-fill btn-success btn-wd ' name='finish' value='Admit' style="background-color:#9C27B0"/>
+                                        <input type='button' class='btn btn-next btn-fill btn-success btn-wd'  value='Next' style="background-color:#9C27B0"/>
+                                        <input type='submit' class='btn btn-finish btn-fill btn-success btn-wd '  value='Book' style="background-color:#9C27B0"/>
                                     </div>
 
                                     <div class="pull-left">
-                                        <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />
+                                        <input type='button' class='btn btn-previous btn-fill btn-default btn-wd'  value='Previous' />
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -266,15 +269,7 @@ $result_dr = fetch_data("select doctor_name from doctor","result");
         </div> <!--  big container -->
 
 
-        <footer class="footer">
-            <div class="container-fluid">
 
-                <p class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script>
-                    <a href="#">By HPL Team</a>
-                </p>
-            </div>
-        </footer>
 
     </div>
 </div>
@@ -283,6 +278,7 @@ $result_dr = fetch_data("select doctor_name from doctor","result");
 </body>
 
 <!--   Core JS Files   -->
+
 <script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="assets/js/jquery.bootstrap.js" type="text/javascript"></script>
@@ -298,13 +294,14 @@ $result_dr = fetch_data("select doctor_name from doctor","result");
 <script src="assets/js/appointment_slot.js"></script>
 <!--select Dcotor as designation AJAX-->
 <script src="assets/js/ajax_doctor.js"></script>
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-
+<!--select bed as ward AJAX-->
+<script src="assets/js/ajax_ward.js"></script>
+<!-- Load Selected Time -->
+<script src="assets/js/load_final_slot.js"></script>
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
 
-<1-- Drop down javascript -->
+<!-- Drop down javascript -->
 <script src="assets/js/dropdown.js"></script>
 
 <script type="text/javascript">
