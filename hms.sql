@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2018 at 05:20 AM
+-- Generation Time: Feb 26, 2018 at 04:25 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -78,17 +78,12 @@ CREATE TABLE `appointment` (
 --
 
 INSERT INTO `appointment` (`appointment_id`, `appointment_for`, `appointment_by`, `appointment_date`, `appointment_reg_date`, `appointment_status`, `appointment_slot`) VALUES
-('18_apmt_0', '18_dctr_7', '18_ptnt_20', '2018-01-29', '2018-02-12 18:33:03.016218', 0, '10-11'),
-('18_apmt_1', '18_dctr_10', '18_ptnt_15', '2018-02-13', '2018-02-12 18:38:49.409773', 0, '03-04'),
-('18_apmt_10', '18_dctr_10', '18_ptnt_21', '2018-02-13', '2018-02-12 19:04:51.901960', 0, '01-02'),
-('18_apmt_2', '18_dctr_10', '18_ptnt_20', '2018-02-13', '2018-02-12 18:44:54.805281', 0, '03-04'),
-('18_apmt_3', '18_dctr_10', '18_ptnt_15', '2018-02-13', '2018-02-12 18:52:22.536726', 0, '10-11'),
-('18_apmt_4', '18_dctr_10', '18_ptnt_15', '2018-02-13', '2018-02-12 18:58:24.499617', 0, '08-09'),
-('18_apmt_5', '18_dctr_10', '18_ptnt_15', '2018-02-13', '2018-02-12 18:59:24.222273', 0, '08-09'),
-('18_apmt_6', '18_dctr_10', '18_ptnt_15', '2018-02-13', '2018-02-12 19:00:14.033796', 0, '08-09'),
-('18_apmt_7', '18_dctr_10', '18_ptnt_19', '2018-02-13', '2018-02-12 19:03:54.233015', 0, '09-10'),
-('18_apmt_8', '18_dctr_10', '18_ptnt_19', '2018-02-13', '2018-02-12 19:04:15.806257', 0, '10-11'),
-('18_apmt_9', '18_dctr_10', '18_ptnt_19', '2018-02-13', '2018-02-12 19:04:37.010359', 0, '11-12');
+('18_apmt_0', '18_dctr_0', '18_ptnt_3', '2018-02-25', '2018-02-25 17:00:33.253906', 0, '08-09'),
+('18_apmt_1', '18_dctr_0', '18_ptnt_5', '2018-02-25', '2018-02-25 17:01:07.097656', 0, '09-10'),
+('18_apmt_2', '18_dctr_0', '18_ptnt_6', '2018-02-25', '2018-02-25 17:01:50.566406', 0, '04-05'),
+('18_apmt_3', '18_dctr_3', '18_ptnt_5', '2018-02-25', '2018-02-25 17:25:41.986328', 0, '10-11'),
+('18_apmt_4', '18_dctr_3', '18_ptnt_5', '2018-02-25', '2018-02-25 17:25:55.751953', 0, '04-05'),
+('18_apmt_5', '18_dctr_2', '18_ptnt_6', '2018-02-26', '2018-02-25 19:46:51.394085', 0, '11-12');
 
 -- --------------------------------------------------------
 
@@ -111,17 +106,27 @@ CREATE TABLE `bed` (
 --
 
 INSERT INTO `bed` (`bed_id`, `ward_id`, `patient_id`, `doctor_id`, `staff_id`, `bed_status`, `bed_exist`) VALUES
+('18_bedd_0', '18_ward_0', '', '', '', 0, 0),
 ('18_bedd_1', '18_ward_0', '', '', '', 0, 0),
-('18_bedd_10', '', '', '', '', 0, 0),
-('18_bedd_11', '', '', '', '', 0, 0),
-('18_bedd_2', '18_ward_2', '', '', '', 0, 0),
-('18_bedd_3', '18_ward_3', '', '', '', 0, 0),
-('18_bedd_4', '', '', '', '', 0, 0),
-('18_bedd_5', '', '', '', '', 0, 0),
-('18_bedd_6', '', '', '', '', 0, 0),
-('18_bedd_7', '', '', '', '', 0, 0),
-('18_bedd_8', '', '', '', '', 0, 0),
-('18_bedd_9', '', '', '', '', 0, 0);
+('18_bedd_10', '18_ward_2', '', '', '', 0, 1),
+('18_bedd_11', '18_ward_2', '', '', '', 0, 1),
+('18_bedd_12', '18_ward_2', '', '', '', 0, 1),
+('18_bedd_13', '18_ward_3', '', '', '', 0, 1),
+('18_bedd_14', '18_ward_1', '', '', '', 0, 0),
+('18_bedd_15', '18_ward_1', '', '', '', 0, 0),
+('18_bedd_16', '18_ward_1', '', '', '', 0, 0),
+('18_bedd_17', '18_ward_0', '', '', '', 0, 0),
+('18_bedd_18', '18_ward_0', '', '', '', 0, 0),
+('18_bedd_19', '18_ward_4', '', '', '', 0, 0),
+('18_bedd_2', '18_ward_0', '', '', '', 0, 1),
+('18_bedd_20', '18_ward_5', '', '', '', 0, 0),
+('18_bedd_3', '18_ward_0', '', '', '', 0, 1),
+('18_bedd_4', '18_ward_0', '', '', '', 0, 0),
+('18_bedd_5', '18_ward_1', '', '', '', 0, 0),
+('18_bedd_6', '18_ward_3', '', '', '', 0, 1),
+('18_bedd_7', '18_ward_3', '', '', '', 0, 1),
+('18_bedd_8', '18_ward_3', '', '', '', 0, 1),
+('18_bedd_9', '18_ward_2', '', '', '', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -131,7 +136,7 @@ INSERT INTO `bed` (`bed_id`, `ward_id`, `patient_id`, `doctor_id`, `staff_id`, `
 
 CREATE TABLE `designation` (
   `designation_id` varchar(10) NOT NULL,
-  `designation_name` varchar(50) NOT NULL
+  `designation_name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -140,8 +145,7 @@ CREATE TABLE `designation` (
 
 INSERT INTO `designation` (`designation_id`, `designation_name`) VALUES
 ('18_dsgn_0', 'Orthopedic'),
-('18_dsgn_1', 'Gynecologist'),
-('18_dsgn_3', 'Surgeon');
+('18_dsgn_1', 'Gynecologist');
 
 -- --------------------------------------------------------
 
@@ -170,9 +174,10 @@ CREATE TABLE `doctor` (
 --
 
 INSERT INTO `doctor` (`doctor_id`, `doctor_name`, `doctor_dob`, `doctor_gender`, `doctor_phone`, `doctor_city`, `doctor_address`, `doctor_designation`, `doctor_email`, `doctor_password`, `doj`, `slot_id`, `doctor_exist`) VALUES
-('18_dctr_10', 'pannabhai mbbs', '1987-02-22', 'Male', '457849865', 'Bhuj', 'pramukhswami nagar', 'Orthopedic', 'panna_bhai@gmail.com', '123', '2018-02-15 06:09:35.534179', '18_slot_10', 0),
-('18_dctr_11', 'pannaben', '1988-02-15', 'Female', '1234564566', 'Bhuj', 'pramukhswami nagar', 'Gynecologist', 'panna_rudani@gmail.com', '123', '2018-02-15 06:20:29.569335', '18_slot_2', 0),
-('18_dctr_12', 'Dr.strange', '1987-02-23', 'Male', '457849865', 'Bhuj', 'dark dimension', 'Surgeon', 'dr.strange@gmail.com', 'strange@123', '2018-02-15 06:26:33.601562', '18_slot_3', 0);
+('18_dctr_0', 'pannabhai mbbs', '1979-02-22', 'Male', '457849865', 'Bhuj kachch', 'pramukhswami nagar', 'Orthopedic', 'panna_bhai@gmail.com', 'pannabhai@123', '2018-02-25 13:34:21.351562', '18_slot_0', 0),
+('18_dctr_1', 'pannaben', '1979-02-21', 'Female', '1234564566', 'Bhuj kachch', 'pramukhswami nagar', 'Gynecologi', 'panna_rudani@gmail.com', '123', '2018-02-25 16:04:53.246093', '18_slot_1', 1),
+('18_dctr_2', 'mrs.dipali', '1991-02-21', 'Female', '1234564566', 'Bhuj kachch', 'madhapar', 'Gynecologist', 'dipali@gmail.com', 'dipali@123', '2018-02-25 17:23:13.151367', '18_slot_2', 0),
+('18_dctr_3', 'damodar kheta', '1980-02-14', 'Male', '457849865', 'Bhuj kachch', 'pramukhswami nagar', 'Orthopedic', 'damodar@gmail.com', 'damodar@123', '2018-02-25 17:24:52.839843', '18_slot_3', 0);
 
 -- --------------------------------------------------------
 
@@ -181,7 +186,6 @@ INSERT INTO `doctor` (`doctor_id`, `doctor_name`, `doctor_dob`, `doctor_gender`,
 --
 
 CREATE TABLE `patient` (
-  `count` int(10) NOT NULL,
   `patient_id` varchar(15) NOT NULL,
   `patient_name` varchar(30) NOT NULL,
   `patient_gender` varchar(10) NOT NULL,
@@ -194,42 +198,24 @@ CREATE TABLE `patient` (
   `relative_name` varchar(30) NOT NULL,
   `relative_contact` varchar(15) NOT NULL,
   `added_by` varchar(15) NOT NULL,
-  `doj` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+  `doj` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  `patient_exist` tinyint(1) NOT NULL,
+  `patient_blood_group` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `patient`
 --
 
-INSERT INTO `patient` (`count`, `patient_id`, `patient_name`, `patient_gender`, `patient_email`, `patient_phone`, `patient_dob`, `patient_type`, `patient_address`, `patient_password`, `relative_name`, `relative_contact`, `added_by`, `doj`) VALUES
-(34, '18_ptnt_15', 'captain america', 'Male', 'patellaxit8@gmail.com', '9726412461', '1997-12-22', 0, 'Bhuj~Madhapar', 'anushka@123', 'bucky', '8989898989', '', '2018-01-20 14:24:51.630859'),
-(42, '18_ptnt_20', 'laxit patel', 'Male', 'patellaxit8@gmail.com', '9726412461', '1997-12-23', 0, 'Bhuj~vardhman nagar', '123456', 'manish', '8989898989', 'Admin', '2018-01-26 11:30:53.527343');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `receptionist`
---
-
-CREATE TABLE `receptionist` (
-  `receptionist_id` varchar(10) NOT NULL,
-  `receptionist_name` varchar(30) NOT NULL,
-  `receptionist_dob` date NOT NULL,
-  `receptionist_gender` varchar(10) NOT NULL,
-  `receptionist_phone` varchar(15) NOT NULL,
-  `receptionist_city` varchar(30) NOT NULL,
-  `receptionist_address` varchar(100) NOT NULL,
-  `receptionist_email` varchar(50) NOT NULL,
-  `receptionist_password` varchar(50) NOT NULL,
-  `doj` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `receptionist`
---
-
-INSERT INTO `receptionist` (`receptionist_id`, `receptionist_name`, `receptionist_dob`, `receptionist_gender`, `receptionist_phone`, `receptionist_city`, `receptionist_address`, `receptionist_email`, `receptionist_password`, `doj`) VALUES
-('18_rcst_4', 'beast boy', '1999-01-09', 'Male', '1121221222', 'Bhuj', 'jugnle', 'beasty@gmail.com', 'beasty@123', '2018-01-26 16:46:33.704101');
+INSERT INTO `patient` (`patient_id`, `patient_name`, `patient_gender`, `patient_email`, `patient_phone`, `patient_dob`, `patient_type`, `patient_address`, `patient_password`, `relative_name`, `relative_contact`, `added_by`, `doj`, `patient_exist`, `patient_blood_group`) VALUES
+('18_ptnt_0', 'laxit', 'Male', 'patellaxit8@gmail.com', '9726412461', '0000-00-00', 0, 'Bhuj~bhujodi', '8460892026', ' manish bhanushali', '8989898989', 'Admin', '2018-02-25 13:39:22.672851', 1, ''),
+('18_ptnt_1', 'parth', 'Male', 'parth@gmail.com', '8989898989', '0000-00-00', 0, 'Bhuj~vardhman nagar', 'parth@123', 'odin', '8989898989', 'Admin', '2018-02-25 13:43:34.110351', 1, ''),
+('18_ptnt_2', 'hiten', 'Male', 'hiten@gmail.com', '8989898989', '0000-00-00', 0, 'Bhuj~Madhapar', '8460892026', 'odin', '8989898989', 'Admin', '2018-02-25 13:46:56.877929', 1, ''),
+('18_ptnt_3', 'Anushka', 'Female', 'anushka@gmail.com', '9726412461', '2001-02-22', 0, 'Bhuj~kolkata', '8460892026', 'laxit', '9726412461', 'Admin', '2018-02-25 15:27:29.034179', 0, ''),
+('18_ptnt_4', 'taniya', 'Female', '', '9726412461', '1999-02-15', 0, 'Bhuj~howrah bridge,kolkata', '', 'laxit', '8989898989', 'Admin', '2018-02-25 15:43:23.785156', 0, 'S'),
+('18_ptnt_5', 'jyoti', 'Female', '', '8141458601', '1989-02-15', 0, 'Bhuj~ranchi', '', 'laxit', '8989898989', 'Admin', '2018-02-25 15:44:40.628906', 0, 'S'),
+('18_ptnt_6', 'mamta ben', 'Female', '', '8989898989', '1979-02-21', 0, 'Bhuj~Madhapar', '', 'laxit', '9726412461', 'Admin', '2018-02-25 15:49:23.678710', 0, 'O-'),
+('18_ptnt_7', 'laxit', 'Male', 'patellaxit8@gmail.com', '9726412461', '1997-02-10', 0, 'Bhuj~bhujodi', '8460892026', '', '', 'self', '2018-02-26 04:06:46.190429', 0, '');
 
 -- --------------------------------------------------------
 
@@ -247,17 +233,19 @@ CREATE TABLE `slot` (
   `s5` tinyint(1) NOT NULL,
   `s6` tinyint(1) NOT NULL,
   `s7` tinyint(1) NOT NULL,
-  `s8` tinyint(1) NOT NULL
+  `s8` tinyint(1) NOT NULL,
+  `slot_exist` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `slot`
 --
 
-INSERT INTO `slot` (`slot_id`, `doctor_id`, `s1`, `s2`, `s3`, `s4`, `s5`, `s6`, `s7`, `s8`) VALUES
-('18_slot_1', '18_dctr_10', 1, 1, 1, 1, 1, 0, 0, 0),
-('18_slot_2', '18_dctr_11', 0, 0, 0, 0, 0, 0, 0, 0),
-('18_slot_3', '18_dctr_12', 0, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO `slot` (`slot_id`, `doctor_id`, `s1`, `s2`, `s3`, `s4`, `s5`, `s6`, `s7`, `s8`, `slot_exist`) VALUES
+('18_slot_0', '18_dctr_0', 1, 1, 0, 0, 0, 0, 0, 1, 0),
+('18_slot_1', '18_dctr_1', 0, 0, 0, 0, 0, 0, 0, 0, 1),
+('18_slot_2', '18_dctr_2', 0, 0, 0, 1, 0, 0, 0, 0, 0),
+('18_slot_3', '18_dctr_3', 0, 0, 1, 0, 0, 0, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -277,15 +265,17 @@ CREATE TABLE `staff` (
   `staff_password` varchar(50) NOT NULL,
   `doj` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `staff_type` varchar(30) NOT NULL,
-  `staff_exist` tinyint(1) NOT NULL
+  `staff_exist` tinyint(1) NOT NULL,
+  `allocation` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `staff`
 --
 
-INSERT INTO `staff` (`staff_id`, `staff_name`, `staff_dob`, `staff_gender`, `staff_phone`, `staff_city`, `staff_address`, `staff_email`, `staff_password`, `doj`, `staff_type`, `staff_exist`) VALUES
-('18_staf_1', 'mr.staff', '1990-02-23', 'Male', '1236445455', 'ahemdabad', 'paldi', 'staff@gmail.com', 'staff@123', '2018-02-12 17:45:44', 'Nurse', 0);
+INSERT INTO `staff` (`staff_id`, `staff_name`, `staff_dob`, `staff_gender`, `staff_phone`, `staff_city`, `staff_address`, `staff_email`, `staff_password`, `doj`, `staff_type`, `staff_exist`, `allocation`) VALUES
+('18_staff_0', 'nina maclaren', '2018-02-23', 'Female', '1236445455', 'ahemdabad paldi', 'paldi chowk', 'staff@gmail.com', 'staff@123', '2018-02-25 19:33:41', 'Nurse', 0, ''),
+('18_staff_1', 'pramod misra', '1997-02-28', 'Male', '1236445455', 'bhuj', 'rto circle', 'pramod@gmail.com', 'pramod@123', '2018-02-25 19:44:53', 'Wardboy', 1, '');
 
 -- --------------------------------------------------------
 
@@ -306,9 +296,12 @@ CREATE TABLE `ward` (
 --
 
 INSERT INTO `ward` (`ward_id`, `ward_name`, `ward_type`, `ward_capacity`, `ward_exist`) VALUES
-('18_ward_0', '4_Maternity_0', 'Maternity', 0, 0),
-('18_ward_1', '3_General_1', 'General', 0, 0),
-('18_ward_2', '3_General_2', 'General', 0, 0);
+('18_ward_0', '1_General_0', 'General', 0, 0),
+('18_ward_1', '2_General_1', 'General', 0, 0),
+('18_ward_2', '3_General_2', 'General', 0, 1),
+('18_ward_3', '4_General_3', 'General', 0, 1),
+('18_ward_4', '1_ICU_4', 'ICU', 0, 0),
+('18_ward_5', '1_Maternity_5', 'Maternity', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -348,8 +341,7 @@ ALTER TABLE `doctor`
 -- Indexes for table `patient`
 --
 ALTER TABLE `patient`
-  ADD PRIMARY KEY (`patient_id`),
-  ADD UNIQUE KEY `count` (`count`);
+  ADD PRIMARY KEY (`patient_id`);
 
 --
 -- Indexes for table `slot`
@@ -368,16 +360,6 @@ ALTER TABLE `staff`
 --
 ALTER TABLE `ward`
   ADD PRIMARY KEY (`ward_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `patient`
---
-ALTER TABLE `patient`
-  MODIFY `count` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

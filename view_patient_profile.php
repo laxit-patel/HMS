@@ -81,7 +81,7 @@ if($_POST)
     <!--  Light Bootstrap Table core CSS    -->
     <link href="assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
 
-    <!--fresh table-->
+    <!--fresh table--->
 
 
     <!--     Fonts and icons     -->
