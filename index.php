@@ -1,3 +1,20 @@
+<?php
+include("assets/modules/theme.php");
+
+if(isset($_COOKIE["alert_true"]))
+{
+    $alert_success = $_COOKIE["alert_true"];
+    setcookie("alert_true","",time()-10);
+}
+if(isset($_COOKIE["alert_false"]))
+{
+    $alert_danger = $_COOKIE["alert_false"];
+    setcookie("alert_false","",time()-10);
+}
+
+
+
+?>
 	<!doctype html>
 <html lang="en">
 <head>
@@ -26,7 +43,7 @@
 
 <body class="index-page">
 <!-- Navbar -->
-<nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
+<nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll <?php theme("class"); ?>" >
 	<div class="container">
         <div class="navbar-header">
 	    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-index">
@@ -38,7 +55,7 @@
 	    	
 	        	<div class="logo-container">
 	                <div class="logo">
-	                    <img src="assets/img/HMS.png" alt="Creative Tim Logo" rel="tooltip" title="<b>Hospital </b> for maternity, orthopedic & gynocology" data-placement="bottom" data-html="true">
+                        <a href="index.php"><img src="assets/img/HMS.png" alt="HMS Logo" rel="tooltip" title="<b>Hospital </b> for maternity, orthopedic & gynocology" data-placement="bottom" data-html="true"></a>
 	                </div>
 	                <div class="brand">
 	                   Rudani Hospital
@@ -76,11 +93,58 @@
 <!-- End Navbar -->
 
 <div class="wrapper">
-	<div class="header header-filter" style="background-image: url('assets/img/HMS_BG.jpg');">
+	<div class="header <?php theme("class_filter"); ?> " style="background-image:url('assets/img/HMS_BG.jpg');">
 		<div class="container">
+
 			<div class="row">
+
 				<div class="col-md-8 col-md-offset-2">
+
 					<div class="brand">
+                        <div class="container-fluid" id="alert_box" >
+                                        <?php
+
+                                        if(isset($alert_success))
+                                        {
+                                            echo "<div class='container-fluid'><div class='alert alert-success' style='color:black'>
+               <div class='container-fluid'>
+           <div class='alert-icon'>
+            <i class='material-icons'>done_all</i>
+          </div>
+          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
+          </button>
+                   <h4>$alert_success</h4> 
+              </div>
+          </div></div>";
+                                        }
+                                        else
+                                        {
+                                            echo "";
+                                        }
+
+                                        if(isset($alert_danger))
+                                        {
+                                            echo "<div class='alert alert-danger' >
+               <div class='container-fluid'>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
+          </button>
+           <div class='alert-icon pull-left'>
+            <i class='material-icons'>error_outline</i>
+          </div>
+          <h4> $alert_danger </h4>
+         
+                   
+              </div>
+          </div>";
+                                        }
+                                        else
+                                        {
+                                            echo "";
+                                        }
+                                        ?>
+                                    </div>
 						<h1>Welcome</h1>
 						<h3>To A Multipurpose Hospital</h3>
 					</div>
@@ -103,11 +167,12 @@
 	        <div class="container">
 	            <div class="row text-center">
 	                <div class="col-md-8 col-md-offset-2">
+
 	                    <h2>Want An Appointment?</h2>
 	                    <h4>Cause if you do, it is easy to book appointment on-the-go. just signup & choose from doctors for an appointment. its that easy!!!</h4>
 	                </div>
 	                <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
-	                    <a href="patient_signup.php" class="btn btn-primary btn-lg">
+	                    <a href="patient_signup.php" class="btn btn-primary btn-lg " <?php  theme('color'); ?> >
 							<i class="material-icons">assignment</i> Book Appointment
 						</a>
 	                </div>
@@ -123,11 +188,32 @@
 	    </div>
 
 	</div>
-    <footer class="footer">
+
+
+     <footer class="footer">
 	    <div class="container">
-	       
+	        <nav class="pull-left">
+	            <ul>
+					<li data-toggle="modal" data-target="#myModal">
+						<a >
+							Change Theme
+						</a>
+					</li>
+					<li>
+						<a href="">
+						   About Us
+						</a>
+					</li>
+					<li>
+						<a href="">
+						   Contact Us
+						</a>
+					</li>
+
+	            </ul>
+	        </nav>
 	        <div class="copyright pull-right">
-	            &copy; 2017, made with <i class="material-icons">favorite</i> by HPL.
+	            &copy; 2018, made with <i class="material-icons">favorite</i> by HPL.
 	        </div>
 	    </div>
 	</footer>
@@ -169,6 +255,34 @@
 		});
 	</script>
 
+<!-- Theme Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content text-center">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Confirm</h4>
+            </div>
+            <div class="modal-body">
+                <p>Change Theme To </p>
+                  <div class="row text-center">
+                    <div class="col-md-6 ">
+                        <a href="set_theme.php?theme=Casual&loc=<?php echo $_SERVER['SCRIPT_NAME']; ?>" ><button type="button" class="btn btn-fill btn-block" >Casual</button></a>
+                    </div>
+                    <div class="col-md-6 ">
+                        <a href="set_theme.php?theme=Professional&loc=<?php echo $_SERVER['SCRIPT_NAME']; ?>"><button type="button" class="btn btn-fill btn-block" >Professional</button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer ">
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--  Theme Modal -->
 	
 
 </html>

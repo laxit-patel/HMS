@@ -867,8 +867,28 @@ function book_slot($slot,$doctor)
 
 function menu($user,$active,$sub_active)
 {
-   echo "<div class='sidebar' data-color='purple' data-image='assets/img/waterfall.gif' >
-        <div class='sidebar-wrapper' >";
+
+    //creating theme variable
+
+     if ($_COOKIE["theme"] == 'Professional')
+         {
+             $theme = "sidebar-professional";
+         }
+        elseif($_COOKIE["theme"] == 'Casual')
+        {
+           $theme = "sidebar-casual";
+        }
+         else
+        {
+            $theme = "";
+        }
+
+
+
+    //theme variable ends
+
+   echo "<link href='assets/css/demo.css' rel='stylesheet'><div class='sidebar '  >
+        <div class='sidebar-wrapper  $theme' >";
 
     echo "<div class='logo'>
                 <a href='#' class='simple-text'>";

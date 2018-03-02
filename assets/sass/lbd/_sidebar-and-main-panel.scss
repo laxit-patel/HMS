@@ -208,6 +208,12 @@
     &[data-color="blue"]:after{
         @include icon-gradient($new-dark-blue, $blue-color-bottom);
     }
+    &[data-color="professional"]:after{
+        @include icon-gradient($new-professional, $new-professional_gradient);
+    }
+    &[data-color="casual"]:after{
+        @include icon-gradient($new-casual, $new-casual_gradient);
+    }
     &[data-color="azure"]:after{
         @include icon-gradient($new-blue, $azure-color-bottom);
     }

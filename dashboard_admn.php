@@ -1,5 +1,7 @@
 <?php
-include("assets/modules/global_module.php"); 
+include("assets/modules/global_module.php");
+include("assets/modules/theme.php");
+
 check_token("admin");
 
 $name = $_SESSION["admin_token"];
@@ -85,6 +87,7 @@ $data = mysqli_fetch_assoc($result);
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link href="assets/css/demo.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -111,13 +114,18 @@ $data = mysqli_fetch_assoc($result);
 
                     <ul class="nav navbar-nav navbar-right">
 
-                       
+                       <li data-toggle="modal" data-target="#myModal">
+                            <a href="#  ">
+                                <p>Theme</p>
+                            </a>
+                        </li>
                         <li>
                             <a href="logout.php?for=<?php echo $data["admin_id"] ?>">
                                 <p>Log out</p>
                             </a>
                         </li>
-						<li class="separator hidden-lg"></li>
+
+
                     </ul>
                 </div>
             </div>
@@ -253,5 +261,34 @@ $data = mysqli_fetch_assoc($result);
 
     	});
 	</script>
+
+<!-- Theme Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content text-center">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Confirm</h4>
+            </div>
+            <div class="modal-body">
+                <p>Change Theme To </p>
+                  <div class="row text-center">
+                    <div class="col-md-6 ">
+                        <a href="set_theme.php?theme=Casual&loc=<?php echo $_SERVER['SCRIPT_NAME']; ?>" ><button type="button" class="btn btn-fill btn-block" style="background-color:#9C27B0">Casual</button></a>
+                    </div>
+                    <div class="col-md-6 ">
+                        <a href="set_theme.php?theme=Professional&loc=<?php echo $_SERVER['SCRIPT_NAME']; ?>"><button type="button" class="btn btn-fill  btn-block" style="background-color: #319997">Professional</button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer ">
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--  Theme Modal -->
 
 </html>

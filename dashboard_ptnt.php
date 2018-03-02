@@ -1,5 +1,6 @@
 <?php
-include("assets/modules/global_module.php"); 
+include("assets/modules/global_module.php");
+include("assets/modules/theme.php");
 check_token("patient");
 $p_id = $_SESSION["login_token"];	
 $data = mysqli_fetch_assoc(fetch_data("select * from patient where patient_id = '$p_id'","result"));
@@ -34,12 +35,13 @@ $data = mysqli_fetch_assoc(fetch_data("select * from patient where patient_id = 
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link href="assets/css/demo.css" rel="stylesheet" />
 
 </head>
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="purple" data-image="assets/img/waterfall.gif" style="background-position:center;background-size:cover;background-position:fixed">
+    <div class="sidebar" >
 
     <!--
 
@@ -48,7 +50,7 @@ $data = mysqli_fetch_assoc(fetch_data("select * from patient where patient_id = 
 
     -->
 
-    	<div class="sidebar-wrapper">
+    	<div class="sidebar-wrapper <?php theme("class_sidebar"); ?>">
             <div class="logo">
                 <a href="#" class="simple-text">
                     <?php echo $data['patient_name'];?>

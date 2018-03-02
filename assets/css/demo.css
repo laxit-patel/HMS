@@ -409,3 +409,40 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.color_professional
+{
+    background-color:#319997;
+}
+.color_casual
+{
+    background-color:#9C27B0;
+}
+.btn-professional
+{
+     background-color:#319997;
+}
+.btn-casual
+{
+    background-color:#9C27B0;
+}
+.filter-professional
+{
+    background-color:#319997;
+}
+.filter-casual
+{
+
+}
+.sidebar-professional
+{
+    background-color: #319997;
+}
+.sidebar-casual
+{
+    background-color:#9C55B0;
+}
+.tab_professional
+{
+     background-color: #319997;
+}

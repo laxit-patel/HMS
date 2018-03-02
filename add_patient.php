@@ -185,7 +185,7 @@ if($_POST)
                                 <p>Log out</p>
                             </a>
                         </li>
-                        <li class="separator hidden-lg"></li>
+
                     </ul>
                 </div>
             </div>
@@ -256,9 +256,9 @@ if($_POST)
                                     </div>
 
                                 </div>
-                                <div class="wizard-navigation">
+                                <div class="wizard-navigation ">
                                     <ul>
-                                        <li><a href="#about" data-toggle="tab">Details</a></li>
+                                        <li ><a href="#about"  data-toggle="tab">Details</a></li>
                                         <li><a href="#account" data-toggle="tab">Login</a></li>
 
                                     </ul>

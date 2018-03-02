@@ -1,5 +1,5 @@
 <?php
-
+include("assets/modules/theme.php");
 if(isset($_GET["id"]) && isset($_GET["p_email"]) )
 {
 	$p_id = $_GET["id"];
@@ -54,7 +54,7 @@ if($_POST)
 
 <body class="index-page">
 <!-- Navbar -->
-<nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
+<nav class="navbar navbar-transparent <?php theme("class"); ?> navbar-fixed-top navbar-color-on-scroll ">
 	<div class="container">
         <div class="navbar-header">
 	    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-index">
@@ -104,7 +104,7 @@ if($_POST)
 <!-- End Navbar -->
 
 <div class="wrapper">
-	<div class="header header-filter" style="background-image: url('assets/img/HMS_BG.jpg');">
+	<div class="header <?php theme("class_filter"); ?> " style="background-image: url('assets/img/HMS_BG.jpg');">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
@@ -120,13 +120,13 @@ if($_POST)
 	</div>
 
 	<div class="main main-raised "  >                              
-	     <div class="section section-full-screen section-signup" style="background-image: url('assets/img/city.jpg'); background-size: cover; background-position:center;background-attachment:fixed; ">
+	     <div class="section section-full-screen section-signup" style="background: linear-gradient(-100deg,rgba(49, 153, 151, 0.4),rgba(49, 153, 151, 0.2));">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4 col-md-offset-4">
-						<div class="card card-signup">
+						<div class="card card-signup" >
 							<form name="otp-form" class="form" method="POST" >
-								<div class="header header-primary text-center">
+								<div class="header <?php theme("class_header"); ?> text-center">
 									<h4><b>Check</b> <br><?php echo $p_email; ?></h4>
 									
 									<?php
@@ -180,7 +180,7 @@ if($_POST)
 								</div>
 								<div class="footer text-center">
 									
-										<input type="submit" value="Verify" class="btn btn-primary btn-round" />
+										<input type="submit" value="Verify" class="btn <?php theme("class_btn"); ?> btn-round" />
 										<br>
 									
 								</div>

@@ -1,6 +1,6 @@
 <?php 
 include("assets/modules/global_module.php"); 
-
+include("assets/modules/theme.php");
 
 if($_POST)
 {
@@ -110,6 +110,7 @@ if($_POST)
   <!-- CSS Files -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/material-kit.css" rel="stylesheet"/>
+    <link href="assets/css/demo.css" rel="stylesheet"/>
 
 </head>
 
@@ -119,7 +120,7 @@ if($_POST)
 
      
           
-        <div class="section  section-signup" style="background-image: url('assets/img/city.jpg'); background-size: cover;background-attachment: fixed;
+        <div class="section <?php theme("class_filter"); ?> section-signup" style="background-image: url('assets/img/HMS_BG.jpg'); background-size: cover;background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat; min-height: 700px;">
 
@@ -131,9 +132,9 @@ if($_POST)
 
         <div class="row">
           <div class="col-md-6 col-md-offset-3">
-            <div class="card card-signup" >
+            <div class="card card-signup " >
               <form class="form" method=POST>
-                <div class="header header-primary text-center" >
+                <div class=" header  text-center <?php theme("class_header"); ?>" >
                   <h4>Signup</h4>
 <?php
                  if(isset($alert_danger))
@@ -188,7 +189,7 @@ if($_POST)
                     </span>
                     <div class="form-group label-floating">
                 
-                    <input type="text" name="p_dob" value="<?php if(isset($p_dob)){ echo $p_dob; }?>" class="datepicker form-control" placeholder="Enter Birthdate" />
+                    <input type="date" name="p_dob" value="<?php if(isset($p_dob)){ echo $p_dob; }?>" class="datepicker form-control" placeholder="Enter Birthdate" />
                   </div>
                   </div> 
 
@@ -273,7 +274,7 @@ if($_POST)
                 </div>
                 <div class="footer text-center">
                   
-                    <input type="submit" name="signup" value="Signup" class="btn btn-primary btn-round" />
+                    <input type="submit" name="signup" value="Signup" class="btn <?php theme("class_btn"); ?> btn-round " />
                     <br><br>
                 </div>
               </form>
