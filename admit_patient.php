@@ -41,7 +41,8 @@ $result_wd = fetch_data("select * from ward where ward_exist = 0","result");
 
     <!-- Animation library for notifications   -->
     <link href="assets/css/animate.min.css" rel="stylesheet"/>
-
+    <!--Demo css-->
+    <link href="assets/css/demo.css" rel="stylesheet"/>
     <!--  Light Bootstrap Table core CSS    -->
     <link href="assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
     <!--fresh table-->
@@ -180,7 +181,7 @@ $result_wd = fetch_data("select * from ward where ward_exist = 0","result");
                                                         {
 
                                                             while($row = mysqli_fetch_array($result_p)) {
-                                                                echo "<option>".$row["patient_id"]."</option>";
+                                                                 echo "<option >".$row["patient_id"]."->".$row["patient_name"]."</option>";
                                                             }
                                                         } ?>
 
@@ -195,15 +196,16 @@ $result_wd = fetch_data("select * from ward where ward_exist = 0","result");
                                         <div class="container-fluid">
                                             <h4 class="info-text"> Select Nurse </h4>
 
-											<div class="form-group label-floating">
-											<span class="input-group-addon">
-														  <i class="material-icons">home</i>
+                                            <div class="input-group">
+														<span class="input-group-addon">
+														  <i class="material-icons">person</i>
 														</span>
+                                                <div class="form-group label-floating">
                                                     <label class="control-label">Nurse</label>
-                                                    <select name="ap_patient" class="form-control" >
+                                                    <select name="ap_patient" class="form-control">
 
                                                         <option disabled="" selected=""></option>
-                                                        <?php if($result_wd)
+                                                         <?php if($result_wd)
                                                         {
 
                                                             while($row = mysqli_fetch_array($result_st)) {
@@ -213,6 +215,12 @@ $result_wd = fetch_data("select * from ward where ward_exist = 0","result");
 
                                                     </select>
                                                 </div>
+                                            </div>
+
+
+
+
+
 										  
                                         </div>
                                     </div>
@@ -268,7 +276,7 @@ $result_wd = fetch_data("select * from ward where ward_exist = 0","result");
             </div><!-- end row -->
         </div> <!--  big container -->
 
-
+        <div id="ward_button">click</div>
 
 
     </div>
@@ -300,7 +308,8 @@ $result_wd = fetch_data("select * from ward where ward_exist = 0","result");
 <script src="assets/js/load_final_slot.js"></script>
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
-
+<!--Ward Button-->
+<script src="assets/js/ward_button.js">
 <!-- Drop down javascript -->
 <script src="assets/js/dropdown.js"></script>
 

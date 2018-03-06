@@ -1519,6 +1519,22 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
   background-size: 250% 250%;
 }
 .fresh-table.full-color-purple {
+   background: #9C27B0;
+   background: -moz-radial-gradient(center, ellipse cover, #533ce1 0%, #9C27B0 100%);
+   /* FF3.6+ */
+   background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #533ce1), color-stop(100%, #9C27B0));
+   /* Chrome,Safari4+ */
+   background: -webkit-radial-gradient(center, ellipse cover, #533ce1 0%, #9C27B0 100%);
+   /* Chrome10+,Safari5.1+ */
+   background: -o-radial-gradient(center, ellipse cover, #533ce1 0%, #9C27B0 100%);
+   /* Opera 12+ */
+   background: -ms-radial-gradient(center, ellipse cover, #533ce1 0%, #9C27B0 100%);
+   /* IE10+ */
+   background: radial-gradient(ellipse at center, #533ce1 0%, #9C27B0 100%);
+   /* W3C */
+   background-size: 250% 250%;
+ }
+.fresh-table.full-color-casual {
   background: #9C27B0;
   background: -moz-radial-gradient(center, ellipse cover, #533ce1 0%, #9C27B0 100%);
   /* FF3.6+ */
@@ -1531,6 +1547,22 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
   background: -ms-radial-gradient(center, ellipse cover, #533ce1 0%, #9C27B0 100%);
   /* IE10+ */
   background: radial-gradient(ellipse at center, #533ce1 0%, #9C27B0 100%);
+  /* W3C */
+  background-size: 250% 250%;
+}
+.fresh-table.full-color-professional {
+  background: #319997;
+  background: -moz-radial-gradient(center, ellipse cover, #319970 0%, #319997 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #319970), color-stop(100%, #319997));
+  /* Chrome,Safari4+ */
+  background: -webkit-radial-gradient(center, ellipse cover, #319970 0%, #319997 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-radial-gradient(center, ellipse cover, #319970 0%, #319997 100%);
+  /* Opera 12+ */
+  background: -ms-radial-gradient(center, ellipse cover, #319970 0%, #319997 100%);
+  /* IE10+ */
+  background: radial-gradient(ellipse at center, #319970 0%, #319997 100%);
   /* W3C */
   background-size: 250% 250%;
 }

@@ -15,14 +15,15 @@ $result = fetch_data("select * from admin where admin_id= '$id'","result");
 $data = mysqli_fetch_assoc($result);
 include("assets/modules/db_config.php");
 
-$result_p = fetch_data("select patient_id from patient where patient_exist = 0","result");
+$result_p = fetch_data("select patient_id,patient_name from patient where patient_exist = 0","result");
 $result_d = fetch_data("select designation_name from designation","result");
 $result_dr = fetch_data("select doctor_name from doctor where doctor_exist = 0","result");
 
 if($_POST)
 {
 
-    $patient = $_POST["ap_patient"];
+    $p_data = explode("->",$_POST["ap_patient"]);
+    $patient = $p_data[0];
     $doctor = $_POST["ap_doctor"];
     $time = $_POST["ap_time"];
 
@@ -40,9 +41,9 @@ if($_POST)
     }
     else
     {
+
 		
-		
-		
+
         $id = key_engine("appointment");
         $full_time = explode(",",$time);
         $date = $full_time[0];
@@ -134,7 +135,7 @@ if($_POST)
                                 <p>Log out</p>
                             </a>
                         </li>
-                        <li class="separator hidden-lg"></li>
+
                     </ul>
                 </div>
             </div>
@@ -228,7 +229,7 @@ if($_POST)
                                                         {
 
                                                             while($row = mysqli_fetch_array($result_p)) {
-                                                                echo "<option>".$row["patient_id"]."</option>";
+                                                                echo "<option >".$row["patient_id"]."->".$row["patient_name"]."</option>";
                                                             }
                                                         } ?>
 

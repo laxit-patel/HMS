@@ -13,6 +13,20 @@ elseif(isset($_SESSION["admin_token"]))
 {
 	$id = $_SESSION["admin_token"];
 }
+
+
+if(isset($_COOKIE["alert_true"]))
+{
+    $alert_success = $_COOKIE["alert_true"];
+    setcookie("alert_true","",time()-10);
+}
+if(isset($_COOKIE["alert_false"]))
+{
+    $alert_danger = $_COOKIE["alert_false"];
+    setcookie("alert_false","",time()-10);
+}
+
+
 $result = fetch_data("select * from admin where admin_id= '$id'","result");
 $data = mysqli_fetch_assoc($result);
 
@@ -78,6 +92,8 @@ $data = mysqli_fetch_assoc($result);
     <!-- Animation library for notifications   -->
     <link href="assets/css/animate.min.css" rel="stylesheet"/>
 
+    <link href="assets/css/demo.css" rel="stylesheet"/>
+
     <!--  Light Bootstrap Table core CSS    -->
     <link href="assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
 
@@ -131,7 +147,52 @@ $data = mysqli_fetch_assoc($result);
             </div>
         </nav>
 
-        <div id="chart_div"></div>
+        <div class="container-fluid" id="alert_box" >
+                                        <?php
+
+                                        if(isset($alert_success))
+                                        {
+                                            echo "<div class='container-fluid'><div class='alert alert-success' style='color:black'>
+               <div class='container-fluid'>
+           <div class='alert-icon'>
+            <i class='material-icons'>done_all</i>
+          </div>
+          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
+          </button>
+                   <h4>$alert_success</h4> 
+              </div>
+          </div></div>";
+                                        }
+                                        else
+                                        {
+                                            echo "";
+                                        }
+
+                                        if(isset($alert_danger))
+                                        {
+                                            echo "<div class='alert alert-danger' >
+               <div class='container-fluid'>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
+          </button>
+           <div class='alert-icon pull-left'>
+            <i class='material-icons'>error_outline</i>
+          </div>
+          <h4> $alert_danger </h4>
+         
+                   
+              </div>
+          </div>";
+                                        }
+                                        else
+                                        {
+                                            echo "";
+                                        }
+                                        ?>
+                                    </div>
+
+
 
 
         <div class="container-fluid ">
@@ -145,7 +206,7 @@ $data = mysqli_fetch_assoc($result);
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
-                            <img src="assets/img/avatars/027-boy-6.png"   alt="..." height="150" width="150">
+                            <div id="chart_div"></div>
                                 </div>
                                 <div class="col-md-8">
                                     <h2>2487</h2>
@@ -230,6 +291,8 @@ $data = mysqli_fetch_assoc($result);
     <script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
 	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 
+<!-- Autohide Alet -->
+<script src="assets/js/alert_autohide.js"></script>
 	<!--  Charts Plugin -->
 	<script src="assets/js/chartist.min.js"></script>
 

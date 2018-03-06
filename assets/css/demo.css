@@ -446,3 +446,8 @@
 {
      background-color: #319997;
 }
+
+#alert_body
+{
+    border-radius: 50px;
+}

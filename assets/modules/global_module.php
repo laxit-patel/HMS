@@ -513,15 +513,23 @@ function view_table($for)
     }
     elseif ($for == "appointment")
     {
-        $query = "select * from appointment order by substring(appointment_id,9) desc";
+        $query = "select * from appointment order by cast(substring(appointment_id,9) as int) desc";
         $result = mysqli_query($conn,$query);
         while($row = mysqli_fetch_array($result))
         {
             $id = $row[0];
 			$d_id = $row[1];
 			$p_id = $row[2];
-			
-			
+			$status = $row[5];
+			if($status == 1)
+            {
+                $icon = "<i class='material-icons'>spellcheck</i>";
+            }
+            else
+            {
+                $icon = "<i class='material-icons'>text_format</i>";
+            }
+
 			$d_data = mysqli_fetch_assoc(mysqli_query($conn,"select doctor_name from doctor where doctor_id = '$d_id' "));
 			
 			$p_data = mysqli_fetch_assoc(mysqli_query($conn,"select patient_name from patient where patient_id = '$p_id' "));
@@ -531,7 +539,7 @@ function view_table($for)
                 <td>". $d_data['doctor_name'] ."</td>
                 <td>". $p_data['patient_name'] ."</td>
                 <td>$row[6]</td>
-                <td > <a href='delete_designation.php?id=$id'> <i class='material-icons'>delete_forever</i></a></td>
+                <td > <a href='approve_appointment.php?app_id=$id'>  $icon </a></td>
                
                 </tr>";
 
@@ -982,6 +990,19 @@ function menu($user,$active,$sub_active)
                                 </a >
                             </li >";
 
+                            echo "<li ";
+                            if ($sub_active == "today_appointment") {
+                                echo "class=active";
+                            }
+                            echo ">
+                                <a href = 'today_appointment.php' >
+                                    <i class='pe-7s-date' ></i >
+                                    <p > Today's Appointment </p >
+                                </a >
+                            </li >";
+
+
+
         echo "</ul>";
     }
 
@@ -1273,6 +1294,7 @@ function delete_ward($ward_id)
 		return false;
 	}
 }
+
 
 
 ?>

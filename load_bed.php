@@ -1,5 +1,6 @@
 <?php 
 include("assets/modules/global_module.php");
+include("assets/modules/theme.php");
 check_token("admin");
 
 if(isset($_POST["ward"]))
@@ -13,7 +14,7 @@ if($result && mysqli_num_rows($result) != 0)
 {	echo "<div class='container-fluid text-center'>";
 	while( $data = mysqli_fetch_array($result))
     {
-		echo "<div class='btn btn-primary' style='background-color:#9C27B0' >".$data[0]."</div>";	
+		echo "<div class='btn btn-primary id='ward_button'>".$data[0]."</div>";
     }
 	echo "</div>";
 }
