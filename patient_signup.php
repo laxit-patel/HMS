@@ -111,14 +111,73 @@ if($_POST)
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/material-kit.css" rel="stylesheet"/>
     <link href="assets/css/demo.css" rel="stylesheet"/>
+    <link href="assets/css/snackbar.css"    rel="stylesheet"/>
 
 </head>
+<style>
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+}
 
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+</style>
 <body class="index-page">
 <!-- Navbar -->
 
 
-     
+<h2>Snackbar / Toast</h2>
+<p>Snackbars are often used as a tooltips/popups to show a message at the bottom of the screen.</p>
+<p>Click on the button to show the snackbar. It will disappear after 3 seconds.</p>
+
+<button onclick="myFunction()">Show Snackbar</button>
+
+<div id="snackbar">Some text some message..</div>
+
+<script type="javascript">
+function myFunction() {
+    var x = document.getElementById("snackbar")
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+</script>
+
+
           
         <div class="section <?php theme("class_filter"); ?> section-signup" style="background-image: url('assets/img/HMS_BG.jpg'); background-size: cover;background-attachment: fixed;
     background-position: center;
@@ -179,7 +238,7 @@ if($_POST)
                     </span>
                     <div class="form-group label-floating">
                 <label class="control-label">Patient's Name</label>
-                    <input type="text" name="p_name" value="<?php if(isset($p_name)){ echo $p_name; }?>" class="form-control">
+                    <input type="text" name="p_name" value="<?php if(isset($p_name)){ echo $p_name; }?>" class="form-control" id="validation_name">
                   </div>
                   </div>   
 
@@ -301,7 +360,8 @@ if($_POST)
   <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
   <script src="assets/js/material-kit.js" type="text/javascript"></script>
 
-
+<!--Validation-->
+<script src="assets/js/validation.js" type="text/javascript"></script>
   <script type="text/javascript">
 
 
