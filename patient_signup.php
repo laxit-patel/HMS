@@ -112,6 +112,7 @@ if($_POST)
     <link href="assets/css/material-kit.css" rel="stylesheet"/>
     <link href="assets/css/demo.css" rel="stylesheet"/>
     <link href="assets/css/snackbar.css"    rel="stylesheet"/>
+    <link href="assets/css/jquery.toast.css" rel="stylesheet">
 
 </head>
 <style>
@@ -160,22 +161,6 @@ if($_POST)
 <body class="index-page">
 <!-- Navbar -->
 
-
-<h2>Snackbar / Toast</h2>
-<p>Snackbars are often used as a tooltips/popups to show a message at the bottom of the screen.</p>
-<p>Click on the button to show the snackbar. It will disappear after 3 seconds.</p>
-
-<button onclick="myFunction()">Show Snackbar</button>
-
-<div id="snackbar">Some text some message..</div>
-
-<script type="javascript">
-function myFunction() {
-    var x = document.getElementById("snackbar")
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-}
-</script>
 
 
           
@@ -248,7 +233,7 @@ function myFunction() {
                     </span>
                     <div class="form-group label-floating">
                 
-                    <input type="date" name="p_dob" value="<?php if(isset($p_dob)){ echo $p_dob; }?>" class="datepicker form-control" placeholder="Enter Birthdate" />
+                    <input type="date" name="p_dob" value="<?php if(isset($p_dob)){ echo $p_dob; }?>" class="datepicker form-control" placeholder="Enter Birthdate" id="validation_date"/>
                   </div>
                   </div> 
 
@@ -272,7 +257,7 @@ function myFunction() {
                     </span>
                     <div class="form-group label-floating">
                 <label class="control-label">Patient's Phone</label>
-                    <input type="text" name="p_phone" value="<?php if(isset($p_phone)){ echo $p_phone; }?>" class="form-control">
+                    <input type="text" name="p_phone" value="<?php if(isset($p_phone)){ echo $p_phone; }?>" class="form-control" id="validation_phone">
                   </div>
                   </div>
                   
@@ -362,6 +347,7 @@ function myFunction() {
 
 <!--Validation-->
 <script src="assets/js/validation.js" type="text/javascript"></script>
+<script src="assets/js/jquery.toast.js" type="text/javascript"></script>
   <script type="text/javascript">
 
 

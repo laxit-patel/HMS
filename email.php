@@ -27,7 +27,7 @@
 
 alert("yo");
 
-
+    
   $.toast('Toast message to be shown').;
 
 </script>
