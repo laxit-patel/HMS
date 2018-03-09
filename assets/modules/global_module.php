@@ -286,6 +286,42 @@ function key_engine($for)
             return $key;
         }
     }
+     elseif($for == "admission")
+    {
+        $key = $for."_id";
+
+        $sql_test = "select $key from $for order by cast(substring($key,9) as int ) desc limit 1";
+        $result_test = mysqli_query($conn,$sql_test);
+
+        if( mysqli_num_rows($result_test) != 0 )
+        {
+            $row=mysqli_fetch_row($result_test); //$row gets the key_val array
+
+            $data = explode("_",$row[0]); // key_val explodes and saved in $data
+
+            $year = $data[0];
+            $initial = $data[1];
+            $number = $data[2];
+
+            $year_new = date("y");
+
+            $number_new = $number+1;
+
+            $key = $year_new."_".$initial."_".$number_new;
+
+            return $key;
+        }
+        else
+        {
+            $year_new = date("y");
+            $initial = $for;
+            $number_new = 0;
+			$initial = "adms";
+            $key = $year_new."_".$initial."_".$number_new;
+
+            return $key;
+        }
+    }
     else
     {
         return "Invalid Arguments";
@@ -1293,6 +1329,20 @@ function delete_ward($ward_id)
 	{
 		return false;
 	}
+}
+
+function admission($query)
+{
+    include("assets/modules/db_config.php"); // include database for $conn variable
+    $result = mysqli_query($conn,$query);
+    if($result)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 

@@ -11,16 +11,17 @@ if(isset($_POST["ward"]))
 $result = fetch_data("select * from bed where ward_id = '$ward_id' ","result");
 
 if($result && mysqli_num_rows($result) != 0)
-{	echo "<div class='container-fluid text-center'>";
+{
+    echo "<option  selected>--Choose Bed--</option>";
 	while( $data = mysqli_fetch_array($result))
     {
-		echo "<div class='btn btn-primary id='ward_button'>".$data[0]."</div>";
+		echo "<option>$data[0]</option>";
     }
-	echo "</div>";
+
 }
 else
 {
-	echo "<p >No Beds Availbale</p>";
+	echo "<option>No Beds Availbale</option>";
 }
 
 

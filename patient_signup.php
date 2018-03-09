@@ -233,7 +233,7 @@ if($_POST)
                     </span>
                     <div class="form-group label-floating">
                 
-                    <input type="date" name="p_dob" value="<?php if(isset($p_dob)){ echo $p_dob; }?>" class="datepicker form-control" placeholder="Enter Birthdate" id="validation_date"/>
+                    <input type="text" name="p_dob" value="<?php if(isset($p_dob)){ echo $p_dob; }?>" class="datepicker form-control" placeholder="Enter Birthdate" id="validation_date"/>
                   </div>
                   </div> 
 
@@ -281,7 +281,7 @@ if($_POST)
                     </span>
                     <div class="form-group label-floating">
                 <label class="control-label">Adress</label>
-                    <input type="text" name="p_address" value="<?php if(isset($p_address)){ echo $p_address; }?>" class="form-control">
+                    <input type="text" name="p_address" value="<?php if(isset($p_address)){ echo $p_address; }?>" class="form-control" id="validation_address">
                   </div>
                   </div>
 
@@ -301,7 +301,7 @@ if($_POST)
                     </span>
                     <div class="form-group label-floating">
                 <label class="control-label">Password</label>
-                    <input type="text" name="p_password" value="<?php if(isset($p_password)){ echo $p_password; }?>" class="form-control" />
+                    <input type="text" name="p_password" value="<?php if(isset($p_password)){ echo $p_password; }?>" class="form-control" id="validation_password"/>
                   </div>
                   </div>   
 
@@ -311,14 +311,14 @@ if($_POST)
                     </span>
                     <div class="form-group label-floating">
                 <label class="control-label">Re-enter Password</label>
-                    <input type="text" name="p_repassword" value="<?php if(isset($p_repassword)){ echo $p_repassword; }?>" class="form-control" />
+                    <input type="text" name="p_repassword" value="<?php if(isset($p_repassword)){ echo $p_repassword; }?>" class="form-control" id="validation_repass" />
                   </div>
                   </div> 
 
                 </div>
                 <div class="footer text-center">
                   
-                    <input type="submit" name="signup" value="Signup" class="btn <?php theme("class_btn"); ?> btn-round " />
+                    <input type="submit" name="signup" value="Signup" class="btn <?php theme("class_btn"); ?> btn-round  id="validation_submit" />
                     <br><br>
                 </div>
               </form>
@@ -334,8 +334,8 @@ if($_POST)
   <!--   Core JS Files   -->
   <script src="assets/js/jquery.min.js" type="text/javascript"></script>
   <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-  <script src="assets/js/material.min.js"></script>
-	<script src="assets/js/email_validation.js"></script>
+  <script src="assets/js/material.min.js" type="text/javascript"></script>
+	<script src="assets/js/email_validation.js" type="text/javascript" ></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
   <script src="assets/js/nouislider.min.js" type="text/javascript"></script>
 
@@ -347,6 +347,7 @@ if($_POST)
 
 <!--Validation-->
 <script src="assets/js/validation.js" type="text/javascript"></script>
+
 <script src="assets/js/jquery.toast.js" type="text/javascript"></script>
   <script type="text/javascript">
 
@@ -362,7 +363,13 @@ if($_POST)
         $(window).on('scroll', materialKitDemo.checkScrollForParallax);
       }
 
+
+
+
     });
+
+
+
   </script>
 
   

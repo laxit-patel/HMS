@@ -20,7 +20,44 @@ $result_d = fetch_data("select * from designation","result");
 $result_st = fetch_data("select * from staff where staff_exist = 0 and allocation = '' ","result");
 $result_wd = fetch_data("select * from ward where ward_exist = 0","result");
 
+if($_POST)
+{
+   $ad_patient = $_POST["admit_patient"];
+   $ad_nurse = $_POST["admit_nurse"];
+   $ad_ward = $_POST["admit_ward"];
 
+
+   if($ad_patient == "--Select Patient--")
+   {
+       $alert_danger =  "Select Patient";
+   }
+   elseif($ad_nurse == "--Select Nurse--")
+   {
+       $alert_danger = "Select Nurse";
+   }
+   elseif($ad_ward == "--Select Ward--")
+   {
+       $alert_danger = "Select Ward";
+   }
+   else
+   {
+       $admission_id = key_engine("admission");
+       $admission_bed = $_POST["admit_bed"];
+        $admission_date = date("Y-m-d");
+
+
+       if(admission("insert into admision(admission_id,admission_patient,admission_nurse_assigned,admission_date,admission_bed)
+                    values('$admission_id','$ad_patient','$ad_nurse','$admission_date','$admission_bed')"))
+       {
+           $alert_success = "Patient Admitted";
+       }
+       else
+       {
+           $alert_danger = "Not Added";
+       }
+   }
+
+}
 ?>
 
 <!doctype html>
@@ -86,7 +123,7 @@ $result_wd = fetch_data("select * from ward where ward_exist = 0","result");
                                 <p>Log out</p>
                             </a>
                         </li>
-                        <li class="separator hidden-lg"></li>
+
                     </ul>
                 </div>
             </div>
@@ -156,7 +193,7 @@ $result_wd = fetch_data("select * from ward where ward_exist = 0","result");
                                 <div class="wizard-navigation">
                                     <ul>
                                         <li><a href="#about" data-toggle="tab">Patient</a></li>
-                                        <li><a href="#account" data-toggle="tab">Incharge</a></li>
+                                        <li><a href="#account" data-toggle="tab">Nurse</a></li>
                                         <li><a href="#address" data-toggle="tab">Ward</a></li>
                                     </ul>
                                 </div>
@@ -173,10 +210,10 @@ $result_wd = fetch_data("select * from ward where ward_exist = 0","result");
 														  <i class="material-icons">loupe</i>
 														</span>
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Patient</label>
-                                                    <select name="ap_patient" class="form-control">
 
-                                                        <option disabled="" selected=""></option>
+                                                    <select name="admit_patient" class="form-control">
+
+                                                        <option  selected="">--Select Patient--</option>
                                                         <?php if($result_p)
                                                         {
 
@@ -201,10 +238,10 @@ $result_wd = fetch_data("select * from ward where ward_exist = 0","result");
 														  <i class="material-icons">person</i>
 														</span>
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Nurse</label>
-                                                    <select name="ap_patient" class="form-control">
 
-                                                        <option disabled="" selected=""></option>
+                                                    <select name="admit_nurse" class="form-control">
+
+                                                        <option  selected="">--Select Nurse--</option>
                                                          <?php if($result_wd)
                                                         {
 
@@ -233,10 +270,10 @@ $result_wd = fetch_data("select * from ward where ward_exist = 0","result");
 														  <i class="material-icons">home</i>
 														</span>
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Ward</label>
-                                                    <select name="ap_patient" class="form-control" id="select_ward">
 
-                                                        <option disabled="" selected=""></option>
+                                                    <select name="admit_ward" class="form-control" id="select_ward">
+
+                                                        <option  selected="">--Select Ward--</option>
                                                         <?php if($result_wd)
                                                         {
 
@@ -249,9 +286,24 @@ $result_wd = fetch_data("select * from ward where ward_exist = 0","result");
                                                 </div>
 												
                                             </div>
-										<div class="container-fluid" id="bed_holder" ></div>
-										
-	
+
+                                            <div class="input-group">
+														<span class="input-group-addon">
+														  <i class="material-icons">hotel</i>
+														</span>
+                                                <div class="form-group label-floating">
+
+                                                    <select name="admit_bed" class="form-control" id="bed_holder" >
+
+
+                                                    </select>
+                                                </div>
+
+                                            </div>
+
+
+
+
                                         </div>
 										
 										
@@ -309,9 +361,9 @@ $result_wd = fetch_data("select * from ward where ward_exist = 0","result");
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
 <!--Ward Button-->
-<script src="assets/js/ward_button.js">
-<!-- Drop down javascript -->
-<script src="assets/js/dropdown.js"></script>
+<script src="assets/js/ward_button.js" type="text/javascript"></script>
+
+<script  src="assets/js/dropdown.js" type="text/javascript" ></script>
 
 <script type="text/javascript">
     $(document).ready(function(){

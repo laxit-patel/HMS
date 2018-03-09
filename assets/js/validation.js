@@ -9,6 +9,8 @@ $('#validation_name').on('blur', function () {
 
                 if(name == "")
                 {
+                    $(this).css("background","linear-gradient(180deg,#FDD8D8,transparent)");
+                    $(':input[type="submit"]').prop('disabled', true);
                      if ( !$(this).hasClass('generate-toast') ) {
                     var code = $.toast({
                         text: "Name Is Empty",
@@ -20,10 +22,14 @@ $('#validation_name').on('blur', function () {
                     code.replace("</span");
 
                     eval( code );
+
                 };
+
                 }
-                else if(!pattern_name.test(name) )
+                else if(!/^[A-z ]+$/.test(name) )
                 {
+                    $(this).css("background","linear-gradient(180deg,#FDD8D8,transparent)");
+                    $(':input[type="submit"]').prop('disabled', true);
                     if ( !$(this).hasClass('generate-toast') ) {
                     var code = $.toast({
                         text: "Only String Allowed",
@@ -39,6 +45,8 @@ $('#validation_name').on('blur', function () {
                 }
                 else if( name.length < 3   )
                 {
+                    $(this).css("background","linear-gradient(180deg,#FDD8D8,transparent)");
+                    $(':input[type="submit"]').prop('disabled', true);
                     if ( !$(this).hasClass('generate-toast') ) {
                         var code = $.toast({
                             text: "Length Must be Greater Than 3 ",
@@ -54,6 +62,8 @@ $('#validation_name').on('blur', function () {
                 }
                 else if( name.length > 16   )
                 {
+                    $(this).css("background","linear-gradient(180deg,#FDD8D8,transparent)");
+                    $(':input[type="submit"]').prop('disabled', true);
                     if ( !$(this).hasClass('generate-toast') ) {
                     var code = $.toast({
                         text: "Length Must be Less Than 16 ",
@@ -67,6 +77,13 @@ $('#validation_name').on('blur', function () {
                     eval( code );
                 };
                 }
+                else
+                {
+                    $(this).css("background-color","");
+                    $(':input[type="submit"]').prop('disabled', false);
+                }
+
+
 
 
             });
@@ -75,12 +92,14 @@ $('#validation_name').on('blur', function () {
 $('#validation_date').on('blur', function () {
 
             var date = $(this).val();
-            var pattern_date = new RegExp("^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)dd$");
+            var pattern_date = new RegExp("[0-9/]");
 
-            if(date.test(pattern_date)) {
+            if(!pattern_date.test(date)) {
+                $(this).css("background","linear-gradient(180deg,#FDD8D8,transparent)");
+                    $(':input[type="submit"]').prop('disabled', true);
                 if (!$(this).hasClass('generate-toast')) {
                     var code = $.toast({
-                        text: "Date Blurred ",
+                        text: "Date Not Valid",
                         heading: "Error",
                         showHideTransition: 'plain',
                         position: 'bottom-center'
@@ -92,6 +111,29 @@ $('#validation_date').on('blur', function () {
                     eval(code);
                 };
             }
+            else if(date == "")
+            {
+                 $(this).css("background","linear-gradient(180deg,#FDD8D8,transparent)");
+                    $(':input[type="submit"]').prop('disabled', true);
+                if (!$(this).hasClass('generate-toast')) {
+                    var code = $.toast({
+                        text: "Date Cant Be Empty ",
+                        heading: "Error",
+                        showHideTransition: 'plain',
+                        position: 'bottom-center'
+                    });
+
+                    code.replace("<span class='hidden'>", '');
+                    code.replace("</span");
+
+                    eval(code);
+                };
+            }
+            else
+            {
+                 $(this).css("background-color","");
+                    $(':input[type="submit"]').prop('disabled', false);
+            }
 
 
 });
@@ -102,6 +144,8 @@ $("#validation_phone").on('blur',function(){
      var pattern_phone = new RegExp("[0-9-()+]{3,20}");
 
      if(!pattern_phone.test(phone)) {
+          $(this).css("background","linear-gradient(180deg,#FDD8D8,transparent)");
+                    $(':input[type="submit"]').prop('disabled', true);
          if (!$(this).hasClass('generate-toast')) {
              var code = $.toast({
                  text: "Invalid Phone Number",
@@ -118,6 +162,8 @@ $("#validation_phone").on('blur',function(){
      }
      else if(phone.length < 10)
      {
+          $(this).css("background","linear-gradient(180deg,#FDD8D8,transparent)");
+                    $(':input[type="submit"]').prop('disabled', true);
          if (!$(this).hasClass('generate-toast')) {
              var code = $.toast({
                  text: "Length Must Be 10",
@@ -134,6 +180,8 @@ $("#validation_phone").on('blur',function(){
      }
      else if(phone.length > 13)
      {
+          $(this).css("background","linear-gradient(180deg,#FDD8D8,transparent)");
+                    $(':input[type="submit"]').prop('disabled', true);
          if (!$(this).hasClass('generate-toast')) {
              var code = $.toast({
                  text: "Length Must Be Less Then 13",
@@ -148,19 +196,54 @@ $("#validation_phone").on('blur',function(){
              eval(code);
          };
      }
+     else
+     {
+          $(this).css("background-color","");
+                    $(':input[type="submit"]').prop('disabled', false);
+     }
 
 });
 
-$("#validation_phone").on('blur',function() {
+$("#validation_address").on('blur',function() {
 
     var address = $(this).val();
-    var pattern_address = new RegExp("[a-z,A-Z,0-9]{10,200}");
 
-    if(address.length > 10)
+    if(address.length < 10)
     {
-         if (!$(this).hasClass('generate-toast')) {
+         $(this).css("background","linear-gradient(180deg,#FDD8D8,transparent)");
+                    $(':input[type="submit"]').prop('disabled', true);
+        if (!$(this).hasClass('generate-toast')) {
              var code = $.toast({
-                 text: "Length Must Greater than 10",
+                 text: "Address Invalid",
+                 heading: "Error",
+                 showHideTransition: 'plain',
+                 position: 'bottom-center'
+             });
+
+             code.replace("<span class='hidden'>", '');
+             code.replace("</span");
+
+             eval(code);
+         };
+    }
+    else
+    {
+         $(this).css("background","");
+                    $(':input[type="submit"]').prop('disabled', false);
+    }
+
+});
+
+$("#validation_email").on('blur',function() {
+
+    var email = $(this).val();
+    var pattern_email = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+
+    if(!pattern_email.test(email))
+    {
+        if (!$(this).hasClass('generate-toast')) {
+             var code = $.toast({
+                 text: "Email is not Valid",
                  heading: "Error",
                  showHideTransition: 'plain',
                  position: 'bottom-center'
@@ -173,6 +256,99 @@ $("#validation_phone").on('blur',function() {
          };
     }
 
-}
+});
+
+$("#patient_email").on('blur',function(){
+
+    var email = $(this).val();
+    var pattern_email = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
 
 
+
+    if(!pattern_email.test(email))
+    {
+        if (!$(this).hasClass('generate-toast')) {
+             var code = $.toast({
+                 text: "Email is not Valid",
+                 heading: "Error",
+                 showHideTransition: 'plain',
+                 position: 'bottom-center'
+             });
+
+             code.replace("<span class='hidden'>", '');
+             code.replace("</span");
+
+             eval(code);
+         };
+    }
+
+
+
+});
+
+$("#validation_password").on('blur',function(){
+
+    var password = $(this).val();
+    if(password.length < 8)
+    {
+        if (!$(this).hasClass('generate-toast')) {
+             var code = $.toast({
+                 text: "Password Too short",
+                 heading: "Error",
+                 showHideTransition: 'plain',
+                 position: 'bottom-center'
+             });
+
+             code.replace("<span class='hidden'>", '');
+             code.replace("</span");
+
+             eval(code);
+         };
+    }
+    else if(password.length > 20)
+    {
+        if (!$(this).hasClass('generate-toast')) {
+             var code = $.toast({
+                 text: "Password Too Long",
+                 heading: "Error",
+                 showHideTransition: 'plain',
+                 position: 'bottom-center'
+             });
+
+             code.replace("<span class='hidden'>", '');
+             code.replace("</span");
+
+             eval(code);
+         };
+    }
+
+
+
+});
+
+
+$("#validation_repass").on('blur',function(){
+
+    var password = $("#validation_password").val();
+     var repassword = $(this).val();
+
+     if(password != repassword)
+     {
+          if (!$(this).hasClass('generate-toast')) {
+             var code = $.toast({
+                 text: "Password Not Matched",
+                 heading: "Error",
+                 showHideTransition: 'plain',
+                 position: 'bottom-center'
+             });
+
+             code.replace("<span class='hidden'>", '');
+             code.replace("</span");
+
+             eval(code);
+         };
+     }
+
+
+
+});

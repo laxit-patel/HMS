@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="866569f1-ab12-4549-bb8b-2cae6c64f5e0" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/check_email.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admit_patient.php" afterPath="$PROJECT_DIR$/admit_patient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/email_validation.js" afterPath="$PROJECT_DIR$/assets/js/email_validation.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/validation.js" afterPath="$PROJECT_DIR$/assets/js/validation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/ward_button.js" afterPath="$PROJECT_DIR$/assets/js/ward_button.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/modules/global_module.php" afterPath="$PROJECT_DIR$/assets/modules/global_module.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/email.php" afterPath="$PROJECT_DIR$/email.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/load_bed.php" afterPath="$PROJECT_DIR$/load_bed.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/patient_signup.php" afterPath="$PROJECT_DIR$/patient_signup.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,68 +32,223 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="email.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/email.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="29" column="4" lean-forward="false" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="patient_signup.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/patient_signup.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="259" column="149" lean-forward="false" selection-start-line="259" selection-start-column="149" selection-end-line="259" selection-end-column="149" />
+            <state relative-caret-position="4777">
+              <caret line="283" column="158" lean-forward="false" selection-start-line="283" selection-start-column="158" selection-end-line="283" selection-end-column="158" />
               <folding>
-                <marker date="1520486530340" expanded="true" signature="1681:1919" ph="insert into patient... " />
-                <marker date="1520486530340" expanded="false" signature="4737:4755" ph="..." />
-                <marker date="1520486530340" expanded="true" signature="4756:5188" ph="..." />
-                <marker date="1520486530340" expanded="true" signature="4801:5171" ph="..." />
-                <marker date="1520486530340" expanded="true" signature="4837:4910" ph="..." />
-                <marker date="1520486530340" expanded="true" signature="4997:5097" ph="..." />
+                <marker date="1520529716308" expanded="true" signature="1681:1919" ph="insert into patient... " />
+                <marker date="1520529716308" expanded="false" signature="4737:4755" ph="..." />
+                <marker date="1520529716308" expanded="true" signature="4756:5188" ph="..." />
+                <marker date="1520529716308" expanded="true" signature="4801:5171" ph="..." />
+                <marker date="1520529716308" expanded="true" signature="4837:4910" ph="..." />
+                <marker date="1520529716308" expanded="true" signature="4997:5097" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="db_config.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/modules/db_config.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="validation.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="validation.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/validation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="162" column="51" lean-forward="false" selection-start-line="162" selection-start-column="51" selection-end-line="162" selection-end-column="51" />
+            <state relative-caret-position="3502">
+              <caret line="206" column="22" lean-forward="false" selection-start-line="206" selection-start-column="22" selection-end-line="206" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="snackbar.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/css/snackbar.css">
+      <file leaf-file-name="admit_patient.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/admit_patient.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="306">
+              <caret line="42" column="4" lean-forward="true" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="4" />
+              <folding>
+                <marker date="1520571240608" expanded="true" signature="260:301" ph="select * fro... admin" />
+                <marker date="1520571240608" expanded="true" signature="417:462" ph="select * fro... patient" />
+                <marker date="1520571240608" expanded="true" signature="499:524" ph="select * fro... designation" />
+                <marker date="1520571240608" expanded="true" signature="562:623" ph="select * fro... staff" />
+                <marker date="1520571240608" expanded="true" signature="662:701" ph="select * fro... ward" />
+                <marker date="1520571240608" expanded="true" signature="1292:1503" ph="insert into admision... " />
+                <marker date="1520571240608" expanded="true" signature="5448:5925" ph="..." />
+                <marker date="1520571240608" expanded="false" signature="5489:5500" ph="..." />
+                <marker date="1520571240608" expanded="true" signature="5501:5919" ph="..." />
+                <marker date="1520571240608" expanded="true" signature="5546:5902" ph="..." />
+                <marker date="1520571240608" expanded="true" signature="5582:5650" ph="..." />
+                <marker date="1520571240608" expanded="true" signature="5737:5837" ph="..." />
+                <marker date="1520571240608" expanded="true" signature="6342:6803" ph="..." />
+                <marker date="1520571240608" expanded="true" signature="6388:6786" ph="..." />
+                <marker date="1520571240608" expanded="true" signature="6481:6581" ph="..." />
+                <marker date="1520571240608" expanded="true" signature="6627:6700" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add_patient.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/add_patient.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="151">
+              <caret line="82" column="8" lean-forward="true" selection-start-line="82" selection-start-column="8" selection-end-line="82" selection-end-column="8" />
+              <folding>
+                <marker date="1520011574395" expanded="true" signature="453:494" ph="select * fro... admin" />
+                <marker date="1520011574395" expanded="true" signature="2101:2381" ph="insert into patient... " />
+                <marker date="1520011574395" expanded="true" signature="6487:6964" ph="..." />
+                <marker date="1520011574395" expanded="false" signature="6528:6539" ph="..." />
+                <marker date="1520011574395" expanded="true" signature="6540:6958" ph="..." />
+                <marker date="1520011574395" expanded="true" signature="6585:6941" ph="..." />
+                <marker date="1520011574395" expanded="true" signature="6621:6689" ph="..." />
+                <marker date="1520011574395" expanded="true" signature="6776:6876" ph="..." />
+                <marker date="1520011574395" expanded="true" signature="7381:7842" ph="..." />
+                <marker date="1520011574395" expanded="true" signature="7427:7825" ph="..." />
+                <marker date="1520011574395" expanded="true" signature="7520:7620" ph="..." />
+                <marker date="1520011574395" expanded="true" signature="7666:7739" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="global_module.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/modules/global_module.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="397">
+              <caret line="1334" column="1" lean-forward="true" selection-start-line="1334" selection-start-column="1" selection-end-line="1334" selection-end-column="1" />
+              <folding>
+                <marker date="1520570703256" expanded="true" signature="182:257" ph="select ${$ke... ${$for}" />
+                <marker date="1520570703256" expanded="true" signature="991:1066" ph="select ${$ke... ${$for}" />
+                <marker date="1520570703256" expanded="true" signature="1806:1881" ph="select ${$ke... ${$for}" />
+                <marker date="1520570703256" expanded="true" signature="2728:2803" ph="select ${$ke... ${$for}" />
+                <marker date="1520570703256" expanded="true" signature="3669:3744" ph="select ${$ke... ${$for}" />
+                <marker date="1520570703256" expanded="true" signature="4613:4688" ph="select ${$ke... ${$for}" />
+                <marker date="1520570703256" expanded="true" signature="5558:5633" ph="select ${$ke... ${$for}" />
+                <marker date="1520570703256" expanded="true" signature="6474:6549" ph="select ${$ke... ${$for}" />
+                <marker date="1520570703256" expanded="true" signature="7421:7496" ph="select ${$ke... ${$for}" />
+                <marker date="1520570703256" expanded="true" signature="9867:9943" ph="select * fro... admin" />
+                <marker date="1520570703256" expanded="true" signature="10634:10679" ph="select * fro... patient" />
+                <marker date="1520570703256" expanded="true" signature="10957:11218" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="11311:11354" ph="select * fro... doctor" />
+                <marker date="1520570703256" expanded="true" signature="11512:11801" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="11879:11905" ph="select * fro... receptionist" />
+                <marker date="1520570703256" expanded="true" signature="12063:12358" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="12439:12464" ph="select * fro... designation" />
+                <marker date="1520570703256" expanded="true" signature="12622:12839" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="12919:12995" ph="select * fro... appointment" />
+                <marker date="1520570703256" expanded="true" signature="12919:12999" ph="select * fro... appointment" />
+                <marker date="1520570703256" expanded="true" signature="13480:13536" ph="select docto... doctor" />
+                <marker date="1520570703256" expanded="true" signature="13598:13657" ph="select patie... patient" />
+                <marker date="1520570703256" expanded="true" signature="13688:13982" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="14053:14094" ph="select * fro... staff" />
+                <marker date="1520570703256" expanded="true" signature="14253:14527" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="14595:14634" ph="select * fro... ward" />
+                <marker date="1520570703256" expanded="true" signature="14792:15012" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="15079:15116" ph="select * fro... bed" />
+                <marker date="1520570703256" expanded="true" signature="15275:15457" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="15965:16029" ph="update patie... " />
+                <marker date="1520570703256" expanded="true" signature="16618:16677" ph="update docto... " />
+                <marker date="1520570703256" expanded="true" signature="16743:16796" ph="update slot " />
+                <marker date="1520570703256" expanded="true" signature="17145:17201" ph="update staff... " />
+                <marker date="1520570703256" expanded="true" signature="17687:17739" ph="delete from " />
+                <marker date="1520570703256" expanded="true" signature="17991:18037" ph="select * fro... slot" />
+                <marker date="1520570703256" expanded="true" signature="18138:18196" ph="select docto... doctor" />
+                <marker date="1520570703256" expanded="true" signature="21227:21288" ph="insert into slot... " />
+                <marker date="1520570703256" expanded="true" signature="22048:22099" ph="update slot " />
+                <marker date="1520570703256" expanded="true" signature="22701:22750" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="22702:22750" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="22703:22750" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="22782:22831" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="22960:22982" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="23094:23212" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="23377:23493" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="23894:24121" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="24486:24712" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="25071:25301" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="25607:25727" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="26120:26291" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="26624:26794" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="27106:27300" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="27129:27300" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="27522:27634" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="28016:28194" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="28525:28702" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="28964:29078" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="29457:29634" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="29963:30139" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="30405:30520" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="30928:31099" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="31432:31594" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="32028:32088" ph="insert into bed... " />
+                <marker date="1520570703256" expanded="true" signature="32519:32576" ph="select * fro... bed" />
+                <marker date="1520570703256" expanded="true" signature="32737:32936" ph="..." />
+                <marker date="1520570703256" expanded="true" signature="34142:34192" ph="update bed s... " />
+                <marker date="1520570703256" expanded="true" signature="34425:34482" ph="update ward " />
+                <marker date="1520570703256" expanded="true" signature="34573:34628" ph="update bed s... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add_doctor.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/add_doctor.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="91" column="9" lean-forward="true" selection-start-line="91" selection-start-column="9" selection-end-line="91" selection-end-column="9" />
+              <folding>
+                <marker date="1519579444589" expanded="true" signature="390:431" ph="select * fro... admin" />
+                <marker date="1519579444589" expanded="true" signature="505:545" ph="select desig... designation" />
+                <marker date="1519579444589" expanded="true" signature="1961:2300" ph="insert into doctor... " />
+                <marker date="1519579444589" expanded="true" signature="6178:6655" ph="..." />
+                <marker date="1519579444589" expanded="true" signature="6219:6230" ph="..." />
+                <marker date="1519579444589" expanded="true" signature="6231:6649" ph="..." />
+                <marker date="1519579444589" expanded="true" signature="6276:6632" ph="..." />
+                <marker date="1519579444589" expanded="true" signature="6312:6380" ph="..." />
+                <marker date="1519579444589" expanded="true" signature="6467:6567" ph="..." />
+                <marker date="1519579444589" expanded="true" signature="7072:7533" ph="..." />
+                <marker date="1519579444589" expanded="true" signature="7118:7516" ph="..." />
+                <marker date="1519579444589" expanded="true" signature="7211:7311" ph="..." />
+                <marker date="1519579444589" expanded="true" signature="7357:7430" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bed_add.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/bed_add.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="7" lean-forward="false" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index_html.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index_html.html">
+      <file leaf-file-name="ward_button.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/ward_button.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22304">
-              <caret line="1312" column="24" lean-forward="false" selection-start-line="1312" selection-start-column="24" selection-end-line="1312" selection-end-column="24" />
+            <state relative-caret-position="68">
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="load_bed.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/load_bed.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="18" lean-forward="false" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+              <folding>
+                <marker date="1520532200574" expanded="true" signature="193:237" ph="select * fro... bed" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ajax_ward.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/ajax_ward.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="4" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -105,7 +266,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>wizard-</find>
       <find>wizard-navigation</find>
       <find>sid</find>
       <find>side</find>
@@ -135,6 +295,7 @@
       <find>function men</find>
       <find>function me</find>
       <find>function</find>
+      <find>#FDD8D8</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -143,9 +304,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/load_final_slot.js" />
-        <option value="$PROJECT_DIR$/assets/js/appointment_slot.js" />
-        <option value="$PROJECT_DIR$/assets/js/load_final_slot.js" />
         <option value="$PROJECT_DIR$/assets/js/ajax_doctor.js" />
         <option value="$PROJECT_DIR$/delete_doctor.php" />
         <option value="$PROJECT_DIR$/admn_settings.php" />
@@ -180,20 +338,23 @@
         <option value="$PROJECT_DIR$/assets/modules/today_appointment.php" />
         <option value="$PROJECT_DIR$/view_appointment.php" />
         <option value="$PROJECT_DIR$/assets/todays_doctor.php" />
-        <option value="$PROJECT_DIR$/assets/modules/global_module.php" />
         <option value="$PROJECT_DIR$/todays_doctor.php" />
         <option value="$PROJECT_DIR$/assets/js/todays_appointment.js" />
         <option value="$PROJECT_DIR$/todays_slot.php" />
         <option value="$PROJECT_DIR$/today_appointment.php" />
         <option value="$PROJECT_DIR$/dashboard_admn.php" />
-        <option value="$PROJECT_DIR$/load_bed.php" />
-        <option value="$PROJECT_DIR$/admit_patient.php" />
-        <option value="$PROJECT_DIR$/assets/js/ward_button.js" />
         <option value="$PROJECT_DIR$/assets/modules/db_host_config.php" />
         <option value="$PROJECT_DIR$/assets/css/snackbar.css" />
+        <option value="$PROJECT_DIR$/assets/js/email_validation.js" />
+        <option value="$PROJECT_DIR$/check_email.php" />
+        <option value="$PROJECT_DIR$/assets/js/check_email.php" />
         <option value="$PROJECT_DIR$/email.php" />
         <option value="$PROJECT_DIR$/patient_signup.php" />
         <option value="$PROJECT_DIR$/assets/js/validation.js" />
+        <option value="$PROJECT_DIR$/assets/js/ward_button.js" />
+        <option value="$PROJECT_DIR$/load_bed.php" />
+        <option value="$PROJECT_DIR$/assets/modules/global_module.php" />
+        <option value="$PROJECT_DIR$/admit_patient.php" />
       </list>
     </option>
   </component>
@@ -225,6 +386,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -269,45 +431,8 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HMS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HMS" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HMS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HMS" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -454,6 +579,8 @@
       <workItem from="1520306760649" duration="7384000" />
       <workItem from="1520435742039" duration="75000" />
       <workItem from="1520480572931" duration="5898000" />
+      <workItem from="1520518093673" duration="12366000" />
+      <workItem from="1520568653307" duration="2514000" />
     </task>
     <task id="LOCAL-00001" summary="finally dropdown menuu added">
       <created>1516818890877</created>
@@ -480,13 +607,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="195424000" />
+    <option name="totallyTimeSpent" value="210304000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1040" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19824219" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16308594" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32910156" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -525,27 +652,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/add_doctor.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="17" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/bootstrap.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/master_login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2720">
-          <caret line="160" column="103" lean-forward="false" selection-start-line="160" selection-start-column="103" selection-end-line="160" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/patient_login.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3485">
@@ -590,13 +696,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2278">
           <caret line="134" column="50" lean-forward="false" selection-start-line="134" selection-start-column="50" selection-end-line="134" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/add_patient.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4420">
-          <caret line="260" column="44" lean-forward="false" selection-start-line="260" selection-start-column="44" selection-end-line="260" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -677,18 +776,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1751">
           <caret line="103" column="24" lean-forward="false" selection-start-line="103" selection-start-column="24" selection-end-line="146" selection-end-column="42" />
-          <folding>
-            <marker date="1520009704830" expanded="true" signature="3739:4216" ph="..." />
-            <marker date="1520009704830" expanded="true" signature="3780:3791" ph="..." />
-            <marker date="1520009704830" expanded="true" signature="3792:4210" ph="..." />
-            <marker date="1520009704830" expanded="true" signature="3837:4193" ph="..." />
-            <marker date="1520009704830" expanded="true" signature="3873:3941" ph="..." />
-            <marker date="1520009704830" expanded="true" signature="4028:4128" ph="..." />
-            <marker date="1520009704830" expanded="true" signature="4633:5094" ph="..." />
-            <marker date="1520009704830" expanded="true" signature="4679:5077" ph="..." />
-            <marker date="1520009704830" expanded="true" signature="4772:4872" ph="..." />
-            <marker date="1520009704830" expanded="true" signature="4918:4991" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -810,97 +897,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1615">
           <caret line="95" column="101" lean-forward="false" selection-start-line="95" selection-start-column="78" selection-end-line="95" selection-end-column="101" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/ajax_ward.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="3" lean-forward="false" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/bed_add.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/modules/global_module.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8755">
-          <caret line="515" column="93" lean-forward="false" selection-start-line="515" selection-start-column="93" selection-end-line="515" selection-end-column="93" />
-          <folding>
-            <marker date="1520307282752" expanded="true" signature="182:257" ph="select ${$ke... ${$for}" />
-            <marker date="1520307282752" expanded="true" signature="991:1066" ph="select ${$ke... ${$for}" />
-            <marker date="1520307282752" expanded="true" signature="1806:1881" ph="select ${$ke... ${$for}" />
-            <marker date="1520307282752" expanded="true" signature="2728:2803" ph="select ${$ke... ${$for}" />
-            <marker date="1520307282752" expanded="true" signature="3669:3744" ph="select ${$ke... ${$for}" />
-            <marker date="1520307282752" expanded="true" signature="4613:4688" ph="select ${$ke... ${$for}" />
-            <marker date="1520307282752" expanded="true" signature="5558:5633" ph="select ${$ke... ${$for}" />
-            <marker date="1520307282752" expanded="true" signature="6474:6549" ph="select ${$ke... ${$for}" />
-            <marker date="1520307282752" expanded="true" signature="8921:8997" ph="select * fro... admin" />
-            <marker date="1520307282752" expanded="true" signature="9688:9733" ph="select * fro... patient" />
-            <marker date="1520307282752" expanded="true" signature="10011:10272" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="10365:10408" ph="select * fro... doctor" />
-            <marker date="1520307282752" expanded="true" signature="10566:10855" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="10933:10959" ph="select * fro... receptionist" />
-            <marker date="1520307282752" expanded="true" signature="11117:11412" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="11493:11518" ph="select * fro... designation" />
-            <marker date="1520307282752" expanded="true" signature="11676:11893" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="11973:12049" ph="select * fro... appointment" />
-            <marker date="1520307282752" expanded="true" signature="11973:12053" ph="select * fro... appointment" />
-            <marker date="1520307282752" expanded="true" signature="12534:12590" ph="select docto... doctor" />
-            <marker date="1520307282752" expanded="true" signature="12652:12711" ph="select patie... patient" />
-            <marker date="1520307282752" expanded="true" signature="12742:13036" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="13107:13148" ph="select * fro... staff" />
-            <marker date="1520307282752" expanded="true" signature="13307:13581" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="13649:13688" ph="select * fro... ward" />
-            <marker date="1520307282752" expanded="true" signature="13846:14066" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="14133:14170" ph="select * fro... bed" />
-            <marker date="1520307282752" expanded="true" signature="14329:14511" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="15019:15083" ph="update patie... " />
-            <marker date="1520307282752" expanded="true" signature="15672:15731" ph="update docto... " />
-            <marker date="1520307282752" expanded="true" signature="15797:15850" ph="update slot " />
-            <marker date="1520307282752" expanded="true" signature="16199:16255" ph="update staff... " />
-            <marker date="1520307282752" expanded="true" signature="16741:16793" ph="delete from " />
-            <marker date="1520307282752" expanded="true" signature="17045:17091" ph="select * fro... slot" />
-            <marker date="1520307282752" expanded="true" signature="17192:17250" ph="select docto... doctor" />
-            <marker date="1520307282752" expanded="true" signature="20281:20342" ph="insert into slot... " />
-            <marker date="1520307282752" expanded="true" signature="21102:21153" ph="update slot " />
-            <marker date="1520307282752" expanded="true" signature="21755:21804" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="21756:21804" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="21757:21804" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="21836:21885" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="22014:22036" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="22148:22266" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="22431:22547" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="22948:23175" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="23540:23766" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="24125:24355" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="24661:24781" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="25174:25345" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="25678:25848" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="26160:26354" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="26183:26354" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="26576:26688" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="27070:27248" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="27579:27756" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="28018:28132" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="28511:28688" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="29017:29193" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="29459:29574" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="29982:30153" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="30486:30648" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="31082:31142" ph="insert into bed... " />
-            <marker date="1520307282752" expanded="true" signature="31573:31630" ph="select * fro... bed" />
-            <marker date="1520307282752" expanded="true" signature="31791:31990" ph="..." />
-            <marker date="1520307282752" expanded="true" signature="33196:33246" ph="update bed s... " />
-            <marker date="1520307282752" expanded="true" signature="33479:33536" ph="update ward " />
-            <marker date="1520307282752" expanded="true" signature="33627:33682" ph="update bed s... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -925,27 +921,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admit_patient.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4726">
-          <caret line="278" column="8" lean-forward="false" selection-start-line="278" selection-start-column="8" selection-end-line="278" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/ward_button.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/load_bed.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="77" lean-forward="false" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/modules/db_host_config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -957,7 +932,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -965,7 +939,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22304">
           <caret line="1312" column="24" lean-forward="false" selection-start-line="1312" selection-start-column="24" selection-end-line="1312" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -973,38 +946,232 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/email_validation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/check_email.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="10" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="12" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/email.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="29" column="4" lean-forward="false" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+        <state relative-caret-position="204">
+          <caret line="12" column="2" lean-forward="false" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/patient_signup.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="259" column="149" lean-forward="false" selection-start-line="259" selection-start-column="149" selection-end-line="259" selection-end-column="149" />
+        <state relative-caret-position="4777">
+          <caret line="283" column="158" lean-forward="false" selection-start-line="283" selection-start-column="158" selection-end-line="283" selection-end-column="158" />
           <folding>
-            <marker date="1520486530340" expanded="true" signature="1681:1919" ph="insert into patient... " />
-            <marker date="1520486530340" expanded="false" signature="4737:4755" ph="..." />
-            <marker date="1520486530340" expanded="true" signature="4756:5188" ph="..." />
-            <marker date="1520486530340" expanded="true" signature="4801:5171" ph="..." />
-            <marker date="1520486530340" expanded="true" signature="4837:4910" ph="..." />
-            <marker date="1520486530340" expanded="true" signature="4997:5097" ph="..." />
+            <marker date="1520529716308" expanded="true" signature="1681:1919" ph="insert into patient... " />
+            <marker date="1520529716308" expanded="false" signature="4737:4755" ph="..." />
+            <marker date="1520529716308" expanded="true" signature="4756:5188" ph="..." />
+            <marker date="1520529716308" expanded="true" signature="4801:5171" ph="..." />
+            <marker date="1520529716308" expanded="true" signature="4837:4910" ph="..." />
+            <marker date="1520529716308" expanded="true" signature="4997:5097" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/validation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="162" column="51" lean-forward="false" selection-start-line="162" selection-start-column="51" selection-end-line="162" selection-end-column="51" />
+        <state relative-caret-position="3502">
+          <caret line="206" column="22" lean-forward="false" selection-start-line="206" selection-start-column="22" selection-end-line="206" selection-end-column="22" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/bed_add.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="7" lean-forward="false" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/ajax_ward.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="4" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/ward_button.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/load_bed.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="18" lean-forward="false" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+          <folding>
+            <marker date="1520532200574" expanded="true" signature="193:237" ph="select * fro... bed" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/add_doctor.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="91" column="9" lean-forward="true" selection-start-line="91" selection-start-column="9" selection-end-line="91" selection-end-column="9" />
+          <folding>
+            <marker date="1519579444589" expanded="true" signature="390:431" ph="select * fro... admin" />
+            <marker date="1519579444589" expanded="true" signature="505:545" ph="select desig... designation" />
+            <marker date="1519579444589" expanded="true" signature="1961:2300" ph="insert into doctor... " />
+            <marker date="1519579444589" expanded="true" signature="6178:6655" ph="..." />
+            <marker date="1519579444589" expanded="true" signature="6219:6230" ph="..." />
+            <marker date="1519579444589" expanded="true" signature="6231:6649" ph="..." />
+            <marker date="1519579444589" expanded="true" signature="6276:6632" ph="..." />
+            <marker date="1519579444589" expanded="true" signature="6312:6380" ph="..." />
+            <marker date="1519579444589" expanded="true" signature="6467:6567" ph="..." />
+            <marker date="1519579444589" expanded="true" signature="7072:7533" ph="..." />
+            <marker date="1519579444589" expanded="true" signature="7118:7516" ph="..." />
+            <marker date="1519579444589" expanded="true" signature="7211:7311" ph="..." />
+            <marker date="1519579444589" expanded="true" signature="7357:7430" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/modules/global_module.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="1334" column="1" lean-forward="true" selection-start-line="1334" selection-start-column="1" selection-end-line="1334" selection-end-column="1" />
+          <folding>
+            <marker date="1520570703256" expanded="true" signature="182:257" ph="select ${$ke... ${$for}" />
+            <marker date="1520570703256" expanded="true" signature="991:1066" ph="select ${$ke... ${$for}" />
+            <marker date="1520570703256" expanded="true" signature="1806:1881" ph="select ${$ke... ${$for}" />
+            <marker date="1520570703256" expanded="true" signature="2728:2803" ph="select ${$ke... ${$for}" />
+            <marker date="1520570703256" expanded="true" signature="3669:3744" ph="select ${$ke... ${$for}" />
+            <marker date="1520570703256" expanded="true" signature="4613:4688" ph="select ${$ke... ${$for}" />
+            <marker date="1520570703256" expanded="true" signature="5558:5633" ph="select ${$ke... ${$for}" />
+            <marker date="1520570703256" expanded="true" signature="6474:6549" ph="select ${$ke... ${$for}" />
+            <marker date="1520570703256" expanded="true" signature="7421:7496" ph="select ${$ke... ${$for}" />
+            <marker date="1520570703256" expanded="true" signature="9867:9943" ph="select * fro... admin" />
+            <marker date="1520570703256" expanded="true" signature="10634:10679" ph="select * fro... patient" />
+            <marker date="1520570703256" expanded="true" signature="10957:11218" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="11311:11354" ph="select * fro... doctor" />
+            <marker date="1520570703256" expanded="true" signature="11512:11801" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="11879:11905" ph="select * fro... receptionist" />
+            <marker date="1520570703256" expanded="true" signature="12063:12358" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="12439:12464" ph="select * fro... designation" />
+            <marker date="1520570703256" expanded="true" signature="12622:12839" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="12919:12995" ph="select * fro... appointment" />
+            <marker date="1520570703256" expanded="true" signature="12919:12999" ph="select * fro... appointment" />
+            <marker date="1520570703256" expanded="true" signature="13480:13536" ph="select docto... doctor" />
+            <marker date="1520570703256" expanded="true" signature="13598:13657" ph="select patie... patient" />
+            <marker date="1520570703256" expanded="true" signature="13688:13982" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="14053:14094" ph="select * fro... staff" />
+            <marker date="1520570703256" expanded="true" signature="14253:14527" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="14595:14634" ph="select * fro... ward" />
+            <marker date="1520570703256" expanded="true" signature="14792:15012" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="15079:15116" ph="select * fro... bed" />
+            <marker date="1520570703256" expanded="true" signature="15275:15457" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="15965:16029" ph="update patie... " />
+            <marker date="1520570703256" expanded="true" signature="16618:16677" ph="update docto... " />
+            <marker date="1520570703256" expanded="true" signature="16743:16796" ph="update slot " />
+            <marker date="1520570703256" expanded="true" signature="17145:17201" ph="update staff... " />
+            <marker date="1520570703256" expanded="true" signature="17687:17739" ph="delete from " />
+            <marker date="1520570703256" expanded="true" signature="17991:18037" ph="select * fro... slot" />
+            <marker date="1520570703256" expanded="true" signature="18138:18196" ph="select docto... doctor" />
+            <marker date="1520570703256" expanded="true" signature="21227:21288" ph="insert into slot... " />
+            <marker date="1520570703256" expanded="true" signature="22048:22099" ph="update slot " />
+            <marker date="1520570703256" expanded="true" signature="22701:22750" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="22702:22750" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="22703:22750" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="22782:22831" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="22960:22982" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="23094:23212" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="23377:23493" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="23894:24121" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="24486:24712" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="25071:25301" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="25607:25727" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="26120:26291" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="26624:26794" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="27106:27300" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="27129:27300" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="27522:27634" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="28016:28194" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="28525:28702" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="28964:29078" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="29457:29634" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="29963:30139" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="30405:30520" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="30928:31099" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="31432:31594" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="32028:32088" ph="insert into bed... " />
+            <marker date="1520570703256" expanded="true" signature="32519:32576" ph="select * fro... bed" />
+            <marker date="1520570703256" expanded="true" signature="32737:32936" ph="..." />
+            <marker date="1520570703256" expanded="true" signature="34142:34192" ph="update bed s... " />
+            <marker date="1520570703256" expanded="true" signature="34425:34482" ph="update ward " />
+            <marker date="1520570703256" expanded="true" signature="34573:34628" ph="update bed s... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/add_patient.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="82" column="8" lean-forward="true" selection-start-line="82" selection-start-column="8" selection-end-line="82" selection-end-column="8" />
+          <folding>
+            <marker date="1520011574395" expanded="true" signature="453:494" ph="select * fro... admin" />
+            <marker date="1520011574395" expanded="true" signature="2101:2381" ph="insert into patient... " />
+            <marker date="1520011574395" expanded="true" signature="6487:6964" ph="..." />
+            <marker date="1520011574395" expanded="false" signature="6528:6539" ph="..." />
+            <marker date="1520011574395" expanded="true" signature="6540:6958" ph="..." />
+            <marker date="1520011574395" expanded="true" signature="6585:6941" ph="..." />
+            <marker date="1520011574395" expanded="true" signature="6621:6689" ph="..." />
+            <marker date="1520011574395" expanded="true" signature="6776:6876" ph="..." />
+            <marker date="1520011574395" expanded="true" signature="7381:7842" ph="..." />
+            <marker date="1520011574395" expanded="true" signature="7427:7825" ph="..." />
+            <marker date="1520011574395" expanded="true" signature="7520:7620" ph="..." />
+            <marker date="1520011574395" expanded="true" signature="7666:7739" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admit_patient.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="42" column="4" lean-forward="true" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="4" />
+          <folding>
+            <marker date="1520571240608" expanded="true" signature="260:301" ph="select * fro... admin" />
+            <marker date="1520571240608" expanded="true" signature="417:462" ph="select * fro... patient" />
+            <marker date="1520571240608" expanded="true" signature="499:524" ph="select * fro... designation" />
+            <marker date="1520571240608" expanded="true" signature="562:623" ph="select * fro... staff" />
+            <marker date="1520571240608" expanded="true" signature="662:701" ph="select * fro... ward" />
+            <marker date="1520571240608" expanded="true" signature="1292:1503" ph="insert into admision... " />
+            <marker date="1520571240608" expanded="true" signature="5448:5925" ph="..." />
+            <marker date="1520571240608" expanded="false" signature="5489:5500" ph="..." />
+            <marker date="1520571240608" expanded="true" signature="5501:5919" ph="..." />
+            <marker date="1520571240608" expanded="true" signature="5546:5902" ph="..." />
+            <marker date="1520571240608" expanded="true" signature="5582:5650" ph="..." />
+            <marker date="1520571240608" expanded="true" signature="5737:5837" ph="..." />
+            <marker date="1520571240608" expanded="true" signature="6342:6803" ph="..." />
+            <marker date="1520571240608" expanded="true" signature="6388:6786" ph="..." />
+            <marker date="1520571240608" expanded="true" signature="6481:6581" ph="..." />
+            <marker date="1520571240608" expanded="true" signature="6627:6700" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
