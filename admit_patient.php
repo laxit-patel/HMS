@@ -17,7 +17,7 @@ include("assets/modules/db_config.php");
 
 $result_p = fetch_data("select * from patient where patient_exist = 0","result");
 $result_d = fetch_data("select * from designation","result");
-$result_st = fetch_data("select * from staff where staff_exist = 0 and allocation = '' ","result");
+$result_st = fetch_data("select * from staff where staff_exist = 0 and staff_capacity <> 0 ","result");
 $result_wd = fetch_data("select * from ward where ward_exist = 0","result");
 
 if($_POST)
@@ -44,12 +44,35 @@ if($_POST)
        $admission_id = key_engine("admission");
        $admission_bed = $_POST["admit_bed"];
         $admission_date = date("Y-m-d");
+        $admit_patient = explode("->",$ad_patient);
 
-
-       if(admission("insert into admision(admission_id,admission_patient,admission_nurse_assigned,admission_date,admission_bed)
-                    values('$admission_id','$ad_patient','$ad_nurse','$admission_date','$admission_bed')"))
+       if(admission("insert into admission(admission_id,admission_patient,admission_nurse_assigned,admission_date,admission_bed)
+                    values('$admission_id','$admit_patient[0]','$ad_nurse','$admission_date','$admission_bed')"))
        {
-           $alert_success = "Patient Admitted";
+
+           if(update_data("update bed set patient_id = '$admit_patient[0]', staff_id = '$ad_nurse', bed_status = 1 where bed_id = '$admission_bed'"))
+           {
+              if(update_data("update patient set patient_type = 1, patient_status = 1"))
+              {
+                   if(alter_capacity("-",$ad_nurse,3))
+               {
+                   $alert_success = "Patient Admitted";
+               }
+               else
+               {
+                   $alert_danger = "Staff Limit Exceed";
+               }
+              }
+              else
+              {
+                $alert_danger = "Patient Not Altered";
+              }
+           }
+           else
+           {
+               $alert_danger = "Bed Not Allocated";
+           }
+
        }
        else
        {
@@ -352,7 +375,7 @@ if($_POST)
 <script src="assets/js/bootstrap-notify.js"></script>
 <!--Appointment Slot js-->
 <script src="assets/js/appointment_slot.js"></script>
-<!--select Dcotor as designation AJAX-->
+<!--select Doctor as designation AJAX-->
 <script src="assets/js/ajax_doctor.js"></script>
 <!--select bed as ward AJAX-->
 <script src="assets/js/ajax_ward.js"></script>

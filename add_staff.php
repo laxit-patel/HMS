@@ -151,7 +151,7 @@ if($_POST)
                                 <p>Log out</p>
                             </a>
                         </li>
-                        <li class="separator hidden-lg"></li>
+
                     </ul>
                 </div>
             </div>
@@ -389,7 +389,9 @@ if($_POST)
 <script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="assets/js/jquery.bootstrap.js" type="text/javascript"></script>
-<script src="assets/js/jquery.validate.min.js"></script>
+<script src="assets/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="assets/js/material-kit.js" type="text/javascript"></script>
+    <script src="assets/js/material.min.js" type="text/javascript"></script>
 <script src="assets/js/material-bootstrap-wizard.js"></script>
 <!--  Charts Plugin -->
 <script src="assets/js/chartist.min.js"></script>

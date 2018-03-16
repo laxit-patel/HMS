@@ -104,6 +104,7 @@ function key_engine($for)
             $year_new = date("y");
             $initial = $for;
             $number_new = 0;
+			$initial = "stff";
             $key = $year_new."_".$initial."_".$number_new;
 
             return $key;
@@ -633,6 +634,34 @@ function view_table($for)
 
         }
     }
+    elseif( $for == "admission")
+	 {
+        $query = "select * from admission where admission_status = 0 ";
+        $result = mysqli_query($conn,$query);
+
+        while($row = mysqli_fetch_array($result))
+        {
+            $id = $row[0];
+            $patient = mysqli_fetch_assoc(mysqli_query($conn,"select patient_name from patient where patient_id = '$row[1]'"));
+            $staff = mysqli_fetch_assoc(mysqli_query($conn,"select staff_name from staff where staff_id = '$row[2]'"));
+            $bed = mysqli_fetch_assoc(mysqli_query($conn,"select ward_id from bed where bed_id = '$row[3]'"));
+            $ward_id = $bed["ward_id"];
+            $ward = mysqli_fetch_assoc(mysqli_query($conn,"select ward_name from ward where ward_id = '$ward_id'"));
+
+            $p = $patient["patient_name"];
+            $s = $staff["staff_name"];
+            $w = $ward["ward_name"];
+
+            echo "<tr>
+                <td>$p</td>
+                <td>$s</td>
+                <td>$w</td>
+                <td>$row[4]</td>
+                <td > <a href='discharge_patient.php?admission_id=$row[0]&staff_id=$row[2]&patient_id=$row[1]&bed_id=$row[3]'> <i class='material-icons'>edit</i></a></td>
+                </tr>";
+
+        }
+    }
 	else
 	{
 		echo "<tr><td>Invalid Arguments</td></tr>";
@@ -976,7 +1005,7 @@ function menu($user,$active,$sub_active)
                             echo ">
                                                     <a href = 'view_patient.php' >
                                                         <i class='pe-7s-search' ></i >
-                                                        <p > view Patient </p >
+                                                        <p > View Patient </p >
                                                     </a >
                                                 </li >";
 												
@@ -988,6 +1017,17 @@ function menu($user,$active,$sub_active)
                                                     <a href = 'admit_patient.php' >
                                                         <i class='pe-7s-paperclip' ></i >
                                                         <p > Admit Patient </p >
+                                                    </a >
+                                                </li >";
+
+                            echo "<li ";
+                            if ($sub_active == "discharge_patient") {
+                                echo "class=active";
+                            }
+                            echo ">
+                                                    <a href = 'discharge.php' >
+                                                        <i class='pe-7s-back' ></i >
+                                                        <p > Discharge Patient </p >
                                                     </a >
                                                 </li >";
 
@@ -1143,6 +1183,17 @@ function menu($user,$active,$sub_active)
                                 <a href = 'add_ward.php' >
                                     <i class='pe-7s-search' ></i >
                                     <p > Add Ward </p >
+                                </a >
+                            </li >";
+
+                                echo "<li ";
+                                if ($sub_active == "report") {
+                                    echo "class=active";
+                                }
+                                echo ">
+                                <a href = 'report.php' >
+                                    <i class='pe-7s-news-paper' ></i >
+                                    <p > Report </p >
                                 </a >
                             </li >";
 
@@ -1345,6 +1396,51 @@ function admission($query)
     }
 }
 
+
+function alter_capacity($mode,$staff,$interval)
+{
+     include("assets/modules/db_config.php"); // include database for $conn variable
+    $get_query = "select staff_capacity from staff where staff_id = '$staff'";
+    $get_result = mysqli_query($conn,$get_query);
+    if($get_result)
+    {
+        if($mode == "-")
+        {
+            $capacity = mysqli_fetch_assoc($get_result);
+    $new_capacity = $capacity["staff_capacity"] - $interval;
+    $put_query = "update staff set staff_capacity = $new_capacity";
+    $put_result = mysqli_query($conn,$put_query);
+        if($put_result)
+        {
+           return true;
+        }
+        else
+        {
+            return false;
+        }
+        }
+        else
+        {
+            $capacity = mysqli_fetch_assoc($get_result);
+    $new_capacity = $capacity["staff_capacity"] + $interval;
+    $put_query = "update staff set staff_capacity = $new_capacity";
+    $put_result = mysqli_query($conn,$put_query);
+        if($put_result)
+        {
+           return true;
+        }
+        else
+        {
+            return false;
+        }
+        }
+    }
+    else
+    {
+        return false;
+    }
+
+}
 
 
 ?>

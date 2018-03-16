@@ -155,16 +155,106 @@ if(isset($_COOKIE["alert_false"]))
 	</div>
 
 	<div class="main main-raised">
-	
 
-			
+
+        <div class="section">
+	        <div class="container text-center">
+	            <div class="row  text-center">
+                    <div class="col-md-1    "></div>
+                   <div class="col-md-4  ">
+
+	                        <img src="assets/img/HMS.png" alt="Raised Image" class="img-circle img-responsive img-raised">
+	                    </div>
+	                <div class="col-md-6 ">
+	                    <h2>Matchless Hospitality <br>composed By Experience</h2>
+	                    <h4>
+                            One of the leading gynaecologists of the city, Dr. Panna Rudani (Rudani Hospital) in Rudani Hospital, has established the clinic in 1999 and has gained a loyal clientele over the past few years and is also frequently visited by several celebrities, aspiring models and other honourable clients and international patients as well.
+                        </h4>
+	                </div>
+	            </div>
+			</div>
+		</div>
+
+
+        <div class="section">
+	        <div class="container text-center">
+	            <div class="row  text-center">
+
+<div class="col-md-1    "></div>
+	                <div class="col-md-6 ">
+	                    <h2>Now At Your Fingertips</h2>
+	                    <h4>
+                            One of the leading gynaecologists of the city, Dr. Panna Rudani (Rudani Hospital) in Rudani Hospital, has established the clinic in 1999 and has gained a loyal clientele over the past few years and is also frequently visited by several celebrities, aspiring models and other honourable clients and international patients as well.
+                        </h4>
+	                </div>
+                    <div class="col-md-4  ">
+
+	                        <img src="assets/img/fingertips.jpg" alt="Raised Image" class="img-circle img-responsive img-raised">
+                    </div>
+
+	            </div>
+			</div>
+		</div>
 
 
 	    <div class="section" >
-	        
-	    	
-					
-	        <div class="container">
+            <div class="section" id="carousel">
+				<div class="row">
+					<div class="col-md-12 ">
+
+						<!-- Carousel Card -->
+						<div class="card card-raised card-carousel">
+							<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+								<div class="carousel slide" data-ride="carousel">
+
+									<!-- Indicators -->
+									<ol class="carousel-indicators">
+										<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+										<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+										<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+									</ol>
+
+									<!-- Wrapper for slides -->
+									<div class="carousel-inner">
+										<div class="item active">
+											<img src="assets/img/bg2.jpeg" alt="Awesome Image">
+											<div class="carousel-caption">
+												<h4><i class="material-icons">location_on</i> Yellowstone National Park, United States</h4>
+											</div>
+										</div>
+										<div class="item">
+											<img src="assets/img/bg3.jpeg" alt="Awesome Image">
+											<div class="carousel-caption">
+												<h4><i class="material-icons">location_on</i> Somewhere Beyond, United States</h4>
+											</div>
+										</div>
+										<div class="item">
+											<img src="assets/img/bg4.jpeg" alt="Awesome Image">
+											<div class="carousel-caption">
+												<h4><i class="material-icons">location_on</i> Yellowstone National Park, United States</h4>
+											</div>
+										</div>
+									</div>
+
+									<!-- Controls -->
+									<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+										<i class="material-icons">keyboard_arrow_left</i>
+									</a>
+									<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+										<i class="material-icons">keyboard_arrow_right</i>
+									</a>
+								</div>
+							</div>
+						</div>
+						<!-- End Carousel Card -->
+
+					</div>
+				</div>
+
+		</div>
+
+
+	        <div class="container-fluid">
 	            <div class="row text-center">
 	                <div class="col-md-8 col-md-offset-2">
 
@@ -178,9 +268,7 @@ if(isset($_COOKIE["alert_false"]))
 	                </div>
 				</div>
 
-				
 
-				
 
 	        </div>
 	

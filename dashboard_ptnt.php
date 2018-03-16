@@ -2,178 +2,124 @@
 include("assets/modules/global_module.php");
 include("assets/modules/theme.php");
 check_token("patient");
-$p_id = $_SESSION["login_token"];	
+$p_id = $_SESSION["login_token"];
 $data = mysqli_fetch_assoc(fetch_data("select * from patient where patient_id = '$p_id'","result"));
 
 
 ?>
 
-<!doctype html>
+	<!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="assets/img/HMS.png">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Dashboard - Patient</title>
+    <title>Rudani Hospital</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
 
+	<!--     Fonts and icons     -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
-    <!-- Bootstrap core CSS     -->
+	<!-- CSS Files -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-
-    <!-- Animation library for notifications   -->
-    <link href="assets/css/animate.min.css" rel="stylesheet"/>
-
-    <!--  Light Bootstrap Table core CSS    -->
-    <link href="assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
-
-
-    <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
-    <link href="assets/css/demo.css" rel="stylesheet" />
+    <link href="assets/css/materialize.css" rel="stylesheet">
 
 </head>
+
 <body>
 
-<div class="wrapper">
-    <div class="sidebar" >
+   <nav>
+    <div class="nav-wrapper">
+     <div class="container-fluid teal">
+ <a href="index.php">
+  <div class="chip">
+             <img src="assets/img/HMS.png" alt="Contact Person">
+     Rudani Hospital
+         </div>
+         </a>
 
-    <!--
+         <b> > </b>
 
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
 
-    -->
+         <div class="chip">
+    <img src="assets/img/avatars/female-doc.jpg" alt="Contact Person">
+    <?php echo $data['patient_name']; ?>
+  </div>
 
-    	<div class="sidebar-wrapper <?php theme("class_sidebar"); ?>">
-            <div class="logo">
-                <a href="#" class="simple-text">
-                    <?php echo $data['patient_name'];?>
-                </a>
-            </div>
-
-            <ul class="nav">
-                <li class="active">
-                    <a href="dashboard.html">
-                        <i class="pe-7s-graph"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="patient_profile.php" >
-                        <i class="pe-7s-user"></i>
-                        <p>User Profile</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="patient_appointment.php">
-                        <i class="pe-7s-note2"></i>
-                        <p>Appointment</p>
-                    </a>
-                </li>
-                
-                
-               
-                <li>
-                    <a href="notifications.html">
-                        <i class="pe-7s-bell"></i>
-                        <p>Notifications</p>
-                    </a>
-                </li>
-				
-            </ul>
-    	</div>
+     </div>
     </div>
+  </nav>
 
-    <div class="main-panel">
-	
-        <nav class="navbar navbar-default navbar-fixed">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Dashboard</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    
-
-                    <ul class="nav navbar-nav navbar-right">
-
-                       
-                        <li>
-                            <a href="logout.php?for=<?php echo $p_id ?>">
-                                <p>Log out</p>
-                            </a>
-                        </li>
-						<li class="separator hidden-lg"></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-		
-		
-		
-		
-
-        <footer class="footer">
-            <div class="container-fluid">
-               
-                <p class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script>
-					<a href="#">By HPL Team</a>
-                </p>
-            </div>
-        </footer>
-
-    </div>
+<div class="container-fluid center-align">
+    <h1 class="flow-text">Dashboard</h1>
 </div>
+
+  <div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card z-depth-0">
+        <div class="card-image">
+          <img src="assets/img/004-christmas-day.png">
+
+          <a href="patient_appointment.php" class="btn-floating btn-large halfway-fab waves-effect waves-light red teal"><i class="material-icons">add</i></a>
+        </div>
+        <div class="card-content">
+          <h2 class="flow-text text-center">Appointment</h2>
+        </div>
+      </div>
+    </div>
+
+      <div class="col-md-3">
+      <div class="card z-depth-0">
+        <div class="card-image ">
+          <img src="assets/img/curriculum.png">
+
+          <a class="btn-floating btn-large halfway-fab waves-effect waves-light red teal"><i class="material-icons">add</i></a>
+        </div>
+        <div class="card-content">
+          <h2 class="flow-text text-center">Profile</h2>
+        </div>
+      </div>
+    </div>
+
+      <div class="col-md-3">
+      <div class="card z-depth-0" >
+        <div class="card-image">
+          <img src="assets/img/002-star.png">
+
+          <a class="btn-floating btn-large halfway-fab waves-effect waves-light red teal"><i class="material-icons">add</i></a>
+        </div>
+        <div class="card-content">
+            <h2 class="flow-text text-center">FeedBack</h2>
+        </div>
+      </div>
+    </div>
+
+      <div class="col-md-3">
+      <div class="card z-depth-0 ">
+        <div class="card-image">
+          <img src="assets/img/001-clipboard.png">
+
+          <a class="btn-floating btn-large halfway-fab waves-effect waves-light teal"><i class="material-icons">add</i></a>
+        </div>
+        <div class="card-content">
+          <h2 class="flow-text text-center">Report</h2>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+  </div>
 
 
 </body>
-
-    <!--   Core JS Files   -->
-    <script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
+	<!--   Core JS Files   -->
+	<script src="assets/js/jquery.min.js" type="text/javascript"></script>
 	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-
-	<!--  Charts Plugin -->
-	<script src="assets/js/chartist.min.js"></script>
-
-    <!--  Notifications Plugin    -->
-    <script src="assets/js/bootstrap-notify.js"></script>
-
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-
-    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-	<script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
-
-	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-	<script src="assets/js/demo.js"></script>
-
-	<script type="text/javascript">
-    	$(document).ready(function(){
-
-        	demo.initChartist();
-
-        	$.notify({
-            	icon: 'pe-7s-gift',
-            	message: "Welcome to <b>Rudani Hospital</b> <br> Your Health Companion on-the-go."
-
-            },{
-                type: 'info',
-                timer: 4000
-            });
-
-    	});
-	</script>
-
+	<script src="assets/js/materialize.js"></script>
 </html>

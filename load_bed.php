@@ -8,7 +8,7 @@ if(isset($_POST["ward"]))
 	$ward_id = $_POST["ward"];
 }
 
-$result = fetch_data("select * from bed where ward_id = '$ward_id' ","result");
+$result = fetch_data("select * from bed where ward_id = '$ward_id' and bed_status = 0","result");
 
 if($result && mysqli_num_rows($result) != 0)
 {
