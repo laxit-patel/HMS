@@ -1,13 +1,7 @@
 <?php
 include("assets/modules/global_module.php");
-check_token("admin");
 
-if(isset($_POST["email"]))
-{
-	$email = $_POST["email"];
-}
+generate_otp("18_ptnt_1");
 
-echo $email;
-
-echo "Yo";
 ?>
+

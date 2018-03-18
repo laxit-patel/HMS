@@ -147,22 +147,20 @@ $data = mysqli_fetch_assoc($result);
             </div>
         </nav>
 
-        <div class="container-fluid" id="alert_box" >
+        <br>
+         <div class="container-fluid text-center" id="alert_box" >
                                         <?php
-
                                         if(isset($alert_success))
                                         {
-                                            echo "<div class='container-fluid'><div class='alert alert-success' style='color:black'>
-               <div class='container-fluid'>
-           <div class='alert-icon'>
-            <i class='material-icons'>done_all</i>
-          </div>
-          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
-          </button>
-                   <h4>$alert_success</h4> 
-              </div>
-          </div></div>";
+                                            echo "<div class='container-fluid'><div class='alert alert-success' style='color:black' id='alert_body'>
+                                           <div class='container-fluid'>
+                                       <div class='alert-icon'>
+                                        <i class='material-icons'>done_all</i>
+                                      </div>
+                                     
+                                               <h4>$alert_success</h4> 
+                                          </div>
+                                      </div></div>";
                                         }
                                         else
                                         {
@@ -171,19 +169,15 @@ $data = mysqli_fetch_assoc($result);
 
                                         if(isset($alert_danger))
                                         {
-                                            echo "<div class='alert alert-danger' >
-               <div class='container-fluid'>
-                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
-          </button>
-           <div class='alert-icon pull-left'>
-            <i class='material-icons'>error_outline</i>
-          </div>
-          <h4> $alert_danger </h4>
-         
-                   
-              </div>
-          </div>";
+                                            echo "<div class='alert alert-danger' id='alert_body'>
+                                           <div class='container-fluid'>
+                                            
+                                       <div class='alert-icon pull-left'>
+                                        <i class='material-icons'>error_outline</i>
+                                      </div>
+                                      <h4> $alert_danger </h4>      
+                                          </div>
+                                      </div>";
                                         }
                                         else
                                         {
@@ -191,8 +185,6 @@ $data = mysqli_fetch_assoc($result);
                                         }
                                         ?>
                                     </div>
-
-
 
 
         <div class="container-fluid ">

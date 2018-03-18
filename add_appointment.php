@@ -1,5 +1,6 @@
 <?php
 include("assets/modules/global_module.php");
+include("assets/modules/theme.php");
 check_token("admin");
 
 $name = $_SESSION["admin_token"];
@@ -80,7 +81,7 @@ if($_POST)
     <link rel="icon" type="image/png" href="assets/img/HMS.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Dashboard - Appointment</title>
+    <title>Dashboard - Add Appointment</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -148,7 +149,7 @@ if($_POST)
                 <div class="col-sm-8 col-sm-offset-2">
                     <!--      Wizard container        -->
                     <div class="wizard-container">
-                        <div class="card wizard-card" data-color="purple" id="wizardProfile">
+                        <div class="card wizard-card" data-color="<?php theme("class_moving_tab"); ?>" id="wizardProfile">
                             <form  name="app_form" method="POST">
                                 <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
 
@@ -303,8 +304,8 @@ if($_POST)
                                 </div>
                                 <div class="wizard-footer">
                                     <div class="pull-right">
-                                        <input type='button' class='btn btn-next btn-fill btn-success btn-wd'  value='Next' style="background-color:#9C27B0"/>
-                                        <input type='submit' class='btn btn-finish btn-fill btn-success btn-wd '  value='Book' style="background-color:#9C27B0"/>
+                                        <input type='button' class='btn btn-next btn-fill  btn-wd'  value='Next' id="<?php theme("id_btn"); ?>"/>
+                                        <input type='submit' class='btn btn-finish btn-fill btn-wd '  value='Book' id="<?php theme("id_btn"); ?>"/>
                                     </div>
 
                                     <div class="pull-left">

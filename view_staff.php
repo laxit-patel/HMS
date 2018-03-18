@@ -1,5 +1,6 @@
 <?php
 include("assets/modules/global_module.php");
+include("assets/modules/theme.php");
 check_token("admin");
 
 $name = $_SESSION["admin_token"];
@@ -8,14 +9,17 @@ if(isset($_GET["id"]))
     $id = $_GET["id"];
 }
 
-if(isset($_GET["msg_t"]))
+if(isset($_COOKIE["alert_true"]))
 {
-	$alert_success = $_GET["msg_t"];
+    $alert_success = $_COOKIE["alert_true"];
+    setcookie("alert_true","",time()-10);
 }
-if(isset($_GET["msg_f"]))
+if(isset($_COOKIE["alert_false"]))
 {
-	$alert_danger = $_GET["msg_f"];
+    $alert_danger = $_COOKIE["alert_false"];
+    setcookie("alert_false","",time()-10);
 }
+
 
 elseif(isset($_SESSION["admin_token"]))
 {
@@ -55,6 +59,7 @@ $data = mysqli_fetch_assoc($result);
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link href="assets/css/demo.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
 </head>
@@ -88,7 +93,7 @@ $data = mysqli_fetch_assoc($result);
                                 <p>Log out</p>
                             </a>
                         </li>
-                        <li class="separator hidden-lg"></li>
+
                     </ul>
                 </div>
             </div>
@@ -98,22 +103,21 @@ $data = mysqli_fetch_assoc($result);
 		<div class="row">
 		<div class=col-md-1></div>
 			<div class="col-md-10">
-			<div class="container-fluid" id="alert_box" >
-                                        <?php
 
+                 <br>
+                                    <div class="container-fluid text-center" id="alert_box" >
+                                        <?php
                                         if(isset($alert_success))
                                         {
-                                            echo "<div class='container-fluid'><div class='alert alert-success' style='color:black'>
-               <div class='container-fluid'>
-           <div class='alert-icon'>
-            <i class='material-icons'>done_all</i>
-          </div>
-          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
-          </button>
-                   <h4>$alert_success</h4> 
-              </div>
-          </div></div>";
+                                            echo "<div class='container-fluid'><div class='alert alert-success' style='color:black' id='alert_body'>
+                                           <div class='container-fluid'>
+                                       <div class='alert-icon'>
+                                        <i class='material-icons'>done_all</i>
+                                      </div>
+                                     
+                                               <h4>$alert_success</h4> 
+                                          </div>
+                                      </div></div>";
                                         }
                                         else
                                         {
@@ -122,19 +126,15 @@ $data = mysqli_fetch_assoc($result);
 
                                         if(isset($alert_danger))
                                         {
-                                            echo "<div class='alert alert-danger' >
-               <div class='container-fluid'>
-                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
-          </button>
-           <div class='alert-icon pull-left'>
-            <i class='material-icons'>error_outline</i>
-          </div>
-          <h4> $alert_danger </h4>
-         
-                   
-              </div>
-          </div>";
+                                            echo "<div class='alert alert-danger' id='alert_body'>
+                                           <div class='container-fluid'>
+                                            
+                                       <div class='alert-icon pull-left'>
+                                        <i class='material-icons'>error_outline</i>
+                                      </div>
+                                      <h4> $alert_danger </h4>      
+                                          </div>
+                                      </div>";
                                         }
                                         else
                                         {
@@ -142,6 +142,8 @@ $data = mysqli_fetch_assoc($result);
                                         }
                                         ?>
                                     </div>
+
+
 			</div>
 			<div class=col-md-1></div>
 		</div>
@@ -151,7 +153,7 @@ $data = mysqli_fetch_assoc($result);
             <div class="row">
                 <div class="col-md-12">
 
-                    <div class="fresh-table full-color-purple" >
+                    <div class="fresh-table <?php theme("class_table"); ?>" >
                         <!--    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
                                 Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
                         -->
@@ -182,15 +184,7 @@ $data = mysqli_fetch_assoc($result);
         </div>
 
 
-        <footer class="footer">
-            <div class="container-fluid">
 
-                <p class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script>
-                    <a href="#">By HPL Team</a>
-                </p>
-            </div>
-        </footer>
 
     </div>
 </div>

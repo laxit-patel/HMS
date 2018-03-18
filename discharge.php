@@ -165,7 +165,7 @@ $data = mysqli_fetch_assoc($result);
                             <th data-field="patient">Patient</th>
                             <th data-field="Nurse" data-sortable="true">Nurse</th>
 
-                            <th data-field="bed" data-sortable="true">Bed</th>
+                            <th data-field="bed" data-sortable="true">Ward</th>
                             <th data-field="date">Date</th>
                             <th  data-field="actions"  >Action</th>
                             </thead>
@@ -183,15 +183,7 @@ $data = mysqli_fetch_assoc($result);
         </div>
 
 
-        <footer class="footer">
-            <div class="container-fluid">
 
-                <p class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script>
-                    <a href="#">By HPL Team</a>
-                </p>
-            </div>
-        </footer>
 
     </div>
 </div>

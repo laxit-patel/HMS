@@ -1,6 +1,7 @@
 <?php 
 include("assets/modules/global_module.php"); 
 include("assets/modules/theme.php");
+include("assets/modules/email.php");
 
 if($_POST)
 {
@@ -80,9 +81,34 @@ if($_POST)
 
       $loc = $p_city."~".$p_address;
 	 
-		echo insert_data("insert into patient(patient_id,patient_name,patient_gender,patient_email,patient_phone,patient_dob,patient_address,patient_password,added_by) values('$p_id','$p_name','$p_gender','$p_email','$p_phone','$p_dob','$loc','$p_password','self')");
-		
-			header("LOCATION:patient_otp.php?id=$p_id&p_email=$p_email");
+		if(insert_data("insert into patient(patient_id,patient_name,patient_gender,patient_email,patient_phone,patient_dob,patient_address,patient_password,added_by) values('$p_id','$p_name','$p_gender','$p_email','$p_phone','$p_dob','$loc','$p_password','self')") == "Success")
+        {
+            
+            if(generate_otp($p_id))
+            {
+                if(email($p_email))
+                {
+                    header("LOCATION:patient_otp.php?id=$p_id&p_email=$p_email");
+                }
+                else
+                {
+                    setcookie("alert_false","Email Not Sent",time() + (10 * 365 * 24 * 60 * 60));
+                    header("LOCATION:patient_otp.php?id=$p_id&p_email=$p_email");
+                }
+            }
+            else
+            {
+                setcookie("alert_false","Otp Not Geneated",time() + (10 * 365 * 24 * 60 * 60));
+                header("LOCATION:patient_otp.php?id=$p_id&p_email=$p_email");
+            }
+        }
+        else
+        {
+            $alert_danger = "Patient Not Added";
+        }
+
+
+
   }
 }
 

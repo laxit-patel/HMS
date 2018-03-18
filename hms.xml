@@ -5,7 +5,7 @@
 - https://www.phpmyadmin.net
 -
 - Host: 127.0.0.1
-- Generation Time: Mar 14, 2018 at 07:39 AM
+- Generation Time: Mar 17, 2018 at 06:43 AM
 - Server version: 10.1.29-MariaDB
 - PHP Version: 7.2.0
 -->
@@ -25,8 +25,8 @@
                   PRIMARY KEY (`admin_id`)
                 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
             </pma:table>
-            <pma:table name="adminssion">
-                CREATE TABLE `adminssion` (
+            <pma:table name="admission">
+                CREATE TABLE `admission` (
                   `admission_id` varchar(10) NOT NULL,
                   `admission_patient` varchar(10) NOT NULL,
                   `admission_nurse_assigned` varchar(10) NOT NULL,
@@ -54,7 +54,6 @@
                   `bed_id` varchar(10) NOT NULL,
                   `ward_id` varchar(10) NOT NULL,
                   `patient_id` varchar(10) NOT NULL,
-                  `doctor_id` varchar(10) NOT NULL,
                   `staff_id` varchar(10) NOT NULL,
                   `bed_status` tinyint(1) NOT NULL,
                   `bed_exist` tinyint(1) NOT NULL,
@@ -102,6 +101,7 @@
                   `doj` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
                   `patient_exist` tinyint(1) NOT NULL,
                   `patient_blood_group` varchar(5) NOT NULL,
+                  `patient_status` tinyint(1) NOT NULL,
                   PRIMARY KEY (`patient_id`)
                 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
             </pma:table>
@@ -135,7 +135,7 @@
                   `doj` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                   `staff_type` varchar(30) NOT NULL,
                   `staff_exist` tinyint(1) NOT NULL,
-                  `allocation` varchar(10) NOT NULL,
+                  `staff_capacity` int(2) DEFAULT '12',
                   PRIMARY KEY (`staff_id`)
                 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
             </pma:table>
@@ -163,7 +163,106 @@
             <column name="admin_password">.--..--..-.</column>
             <column name="admin_role">super</column>
         </table>
-        <!-- Table adminssion -->
+        <!-- Table admission -->
+        <table name="admission">
+            <column name="admission_id">18_adms_0</column>
+            <column name="admission_patient">18_ptnt_5</column>
+            <column name="admission_nurse_assigned">18_stff_0</column>
+            <column name="admission_bed">18_bedd_19</column>
+            <column name="admission_date">2018-03-16</column>
+            <column name="admission_status">1</column>
+            <column name="admission_exist">0</column>
+        </table>
+        <table name="admission">
+            <column name="admission_id">18_adms_1</column>
+            <column name="admission_patient">18_ptnt_5</column>
+            <column name="admission_nurse_assigned">18_stff_0</column>
+            <column name="admission_bed">18_bedd_19</column>
+            <column name="admission_date">2018-03-16</column>
+            <column name="admission_status">1</column>
+            <column name="admission_exist">0</column>
+        </table>
+        <table name="admission">
+            <column name="admission_id">18_adms_10</column>
+            <column name="admission_patient">18_ptnt_4</column>
+            <column name="admission_nurse_assigned">18_stff_0</column>
+            <column name="admission_bed">18_bedd_17</column>
+            <column name="admission_date">2018-03-16</column>
+            <column name="admission_status">0</column>
+            <column name="admission_exist">0</column>
+        </table>
+        <table name="admission">
+            <column name="admission_id">18_adms_2</column>
+            <column name="admission_patient">18_ptnt_7</column>
+            <column name="admission_nurse_assigned">18_stff_0</column>
+            <column name="admission_bed">18_bedd_15</column>
+            <column name="admission_date">2018-03-16</column>
+            <column name="admission_status">1</column>
+            <column name="admission_exist">0</column>
+        </table>
+        <table name="admission">
+            <column name="admission_id">18_adms_3</column>
+            <column name="admission_patient">18_ptnt_4</column>
+            <column name="admission_nurse_assigned">18_stff_0</column>
+            <column name="admission_bed">18_bedd_1</column>
+            <column name="admission_date">2018-03-16</column>
+            <column name="admission_status">1</column>
+            <column name="admission_exist">0</column>
+        </table>
+        <table name="admission">
+            <column name="admission_id">18_adms_4</column>
+            <column name="admission_patient">18_ptnt_4</column>
+            <column name="admission_nurse_assigned">18_stff_0</column>
+            <column name="admission_bed">18_bedd_16</column>
+            <column name="admission_date">2018-03-16</column>
+            <column name="admission_status">1</column>
+            <column name="admission_exist">0</column>
+        </table>
+        <table name="admission">
+            <column name="admission_id">18_adms_5</column>
+            <column name="admission_patient">18_ptnt_6</column>
+            <column name="admission_nurse_assigned">18_stff_0</column>
+            <column name="admission_bed">18_bedd_18</column>
+            <column name="admission_date">2018-03-16</column>
+            <column name="admission_status">1</column>
+            <column name="admission_exist">0</column>
+        </table>
+        <table name="admission">
+            <column name="admission_id">18_adms_6</column>
+            <column name="admission_patient">18_ptnt_4</column>
+            <column name="admission_nurse_assigned">18_stff_0</column>
+            <column name="admission_bed">18_bedd_15</column>
+            <column name="admission_date">2018-03-16</column>
+            <column name="admission_status">0</column>
+            <column name="admission_exist">0</column>
+        </table>
+        <table name="admission">
+            <column name="admission_id">18_adms_7</column>
+            <column name="admission_patient">18_ptnt_4</column>
+            <column name="admission_nurse_assigned">18_stff_0</column>
+            <column name="admission_bed">18_bedd_14</column>
+            <column name="admission_date">2018-03-16</column>
+            <column name="admission_status">0</column>
+            <column name="admission_exist">0</column>
+        </table>
+        <table name="admission">
+            <column name="admission_id">18_adms_8</column>
+            <column name="admission_patient">18_ptnt_7</column>
+            <column name="admission_nurse_assigned">18_stff_0</column>
+            <column name="admission_bed">18_bedd_16</column>
+            <column name="admission_date">2018-03-16</column>
+            <column name="admission_status">0</column>
+            <column name="admission_exist">0</column>
+        </table>
+        <table name="admission">
+            <column name="admission_id">18_adms_9</column>
+            <column name="admission_patient">18_ptnt_3</column>
+            <column name="admission_nurse_assigned">18_stff_0</column>
+            <column name="admission_bed">18_bedd_20</column>
+            <column name="admission_date">2018-03-16</column>
+            <column name="admission_status">1</column>
+            <column name="admission_exist">0</column>
+        </table>
         <!-- Table appointment -->
         <table name="appointment">
             <column name="appointment_id">18_apmt_0</column>
@@ -224,7 +323,6 @@
             <column name="bed_id">18_bedd_0</column>
             <column name="ward_id">18_ward_0</column>
             <column name="patient_id"></column>
-            <column name="doctor_id"></column>
             <column name="staff_id"></column>
             <column name="bed_status">0</column>
             <column name="bed_exist">0</column>
@@ -233,7 +331,6 @@
             <column name="bed_id">18_bedd_1</column>
             <column name="ward_id">18_ward_0</column>
             <column name="patient_id"></column>
-            <column name="doctor_id"></column>
             <column name="staff_id"></column>
             <column name="bed_status">0</column>
             <column name="bed_exist">0</column>
@@ -242,7 +339,6 @@
             <column name="bed_id">18_bedd_10</column>
             <column name="ward_id">18_ward_2</column>
             <column name="patient_id"></column>
-            <column name="doctor_id"></column>
             <column name="staff_id"></column>
             <column name="bed_status">0</column>
             <column name="bed_exist">1</column>
@@ -251,7 +347,6 @@
             <column name="bed_id">18_bedd_11</column>
             <column name="ward_id">18_ward_2</column>
             <column name="patient_id"></column>
-            <column name="doctor_id"></column>
             <column name="staff_id"></column>
             <column name="bed_status">0</column>
             <column name="bed_exist">1</column>
@@ -260,7 +355,6 @@
             <column name="bed_id">18_bedd_12</column>
             <column name="ward_id">18_ward_2</column>
             <column name="patient_id"></column>
-            <column name="doctor_id"></column>
             <column name="staff_id"></column>
             <column name="bed_status">0</column>
             <column name="bed_exist">1</column>
@@ -269,7 +363,6 @@
             <column name="bed_id">18_bedd_13</column>
             <column name="ward_id">18_ward_3</column>
             <column name="patient_id"></column>
-            <column name="doctor_id"></column>
             <column name="staff_id"></column>
             <column name="bed_status">0</column>
             <column name="bed_exist">1</column>
@@ -277,44 +370,39 @@
         <table name="bed">
             <column name="bed_id">18_bedd_14</column>
             <column name="ward_id">18_ward_1</column>
-            <column name="patient_id"></column>
-            <column name="doctor_id"></column>
-            <column name="staff_id"></column>
-            <column name="bed_status">0</column>
+            <column name="patient_id">18_ptnt_4</column>
+            <column name="staff_id">18_stff_0</column>
+            <column name="bed_status">1</column>
             <column name="bed_exist">0</column>
         </table>
         <table name="bed">
             <column name="bed_id">18_bedd_15</column>
             <column name="ward_id">18_ward_1</column>
-            <column name="patient_id"></column>
-            <column name="doctor_id"></column>
-            <column name="staff_id"></column>
-            <column name="bed_status">0</column>
+            <column name="patient_id">18_ptnt_4</column>
+            <column name="staff_id">18_stff_0</column>
+            <column name="bed_status">1</column>
             <column name="bed_exist">0</column>
         </table>
         <table name="bed">
             <column name="bed_id">18_bedd_16</column>
             <column name="ward_id">18_ward_1</column>
-            <column name="patient_id"></column>
-            <column name="doctor_id"></column>
-            <column name="staff_id"></column>
-            <column name="bed_status">0</column>
+            <column name="patient_id">18_ptnt_7</column>
+            <column name="staff_id">18_stff_0</column>
+            <column name="bed_status">1</column>
             <column name="bed_exist">0</column>
         </table>
         <table name="bed">
             <column name="bed_id">18_bedd_17</column>
             <column name="ward_id">18_ward_0</column>
-            <column name="patient_id"></column>
-            <column name="doctor_id"></column>
-            <column name="staff_id"></column>
-            <column name="bed_status">0</column>
+            <column name="patient_id">18_ptnt_4</column>
+            <column name="staff_id">18_stff_0</column>
+            <column name="bed_status">1</column>
             <column name="bed_exist">0</column>
         </table>
         <table name="bed">
             <column name="bed_id">18_bedd_18</column>
             <column name="ward_id">18_ward_0</column>
             <column name="patient_id"></column>
-            <column name="doctor_id"></column>
             <column name="staff_id"></column>
             <column name="bed_status">0</column>
             <column name="bed_exist">0</column>
@@ -323,7 +411,6 @@
             <column name="bed_id">18_bedd_19</column>
             <column name="ward_id">18_ward_4</column>
             <column name="patient_id"></column>
-            <column name="doctor_id"></column>
             <column name="staff_id"></column>
             <column name="bed_status">0</column>
             <column name="bed_exist">0</column>
@@ -332,7 +419,6 @@
             <column name="bed_id">18_bedd_2</column>
             <column name="ward_id">18_ward_0</column>
             <column name="patient_id"></column>
-            <column name="doctor_id"></column>
             <column name="staff_id"></column>
             <column name="bed_status">0</column>
             <column name="bed_exist">1</column>
@@ -341,7 +427,6 @@
             <column name="bed_id">18_bedd_20</column>
             <column name="ward_id">18_ward_5</column>
             <column name="patient_id"></column>
-            <column name="doctor_id"></column>
             <column name="staff_id"></column>
             <column name="bed_status">0</column>
             <column name="bed_exist">0</column>
@@ -350,7 +435,6 @@
             <column name="bed_id">18_bedd_3</column>
             <column name="ward_id">18_ward_0</column>
             <column name="patient_id"></column>
-            <column name="doctor_id"></column>
             <column name="staff_id"></column>
             <column name="bed_status">0</column>
             <column name="bed_exist">1</column>
@@ -359,7 +443,6 @@
             <column name="bed_id">18_bedd_4</column>
             <column name="ward_id">18_ward_0</column>
             <column name="patient_id"></column>
-            <column name="doctor_id"></column>
             <column name="staff_id"></column>
             <column name="bed_status">0</column>
             <column name="bed_exist">0</column>
@@ -368,7 +451,6 @@
             <column name="bed_id">18_bedd_5</column>
             <column name="ward_id">18_ward_1</column>
             <column name="patient_id"></column>
-            <column name="doctor_id"></column>
             <column name="staff_id"></column>
             <column name="bed_status">0</column>
             <column name="bed_exist">0</column>
@@ -377,7 +459,6 @@
             <column name="bed_id">18_bedd_6</column>
             <column name="ward_id">18_ward_3</column>
             <column name="patient_id"></column>
-            <column name="doctor_id"></column>
             <column name="staff_id"></column>
             <column name="bed_status">0</column>
             <column name="bed_exist">1</column>
@@ -386,7 +467,6 @@
             <column name="bed_id">18_bedd_7</column>
             <column name="ward_id">18_ward_3</column>
             <column name="patient_id"></column>
-            <column name="doctor_id"></column>
             <column name="staff_id"></column>
             <column name="bed_status">0</column>
             <column name="bed_exist">1</column>
@@ -395,7 +475,6 @@
             <column name="bed_id">18_bedd_8</column>
             <column name="ward_id">18_ward_3</column>
             <column name="patient_id"></column>
-            <column name="doctor_id"></column>
             <column name="staff_id"></column>
             <column name="bed_status">0</column>
             <column name="bed_exist">1</column>
@@ -404,7 +483,6 @@
             <column name="bed_id">18_bedd_9</column>
             <column name="ward_id">18_ward_2</column>
             <column name="patient_id"></column>
-            <column name="doctor_id"></column>
             <column name="staff_id"></column>
             <column name="bed_status">0</column>
             <column name="bed_exist">1</column>
@@ -487,7 +565,7 @@
             <column name="patient_email">patellaxit8@gmail.com</column>
             <column name="patient_phone">9726412461</column>
             <column name="patient_dob">0000-00-00</column>
-            <column name="patient_type">0</column>
+            <column name="patient_type">1</column>
             <column name="patient_address">Bhuj~bhujodi</column>
             <column name="patient_password">8460892026</column>
             <column name="relative_name"> manish bhanushali</column>
@@ -496,6 +574,7 @@
             <column name="doj">2018-02-25 19:09:22.672851</column>
             <column name="patient_exist">1</column>
             <column name="patient_blood_group"></column>
+            <column name="patient_status">1</column>
         </table>
         <table name="patient">
             <column name="patient_id">18_ptnt_1</column>
@@ -504,7 +583,7 @@
             <column name="patient_email">parth@gmail.com</column>
             <column name="patient_phone">8989898989</column>
             <column name="patient_dob">0000-00-00</column>
-            <column name="patient_type">0</column>
+            <column name="patient_type">1</column>
             <column name="patient_address">Bhuj~vardhman nagar</column>
             <column name="patient_password">parth@123</column>
             <column name="relative_name">odin</column>
@@ -513,6 +592,7 @@
             <column name="doj">2018-02-25 19:13:34.110351</column>
             <column name="patient_exist">1</column>
             <column name="patient_blood_group"></column>
+            <column name="patient_status">1</column>
         </table>
         <table name="patient">
             <column name="patient_id">18_ptnt_2</column>
@@ -521,7 +601,7 @@
             <column name="patient_email">hiten@gmail.com</column>
             <column name="patient_phone">8989898989</column>
             <column name="patient_dob">0000-00-00</column>
-            <column name="patient_type">0</column>
+            <column name="patient_type">1</column>
             <column name="patient_address">Bhuj~Madhapar</column>
             <column name="patient_password">8460892026</column>
             <column name="relative_name">odin</column>
@@ -530,6 +610,7 @@
             <column name="doj">2018-02-25 19:16:56.877929</column>
             <column name="patient_exist">1</column>
             <column name="patient_blood_group"></column>
+            <column name="patient_status">1</column>
         </table>
         <table name="patient">
             <column name="patient_id">18_ptnt_3</column>
@@ -547,6 +628,7 @@
             <column name="doj">2018-02-25 20:57:29.034179</column>
             <column name="patient_exist">0</column>
             <column name="patient_blood_group"></column>
+            <column name="patient_status">0</column>
         </table>
         <table name="patient">
             <column name="patient_id">18_ptnt_4</column>
@@ -555,7 +637,7 @@
             <column name="patient_email"></column>
             <column name="patient_phone">9726412461</column>
             <column name="patient_dob">1999-02-15</column>
-            <column name="patient_type">0</column>
+            <column name="patient_type">1</column>
             <column name="patient_address">Bhuj~howrah bridge,kolkata</column>
             <column name="patient_password"></column>
             <column name="relative_name">laxit</column>
@@ -564,6 +646,7 @@
             <column name="doj">2018-02-25 21:13:23.785156</column>
             <column name="patient_exist">0</column>
             <column name="patient_blood_group">S</column>
+            <column name="patient_status">1</column>
         </table>
         <table name="patient">
             <column name="patient_id">18_ptnt_5</column>
@@ -572,7 +655,7 @@
             <column name="patient_email"></column>
             <column name="patient_phone">8141458601</column>
             <column name="patient_dob">1989-02-15</column>
-            <column name="patient_type">0</column>
+            <column name="patient_type">1</column>
             <column name="patient_address">Bhuj~ranchi</column>
             <column name="patient_password"></column>
             <column name="relative_name">laxit</column>
@@ -581,6 +664,7 @@
             <column name="doj">2018-02-25 21:14:40.628906</column>
             <column name="patient_exist">0</column>
             <column name="patient_blood_group">S</column>
+            <column name="patient_status">1</column>
         </table>
         <table name="patient">
             <column name="patient_id">18_ptnt_6</column>
@@ -589,7 +673,7 @@
             <column name="patient_email"></column>
             <column name="patient_phone">8989898989</column>
             <column name="patient_dob">1979-02-21</column>
-            <column name="patient_type">0</column>
+            <column name="patient_type">1</column>
             <column name="patient_address">Bhuj~Madhapar</column>
             <column name="patient_password"></column>
             <column name="relative_name">laxit</column>
@@ -598,6 +682,7 @@
             <column name="doj">2018-02-25 21:19:23.678710</column>
             <column name="patient_exist">0</column>
             <column name="patient_blood_group">O-</column>
+            <column name="patient_status">1</column>
         </table>
         <table name="patient">
             <column name="patient_id">18_ptnt_7</column>
@@ -606,7 +691,7 @@
             <column name="patient_email">patellaxit8@gmail.com</column>
             <column name="patient_phone">9726412461</column>
             <column name="patient_dob">1997-02-10</column>
-            <column name="patient_type">0</column>
+            <column name="patient_type">1</column>
             <column name="patient_address">Bhuj~bhujodi</column>
             <column name="patient_password">8460892026</column>
             <column name="relative_name"></column>
@@ -615,6 +700,7 @@
             <column name="doj">2018-02-26 09:36:46.190429</column>
             <column name="patient_exist">0</column>
             <column name="patient_blood_group"></column>
+            <column name="patient_status">1</column>
         </table>
         <!-- Table slot -->
         <table name="slot">
@@ -671,34 +757,19 @@
         </table>
         <!-- Table staff -->
         <table name="staff">
-            <column name="staff_id">18_staff_0</column>
+            <column name="staff_id">18_stff_0</column>
             <column name="staff_name">nina maclaren</column>
-            <column name="staff_dob">2018-02-23</column>
+            <column name="staff_dob">2018-03-21</column>
             <column name="staff_gender">Female</column>
             <column name="staff_phone">1236445455</column>
-            <column name="staff_city">ahemdabad paldi</column>
+            <column name="staff_city">ahemdabad</column>
             <column name="staff_address">paldi chowk</column>
             <column name="staff_email">staff@gmail.com</column>
             <column name="staff_password">staff@123</column>
-            <column name="doj">2018-02-26 01:03:41</column>
+            <column name="doj">2018-03-16 23:29:44</column>
             <column name="staff_type">Nurse</column>
             <column name="staff_exist">0</column>
-            <column name="allocation"></column>
-        </table>
-        <table name="staff">
-            <column name="staff_id">18_staff_1</column>
-            <column name="staff_name">pramod misra</column>
-            <column name="staff_dob">1997-02-28</column>
-            <column name="staff_gender">Male</column>
-            <column name="staff_phone">1236445455</column>
-            <column name="staff_city">bhuj</column>
-            <column name="staff_address">rto circle</column>
-            <column name="staff_email">pramod@gmail.com</column>
-            <column name="staff_password">pramod@123</column>
-            <column name="doj">2018-02-26 01:14:53</column>
-            <column name="staff_type">Wardboy</column>
-            <column name="staff_exist">1</column>
-            <column name="allocation"></column>
+            <column name="staff_capacity">3</column>
         </table>
         <!-- Table ward -->
         <table name="ward">

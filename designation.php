@@ -1,5 +1,6 @@
 <?php
 include("assets/modules/global_module.php");
+include("assets/modules/theme.php");
 check_token("admin");
 
 $name = $_SESSION["admin_token"];
@@ -13,6 +14,19 @@ elseif(isset($_SESSION["admin_token"]))
 }
 $result = fetch_data("select * from admin where admin_id= '$id'","result");
 $data = mysqli_fetch_assoc($result);
+
+if(isset($_COOKIE["alert_true"]))
+{
+    $alert_success = $_COOKIE["alert_true"];
+    setcookie("alert_true","",time()-10);
+}
+if(isset($_COOKIE["alert_false"]))
+{
+    $alert_danger = $_COOKIE["alert_false"];
+    setcookie("alert_false","",time()-10);
+}
+
+
 
 if($_POST)
 {
@@ -67,6 +81,7 @@ if($_POST)
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link href="assets/css/demo.css" rel="stylesheet" />
     <link href="assets/css/material-bootstrap-wizard.css" rel="stylesheet" />
 
 </head>
@@ -100,7 +115,7 @@ if($_POST)
                                 <p>Log out</p>
                             </a>
                         </li>
-                        <li class="separator hidden-lg"></li>
+
                     </ul>
                 </div>
             </div>
@@ -113,7 +128,7 @@ if($_POST)
                 <div class="col-sm-8 col-sm-offset-2">
                     <!--      Wizard container        -->
                     <div class="wizard-container">
-                        <div class="card wizard-card" data-color="purple" id="wizardProfile">
+                        <div class="card wizard-card" data-color="<?php theme("class_moving_tab"); ?>" id="wizardProfile">
                             <form name="designation_form" method="POST">
                                 <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
 
@@ -123,22 +138,20 @@ if($_POST)
                                         Designation
                                     </h3>
 									
-									<div class="container-fluid" id="alert_box" >
+									<br>
+                                    <div class="container-fluid text-center" id="alert_box" >
                                         <?php
-
                                         if(isset($alert_success))
                                         {
-                                            echo "<div class='container-fluid'><div class='alert alert-success' style='color:black'>
-               <div class='container-fluid'>
-           <div class='alert-icon'>
-            <i class='material-icons'>done_all</i>
-          </div>
-          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
-          </button>
-                   <h4>$alert_success</h4> 
-              </div>
-          </div></div>";
+                                            echo "<div class='container-fluid'><div class='alert alert-success' style='color:black' id='alert_body'>
+                                           <div class='container-fluid'>
+                                       <div class='alert-icon'>
+                                        <i class='material-icons'>done_all</i>
+                                      </div>
+                                     
+                                               <h4>$alert_success</h4> 
+                                          </div>
+                                      </div></div>";
                                         }
                                         else
                                         {
@@ -147,19 +160,15 @@ if($_POST)
 
                                         if(isset($alert_danger))
                                         {
-                                            echo "<div class='alert alert-danger' >
-               <div class='container-fluid'>
-                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
-          </button>
-           <div class='alert-icon pull-left'>
-            <i class='material-icons'>error_outline</i>
-          </div>
-          <h4> $alert_danger </h4>
-         
-                   
-              </div>
-          </div>";
+                                            echo "<div class='alert alert-danger' id='alert_body'>
+                                           <div class='container-fluid'>
+                                            
+                                       <div class='alert-icon pull-left'>
+                                        <i class='material-icons'>error_outline</i>
+                                      </div>
+                                      <h4> $alert_danger </h4>      
+                                          </div>
+                                      </div>";
                                         }
                                         else
                                         {
@@ -194,7 +203,7 @@ if($_POST)
 
                                             <div class="clearfix"></div>
 
-                                                <input type='submit' class='btn btn-block btn-fill btn-success btn-wd '  value='Add' style="background-color:#9C27B0;"/>
+                                                <input type='submit' class='btn btn-block btn-fill  btn-wd '  value='Add' id="<?php theme("id_btn"); ?>" />
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="account">
@@ -205,7 +214,7 @@ if($_POST)
                                                 <div class="row">
                                                     <div class="col-md-12">
 
-                                                        <div class="fresh-table full-color-purple" >
+                                                        <div class="fresh-table <?php  theme("class_table"); ?>" >
                                                             <!--    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
                                                                     Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
                                                             -->
@@ -252,15 +261,7 @@ if($_POST)
         </div> <!--  big container -->
 
 
-        <footer class="footer">
-            <div class="container-fluid">
 
-                <p class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script>
-                    <a href="#">By HPL Team</a>
-                </p>
-            </div>
-        </footer>
 
     </div>
 </div>

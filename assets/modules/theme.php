@@ -130,6 +130,36 @@ function theme($for)
             echo "full-color-purple";
         }
     }
+    elseif($for == "class_moving_tab")
+    {
+         if ($_COOKIE["theme"] == 'Professional')
+         {
+             echo "professional";
+         }
+        elseif($_COOKIE["theme"] == 'Casual')
+        {
+           echo "casual";
+        }
+         else
+        {
+            echo "purple";
+        }
+    }
+    elseif($for == "id_btn")
+    {
+         if ($_COOKIE["theme"] == 'Professional')
+         {
+             echo "btn_professional";
+         }
+        elseif($_COOKIE["theme"] == 'Casual')
+        {
+           echo "btn_casual";
+        }
+         else
+        {
+            echo "";
+        }
+    }
 
 }
 

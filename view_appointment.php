@@ -36,7 +36,7 @@ $data = mysqli_fetch_assoc($result);
     <link rel="icon" type="image/png" href="assets/img/HMS.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Dashboard - Appointment</title>
+    <title>Dashboard - View Appointment</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -105,20 +105,18 @@ $data = mysqli_fetch_assoc($result);
             <div class="container-fluid">
 
                 <div class="container-fluid text-center" id="alert_box" >
-
                                         <?php
-
                                         if(isset($alert_success))
                                         {
                                             echo "<div class='container-fluid'><div class='alert alert-success' style='color:black' id='alert_body'>
-               <div class='container-fluid'>
-           <div class='alert-icon'>
-            <i class='material-icons'>done_all</i>
-          </div>
-         
-                   <h4>$alert_success</h4> 
-              </div>
-          </div></div>";
+                                           <div class='container-fluid'>
+                                       <div class='alert-icon'>
+                                        <i class='material-icons'>done_all</i>
+                                      </div>
+                                     
+                                               <h4>$alert_success</h4> 
+                                          </div>
+                                      </div></div>";
                                         }
                                         else
                                         {
@@ -128,16 +126,14 @@ $data = mysqli_fetch_assoc($result);
                                         if(isset($alert_danger))
                                         {
                                             echo "<div class='alert alert-danger' id='alert_body'>
-               <div class='container-fluid'>
-                
-           <div class='alert-icon pull-left'>
-            <i class='material-icons'>error_outline</i>
-          </div>
-          <h4> $alert_danger </h4>
-         
-                   
-              </div>
-          </div>";
+                                           <div class='container-fluid'>
+                                            
+                                       <div class='alert-icon pull-left'>
+                                        <i class='material-icons'>error_outline</i>
+                                      </div>
+                                      <h4> $alert_danger </h4>      
+                                          </div>
+                                      </div>";
                                         }
                                         else
                                         {
@@ -183,15 +179,6 @@ $data = mysqli_fetch_assoc($result);
         </div>
 
 
-        <footer class="footer">
-            <div class="container-fluid">
-
-                <p class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script>
-                    <a href="#">By HPL Team</a>
-                </p>
-            </div>
-        </footer>
 
     </div>
 </div>

@@ -47,7 +47,7 @@ if($_POST)
     <link rel="icon" type="image/png" href="assets/img/HMS.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Dashboard - Appointment</title>
+    <title>Dashboard - Todays Appointment</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -70,6 +70,7 @@ if($_POST)
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link href="assets/css/demo.css" rel="stylesheet" />
     <link href="assets/css/material-bootstrap-wizard.css" rel="stylesheet" />
 
 </head>
@@ -116,7 +117,7 @@ if($_POST)
                 <div class="col-sm-8 col-sm-offset-2">
                     <!--      Wizard container        -->
                     <div class="wizard-container">
-                        <div class="card wizard-card" data-color="purple" id="wizardProfile">
+                        <div class="card wizard-card" data-color="<?php theme("class_moving_tab"); ?>" id="wizardProfile">
                             <form  name="app_form" method="POST">
                                 <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
 
@@ -289,17 +290,7 @@ if($_POST)
 
                                     </div>
                                 </div>
-                                <div class="wizard-footer">
-                                    <div class="pull-right">
-                                        <input type='button' class='btn btn-next btn-fill btn-success btn-wd'  value='Next' style="background-color:#9C27B0"/>
-                                        <input type='submit' class='btn btn-finish btn-fill btn-success btn-wd '  value='Book' style="background-color:#9C27B0"/>
-                                    </div>
 
-                                    <div class="pull-left">
-                                        <input type='button' class='btn btn-previous btn-fill btn-default btn-wd'  value='Previous' />
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
                             </form>
                         </div>
                     </div> <!-- wizard container -->

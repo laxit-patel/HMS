@@ -21,6 +21,12 @@ elseif($initial == "admn")
 	setcookie("admin_token","",time()-3600);
 	header("LOCATION:master_login.php");
 }
+elseif($initial == "dctr")
+{
+    session_destroy();
+    setcookie("doctor_token","",time()-3600);
+    header("LOCATION:master_login.php");
+}
 
 
 

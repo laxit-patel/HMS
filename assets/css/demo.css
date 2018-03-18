@@ -451,3 +451,12 @@
 {
     border-radius: 50px;
 }
+
+#btn_professional
+{
+    background-color:#319997;
+}
+#btn_casual
+{
+    background-color:#9C27B0;
+}

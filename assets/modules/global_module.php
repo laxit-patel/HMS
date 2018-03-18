@@ -287,7 +287,40 @@ function key_engine($for)
             return $key;
         }
     }
-     elseif($for == "admission")
+     elseif($for == "admission") {
+         $key = $for . "_id";
+
+         $sql_test = "select $key from $for order by cast(substring($key,9) as int ) desc limit 1";
+         $result_test = mysqli_query($conn, $sql_test);
+
+         if (mysqli_num_rows($result_test) != 0) {
+             $row = mysqli_fetch_row($result_test); //$row gets the key_val array
+
+             $data = explode("_", $row[0]); // key_val explodes and saved in $data
+
+             $year = $data[0];
+             $initial = $data[1];
+             $number = $data[2];
+
+             $year_new = date("y");
+
+             $number_new = $number + 1;
+
+             $key = $year_new . "_" . $initial . "_" . $number_new;
+
+             return $key;
+         } else {
+             $year_new = date("y");
+             $initial = $for;
+             $number_new = 0;
+             $initial = "adms";
+             $key = $year_new . "_" . $initial . "_" . $number_new;
+
+             return $key;
+         }
+
+     }
+      elseif($for == "otps")
     {
         $key = $for."_id";
 
@@ -317,7 +350,7 @@ function key_engine($for)
             $year_new = date("y");
             $initial = $for;
             $number_new = 0;
-			$initial = "adms";
+			$initial = "otps";
             $key = $year_new."_".$initial."_".$number_new;
 
             return $key;
@@ -417,7 +450,16 @@ elseif($for == "admin")
 		header("LOCATION:master_login.php");
 	}
 }
-
+elseif($for == "doctor")
+{
+    if(isset($_SESSION["doctor_token"]) && isset($_COOKIE["doctor_token"]))
+	{
+	}
+	else
+	{
+		header("LOCATION:master_login.php");
+	}
+}
 }
 
 function master_login($role,$email,$pass)
@@ -429,19 +471,38 @@ function master_login($role,$email,$pass)
 		$sql = "select * from admin where admin_name = '$email' and admin_password = '$pass'";
 		
 		$result = mysqli_query($conn,$sql);
-	if($result)
-	{
-		$count = mysqli_num_rows($result);
-			if($count == 1)
-			{
-				$data = mysqli_fetch_array($result);
-				$id = $data[0];
-				$_SESSION["admin_token"] = $data[0];
-				setcookie("admin_token", $data[0], time() + (86400 * 120));
-				header("LOCATION:dashboard_admn.php?id=$id");
-			}
+        if($result)
+        {
+            $count = mysqli_num_rows($result);
+                if($count == 1)
+                {
+                    $data = mysqli_fetch_array($result);
+                    $id = $data[0];
+                    $_SESSION["admin_token"] = $data[0];
+                    setcookie("admin_token", $data[0], time() + (86400 * 120));
+                    header("LOCATION:dashboard_admn.php?id=$id");
+                }
+        }
 	}
-	}	
+	if($role == "Doctor")
+    {
+        $sql = "select * from doctor where doctor_email = '$email' and doctor_password = '$pass'";
+
+        $result = mysqli_query($conn,$sql);
+        if($result)
+        {
+            $count = mysqli_num_rows($result);
+                if($count == 1)
+                {
+                    $data = mysqli_fetch_array($result);
+                    $id = $data[0];
+                    $_SESSION["doctor_token"] = $data[0];
+                    setcookie("doctor_token", $data[0], time() + (86400 * 120));
+                    header("LOCATION:dashboard_doctor.php?id=$id");
+                }
+        }
+
+    }
 	
 }
 
@@ -1208,6 +1269,56 @@ function menu($user,$active,$sub_active)
 
 }
 
+function doctor_menu($user,$active,$sub_active)
+{
+
+    //creating theme variable
+
+     if ($_COOKIE["theme"] == 'Professional')
+         {
+             $theme = "sidebar-professional";
+         }
+        elseif($_COOKIE["theme"] == 'Casual')
+        {
+           $theme = "sidebar-casual";
+        }
+         else
+        {
+            $theme = "";
+        }
+
+
+
+    //theme variable ends
+
+   echo "<link href='assets/css/demo.css' rel='stylesheet'><div class='sidebar '  >
+        <div class='sidebar-wrapper  $theme' >";
+
+    echo "<div class='logo'>
+                <a href='#' class='simple-text'>";
+                    if(isset($user)){echo $user;};
+                echo "</a>
+            </div>";
+
+    echo "<ul class='nav' >
+
+                <li "; if($active == "dashboard_doctor"){ echo "class=active"; } echo ">
+                    <a href='dashboard_doctor.php'>
+                        <i class='pe-7s-graph'></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>";
+
+
+
+
+          echo "</ul>";
+
+    echo "</div>
+    </div>";
+
+}
+
 function generate_bed($ward_id,$ward_bed)
 {
 	 include("assets/modules/db_config.php"); // include database for $conn variable
@@ -1442,6 +1553,24 @@ function alter_capacity($mode,$staff,$interval)
 
 }
 
+function generate_otp($id)
+{
+     include("assets/modules/db_config.php"); // include database for $conn variable
+    $check_query = "select count(*) from otps where otps_for = $'$id'";
+    $check_result = mysqli_query($conn,$check_query);
+    $count = mysqli_fetch_array($check_result);
+    echo $count[0];
+    echo $id;
+   if($count[0] == 0)
+   {
+          echo "OTP Is Unique";
+   }
+   else
+   {
+       echo "Otp Already Exist";
+   }
+
+}
 
 ?>
 

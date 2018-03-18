@@ -1,5 +1,6 @@
 <?php
 include("assets/modules/global_module.php");
+include("assets/modules/theme.php");
 check_token("admin");
 
 $name = $_SESSION["admin_token"];
@@ -7,11 +8,20 @@ if(isset($_GET["id"]))
 {
     $id = $_GET["id"];
 }
-if(isset($_GET["inserted"]))
+
+if(isset($_COOKIE["alert_true"]))
 {
-    $alert_success = $_GET["inserted"];
+    $alert_success = $_COOKIE["alert_true"];
+    setcookie("alert_true","",time()-10);
 }
-elseif(isset($_SESSION["admin_token"]))
+if(isset($_COOKIE["alert_false"]))
+{
+    $alert_danger = $_COOKIE["alert_false"];
+    setcookie("alert_false","",time()-10);
+}
+
+
+if(isset($_SESSION["admin_token"]))
 {
     $id = $_SESSION["admin_token"];
 }
@@ -119,6 +129,7 @@ if($_POST)
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link href="assets/css/demo.css" rel="stylesheet" />
     <link href="assets/css/material-bootstrap-wizard.css" rel="stylesheet" />
 </head>
 <body>
@@ -166,55 +177,53 @@ if($_POST)
                     <!--      Wizard container        -->
                     <div class="wizard-container">
 
-                        <div class="card wizard-card" data-color="purple" id="wizardProfile">
+                        <div class="card wizard-card" data-color="<?php theme("class_moving_tab"); ?>" id="wizardProfile">
 
                             <form name="add_staff" method="POST">
                                 <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
 
                                 <div class="wizard-header">
                                     <h3>Staff</h3>
-                                    <div class="container-fluid" id="alert_box" >
-                                    <?php
 
-                                    if(isset($alert_success))
-                                    {
-                                        echo "<div class='container-fluid'><div class='alert alert-success' style='color:black'>
-               <div class='container-fluid'>
-           <div class='alert-icon'>
-            <i class='material-icons'>done_all</i>
-          </div>
-          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
-          </button>
-                   <h4>$alert_success</h4> 
-              </div>
-          </div></div>";
-                                    }
-                                    else
-                                    {
-                                        echo "";
-                                    }
+                                     <br>
+                                    <div class="container-fluid text-center" id="alert_box" >
+                                        <?php
+                                        if(isset($alert_success))
+                                        {
+                                            echo "<div class='container-fluid'><div class='alert alert-success' style='color:black' id='alert_body'>
+                                           <div class='container-fluid'>
+                                       <div class='alert-icon'>
+                                        <i class='material-icons'>done_all</i>
+                                      </div>
+                                     
+                                               <h4>$alert_success</h4> 
+                                          </div>
+                                      </div></div>";
+                                        }
+                                        else
+                                        {
+                                            echo "";
+                                        }
 
-                                    if(isset($alert_danger))
-                                    {
-                                        echo "<div class='alert alert-danger'     >
-               <div class='container-fluid'>
-           <div class='alert-icon'>
-            <i class='material-icons'>error_outline</i>
-          </div>
-          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
-          </button>
-                   <b>Error Alert:</b> $alert_danger
-              </div>
-          </div>";
-                                    }
-                                    else
-                                    {
-                                        echo "";
-                                    }
-                                    ?>
+                                        if(isset($alert_danger))
+                                        {
+                                            echo "<div class='alert alert-danger' id='alert_body'>
+                                           <div class='container-fluid'>
+                                            
+                                       <div class='alert-icon pull-left'>
+                                        <i class='material-icons'>error_outline</i>
+                                      </div>
+                                      <h4> $alert_danger </h4>      
+                                          </div>
+                                      </div>";
+                                        }
+                                        else
+                                        {
+                                            echo "";
+                                        }
+                                        ?>
                                     </div>
+
                                 </div>
                                 <div class="wizard-navigation">
                                     <ul>
@@ -352,8 +361,8 @@ if($_POST)
                                 </div>
                                 <div class="wizard-footer">
                                     <div class="pull-right">
-                                        <input type='button' class='btn btn-next btn-fill btn-success btn-wd' name='next' value='Next' style="background-color:#9C27B0"/>
-                                        <input type='submit' class='btn btn-finish btn-fill btn-success btn-wd ' value='Add' style="background-color:#9C27B0"/>
+                                        <input type='button' class='btn btn-next btn-fill  btn-wd' name='next' value='Next' id="<?php theme("id_btn"); ?>"/>
+                                        <input type='submit' class='btn btn-finish btn-fill  btn-wd ' value='Add' id="<?php theme("id_btn"); ?>" />
                                     </div>
 
                                     <div class="pull-left">
@@ -369,15 +378,7 @@ if($_POST)
         </div> <!--  big container -->
 
 
-        <footer class="footer">
-            <div class="container-fluid">
 
-                <p class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script>
-                    <a href="#">By HPL Team</a>
-                </p>
-            </div>
-        </footer>
 
     </div>
 </div>
@@ -395,7 +396,8 @@ if($_POST)
 <script src="assets/js/material-bootstrap-wizard.js"></script>
 <!--  Charts Plugin -->
 <script src="assets/js/chartist.min.js"></script>
-
+<!-- Autohide Alet -->
+<script src="assets/js/alert_autohide.js"></script>
 <!--  Notifications Plugin    -->
 <script src="assets/js/bootstrap-notify.js"></script>
 

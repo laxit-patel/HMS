@@ -1,5 +1,6 @@
 <?php
 include("assets/modules/global_module.php");
+include("assets/modules/theme.php");
 check_token("admin");
 
 $name = $_SESSION["admin_token"];
@@ -12,14 +13,17 @@ elseif(isset($_SESSION["admin_token"]))
     $id = $_SESSION["admin_token"];
 }
 
-if(isset($_GET["msg_t"]))
+if(isset($_COOKIE["alert_true"]))
 {
-	$alert_success = $_GET["msg_t"];
+    $alert_success = $_COOKIE["alert_true"];
+    setcookie("alert_true","",time()-10);
 }
-if(isset($_GET["msg_f"]))
+if(isset($_COOKIE["alert_false"]))
 {
-	$alert_danger = $_GET["msg_f"];
+    $alert_danger = $_COOKIE["alert_false"];
+    setcookie("alert_false","",time()-10);
 }
+
 
 if(isset($_GET["msg"]))
 {
@@ -129,7 +133,7 @@ if($_POST)
     <link rel="icon" type="image/png" href="assets/img/HMS.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Dashboard - Admin</title>
+    <title>Dashboard - Add Patient</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -151,7 +155,7 @@ if($_POST)
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
     <link href="assets/css/material-bootstrap-wizard.css" rel="stylesheet" />
-
+    <link href="assets/css/demo.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -190,9 +194,6 @@ if($_POST)
                 </div>
             </div>
         </nav>
-
-
-
         <!--   Big container   -->
         <div class="container-fluid">
             <div class="row">
@@ -200,7 +201,7 @@ if($_POST)
                     <!--      Wizard container        -->
                     <div class="wizard-container">
 
-                        <div class="card wizard-card" data-color="purple" id="wizardProfile">
+                        <div class="card wizard-card" data-color=<?php theme("class_moving_tab"); ?> id="wizardProfile">
 
                             <form name="add_patient" method="POST">
                                 <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
@@ -209,23 +210,21 @@ if($_POST)
                                     <h3 class="wizard-title">
                                         Add patient
                                     </h3>
-									
-									<div class="container-fluid" id="alert_box" >
-                                        <?php
 
+                                     <br>
+         <div class="container-fluid text-center" id="alert_box" >
+                                        <?php
                                         if(isset($alert_success))
                                         {
-                                            echo "<div class='container-fluid'><div class='alert alert-success' style='color:black'>
-               <div class='container-fluid'>
-           <div class='alert-icon'>
-            <i class='material-icons'>done_all</i>
-          </div>
-          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
-          </button>
-                   <h4>$alert_success</h4> 
-              </div>
-          </div></div>";
+                                            echo "<div class='container-fluid'><div class='alert alert-success' style='color:black' id='alert_body'>
+                                           <div class='container-fluid'>
+                                       <div class='alert-icon'>
+                                        <i class='material-icons'>done_all</i>
+                                      </div>
+                                     
+                                               <h4>$alert_success</h4> 
+                                          </div>
+                                      </div></div>";
                                         }
                                         else
                                         {
@@ -234,19 +233,15 @@ if($_POST)
 
                                         if(isset($alert_danger))
                                         {
-                                            echo "<div class='alert alert-danger' >
-               <div class='container-fluid'>
-                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-            <span aria-hidden='true'><i class='material-icons'>clear</i></span>
-          </button>
-           <div class='alert-icon pull-left'>
-            <i class='material-icons'>error_outline</i>
-          </div>
-          <h4> $alert_danger </h4>
-         
-                   
-              </div>
-          </div>";
+                                            echo "<div class='alert alert-danger' id='alert_body'>
+                                           <div class='container-fluid'>
+                                            
+                                       <div class='alert-icon pull-left'>
+                                        <i class='material-icons'>error_outline</i>
+                                      </div>
+                                      <h4> $alert_danger </h4>      
+                                          </div>
+                                      </div>";
                                         }
                                         else
                                         {
@@ -403,8 +398,8 @@ if($_POST)
                                 </div>
                                 <div class="wizard-footer">
                                     <div class="pull-right">
-                                        <input type='' class='btn btn-next btn-fill btn-success btn-wd' name='next' value='Next' style="background-color:#9C27B0"/>
-                                        <input type='submit' class='btn btn-finish btn-fill btn-success btn-wd ' value='Add' style="background-color:#9C27B0"/>
+                                        <input type='' class='btn btn-next btn-fill btn-wd ' name='next' value='Next'  id="<?php theme("id_btn"); ?>"/>
+                                        <input type='submit' class='btn btn-finish btn-fill  btn-wd ' value='Add' id="<?php theme("id_btn"); ?>"/>
                                     </div>
 
                                     <div class="pull-left">
@@ -417,19 +412,15 @@ if($_POST)
                     </div> <!-- wizard container -->
                 </div>
             </div><!-- end row -->
+
+
+
         </div> <!--  big container -->
 
-        <footer class="footer">
-            <div class="container-fluid">
 
-                <p class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script>
-                    <a href="#">By HPL Team</a>
-                </p>
-            </div>
-        </footer>
 
     </div>
+
 </div>
 
 
@@ -447,6 +438,8 @@ if($_POST)
 <!--  Notifications Plugin    -->
 <script src="assets/js/bootstrap-notify.js"></script>
 
+<!-- Autohide Alet -->
+<script src="assets/js/alert_autohide.js" type="text/javascript"></script>
 
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
